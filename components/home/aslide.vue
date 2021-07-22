@@ -129,9 +129,9 @@ export default {
     },
     //该方法返回一个不规则背景色
     randomRgb(item) {
-      let R = Math.floor(Math.random() * 255);
-      let G = Math.floor(Math.random() * 255);
-      let B = Math.floor(Math.random() * 255);
+      let R = Math.floor(Math.random() * 200);
+      let G = Math.floor(Math.random() * 200);
+      let B = Math.floor(Math.random() * 200);
       return { background: "rgb(" + R + "," + G + "," + B + ")" };
     }
   }
@@ -237,6 +237,8 @@ export default {
     display: flex;
     flex-wrap: wrap;
     li {
+      letter-spacing: 1px;
+      font-family: "Linux Biolinum", "Noto Serif SC", Helvetica, Arial, Menlo, Monaco, monospace, sans-serif;
       margin: 7px;
       padding: 7px;
       border-radius: 5px;

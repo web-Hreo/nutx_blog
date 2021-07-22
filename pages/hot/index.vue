@@ -18,7 +18,7 @@
 
 <script>
 //引入文章组件
-import myList from "@/components/home/list";
+import myList from "@/components/articleList";
 export default {
   name: "",
   data() {
