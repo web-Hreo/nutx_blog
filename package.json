@@ -1,0 +1,33 @@
+{
+  "name": "lbw-build-org",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "nuxt",
+    "build": "nuxt build",
+    "start": "nuxt start",
+    "generate": "nuxt generate",
+    "lint": "yarn lint:js"
+  },
+  "dependencies": {
+    "@nuxtjs/axios": "^5.12.2",
+    "cheerio": "^1.0.0-rc.5",
+    "core-js": "^3.6.5",
+    "dir-glob": "^3.0.1",
+    "element-ui": "^2.14.1",
+    "less": "^3.12.2",
+    "less-loader": "^7.1.0",
+    "nuxt": "^2.14.6",
+    "swiper": "4",
+    "vue-awesome-swiper": "^4.1.1"
+  },
+  "devDependencies": {
+    
+  },
+  "config": {
+    "nuxt": {
+      "host": "0.0.0.0",
+      "port": "19003"
+    }
+  }
+}

@@ -1,0 +1,43 @@
+*{ margin:0; padding:0;}
+html,body{
+  cursor: url('../mouse.png'),auto;
+  font-family: 'Mirages Custom', 'Merriweather', 'Open Sans', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft Yahei', 'WenQuanYi Micro Hei',  'Segoe UI Emoji', 'Segoe UI Symbol', Helvetica, Arial, sans-serif;
+  /* font-family: Product Sans,Hiragino Sans GB,Hiragino Sans GB W3,Microsoft YaHei,WenQuanYi Micro Hei,sans-serif !important; */
+}
+body {
+  background: #0cebeb;
+  background: -webkit-linear-gradient(to right, #FEF3EB, #F2F0F7, #F0F8F3);
+  background: linear-gradient(to right, #FEF3EB, #F2F0F7, #F0F8F3);
+}
+address,cite,dfn,em,var, i {font-style:normal;}
+#app { font: 16px "微软雅黑", Arial, Helvetica, sans-serif; color: #555;  }
+table { border-collapse:collapse; border-spacing:0; }
+h1, h2, h3, h4, h5, h6, th { font-size: 100%; font-weight: normal; }
+button,input,select,textarea{font-size:100%;}
+fieldset{border:0;display: block;}
+/*@img*/
+img { -webkit-touch-callout: none;border:0;display: block;}
+/*@a*/
+a{color:#333;text-decoration: none;-webkit-touch-callout: none;-webkit-user-select: none; cursor: url('../mouse.png'),auto;}
+a,a:active,a:focus,a:hover,a:visited {text-decoration: none}
+/*@input*/
+input[type=password],
+input[type=text],
+textarea {resize: none; outline: 0; -webkit-appearance: none; white-space: pre-wrap;  word-wrap: break-word; background: #fff}
+ul, ol { list-style: none; }
+:focus{ outline:none;}
+/*@placeholder css*/
+::-moz-placeholder{ font-family: "Microsoft YaHei"}              
+::-webkit-input-placeholder{ font-family: "Microsoft YaHei"}    
+::-ms-input-placeholder{ font-family: "Microsoft YaHei"}
+.popper__arrow{
+  display: none;
+}
+.el-dropdown-menu{
+  /* width: 200px; */
+}
+/* .el-popper{
+  width: 200px;
+} */
+
+
