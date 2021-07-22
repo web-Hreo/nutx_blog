@@ -7,29 +7,34 @@
 -->
 <template>
   <div id='project'>
-    <div class="note warning no-icon" style="">本站项目由博主工作以来开发的项目，仅为记录及参考使用</div>
-      <el-row class="linkeBox" :gutter="10">
-        <el-col :xs="24" :sm="12" :md="12"  v-for="item in linkList" :key="item.id">
-          <div class="link-item" :class="{'link-item-hover':item.href !=='#'}" >
-            <a :href="item.href==='#'?'javascript:void(0);':item.href" :title="item.title" :target="item.href==='#'?'_self':'_blank'" data-pjax-state="external">
-              <img :src="item.imgSrc"><span class="sitename">{{item.name}}</span>
-              <p class="linkdes">{{item.title}}</p>
-            </a>
-          </div>
-        </el-col>
-      </el-row>
+    <p class="note warning no-icon" style="">本站项目由博主工作以来开发的项目，仅为记录及参考使用</p>
+    <el-row class="linkeBox" :gutter="10">
+      <el-col :xs="24" :sm="12" :md="12"  v-for="item in projectList" :key="item.id">
+        <div class="link-item" :class="{'link-item-hover':item.href !=='#'}" >
+          <a :href="item.href==='#'?'javascript:void(0);':item.href" :title="item.title" :target="item.href==='#'?'_self':'_blank'" data-pjax-state="external">
+            <img :src="item.imgSrc"><span class="sitename">{{item.name}}</span>
+            <p class="linkdes">{{item.title}}</p>
+          </a>
+        </div>
+      </el-col>
+    </el-row>
   </div>
 </template>
 
 <script>
+import {getProjectList} from '~/api/public'
 export default {
-  name: 'project',
+  async asyncData() {
+    const data = await getProjectList()
+    console.log(data);
+    return{ projectList:data }
+  },
 
   components: {},
 
   data () {
     return {
-      linkList:[
+      projectList:[
         { id:1,name:'智工建-企业端',title:'智工建专业从事开发智慧工地云平台,采用物联网、人工智能',imgSrc:'https://company.libawall.com/2021_7_13_1812/assets/logo.4d25621e.svg',href:'https://company.libawall.com' },
         { id:2,name:'智工建-项目端',title:'智工建专业从事开发智慧工地云平台,采用物联网、人工智能',imgSrc:'https://company.libawall.com/2021_7_13_1812/assets/logo.4d25621e.svg',href:'https://project.libawall.com' },
         { id:3,name:'智工建工人端',title:'此端口为微信小程序 微信搜索打开',imgSrc:'https://company.libawall.com/2021_7_13_1812/assets/logo.4d25621e.svg',href:'#' },

@@ -35,7 +35,7 @@ import 'element-ui/lib/theme-chalk/display.css';
 import '~/assets/common/common.css'//引入全局通用样式
 import  '~/assets/common/global.less'
 import MyHead from "~/components/Header";
-import Aslide from "~/components/home/aslide";
+import Aslide from "~/components/aslide";
 import MyFooter from "~/components/footer";
 export default {
   data() {

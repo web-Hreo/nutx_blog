@@ -7,8 +7,8 @@
 -->
 <template>
   <div id='about_me'>
-    <article>
-    <h2>关于我</h2>
+    <article v-html="desc">
+    <!-- <h2>关于我</h2>
     <p>目前坐标-厦门</p>
     <p>97年狮子座 爱学习爱写DEMO爱旅游爱追剧看电影吃火锅</p>
     <p>喜欢厦门喜欢大海，林荫小道，也向往细腻温柔的故事。 </p>
@@ -35,7 +35,7 @@
     <p>QQ交流群：825278827</p>
     <p>微信：He_1047</p>
     <p>邮箱：ngpeipao9977590@163.com</p>
-    <h2>我的其它站点</h2>
+    <h2>我的其它站点</h2> -->
 
     </article>
     
@@ -43,8 +43,13 @@
 </template>
 
 <script>
+import {getUserDesc} from '~/api/public'
 export default {
-  name: 'about_me',
+  async asyncData() {
+    const {data} = await getUserDesc()
+    console.log(data);
+    return{ desc:data }
+  },
 
   components: {},
 
@@ -65,15 +70,28 @@ export default {
 <style lang='less' scoped>
  #about_me{
    letter-spacing: 2px;
-   h2{
-     font-size: 20px;
-     font-weight: bold;
-     padding: 20px 0;
-   }
-   p{
-     font-size: 16px;
-     font-weight: 400;
-     padding: 5px 0;
-   }
+   article{
+     padding-bottom: 20px;
+    /deep/h2{
+      font-size: 24px;
+      font-weight: 600;
+      color: #000;
+      margin:10px 0;
+    }
+    /deep/p{
+      padding: 5px 0;
+      line-height: 30px;
+      font-size: 17px;
+      letter-spacing: 0.5px;
+      color: #000;
+      font-family: 'Mirages Custom', 'Merriweather', 'Open Sans', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft Yahei', 'WenQuanYi Micro Hei',  'Segoe UI Emoji', 'Segoe UI Symbol', Helvetica, Arial, sans-serif;
+    }
+    /deep/a{
+      font-size: 16px!important;
+      color: rgb(65, 65, 255);
+      background-color: transparent!important;
+    }
+  }
+
  }
 </style>

@@ -18,19 +18,3 @@ export function getArticleDetail(params) {
     params,
   })
 }
-//编辑标签
-export function updateTag(params) {
-  return request({
-    url: `${baseUrl}/update`,
-    method: 'post',
-    data:params,
-  })
-}
-//删除标签
-export function deleteTag(params) {
-  return request({
-    url: `${baseUrl}/delete`,
-    method: 'post',
-    data:params,
-  })
-}

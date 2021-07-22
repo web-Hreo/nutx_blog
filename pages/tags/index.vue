@@ -15,7 +15,7 @@
 </template>
 
 <script>
-import { getTags } from '../../api/tags'
+import { getTags } from '~/api/tags'
 export default {
   name: 'tags',
 

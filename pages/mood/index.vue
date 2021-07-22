@@ -8,8 +8,8 @@
 <template>
   <div id='mode'>
      <el-timeline>
-    <el-timeline-item v-for="item in modeList" :key="item.id" :timestamp="item.date" placement="top">
-        <div class="mode-card" v-html="item.title"></div>
+    <el-timeline-item v-for="item in modeList" :key="item._id" :timestamp="item.createTime" placement="top">
+        <div class="mode-card" v-html="item.cont"></div>
     </el-timeline-item>
 
   </el-timeline>
@@ -17,8 +17,13 @@
 </template>
 
 <script>
+import {getMood} from '../../api/mood'
 export default {
-  name: 'mode',
+  async asyncData() {
+    const {data} = await getMood()
+    console.log(data);
+    return { modeList:data  }
+  },
 
   components: {},
 
@@ -35,7 +40,8 @@ export default {
     }
   },
 
-  mounted () {},
+  async mounted () {
+  },
 
   destroyed () {},
 
@@ -51,6 +57,7 @@ export default {
   padding: 15px 30px 0;
 }
 .mode-card{
+  font-family: 'Mirages Custom', 'Merriweather', 'Open Sans', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft Yahei', 'WenQuanYi Micro Hei',  'Segoe UI Emoji', 'Segoe UI Symbol', Helvetica, Arial, sans-serif;
   z-index: 1;
   // background: linear-gradient(90deg,rgba(247,149,51,.1) 0,rgba(243,112,85,.1) 15%,rgba(239,78,123,.1) 30%,rgba(161,102,171,.1) 44%,rgba(80,115,184,.1) 58%,rgba(16,152,173,.1) 72%,rgba(7,179,155,.1) 86%,rgba(109,186,130,.1) 100%);
   background-color: #fff;
@@ -59,6 +66,7 @@ export default {
   border-radius: 10px;
 }
 /deep/.el-timeline-item__timestamp{
+  font-family: 'Mirages Custom', 'Merriweather', 'Open Sans', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft Yahei', 'WenQuanYi Micro Hei',  'Segoe UI Emoji', 'Segoe UI Symbol', Helvetica, Arial, sans-serif;
   padding-top: 20px;
   color: #000;
   font-size: 18px;
