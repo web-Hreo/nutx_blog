@@ -7,7 +7,21 @@
 -->
 <template>
   <div id='articleDetails'>
+    <div class="articleDetails-info">
+      <h2 class="info-title">vue实战分享--投票系统</h2>
+      <div class="info-desc fc">
+        <p>创建时间：{{info.createTime}}</p>
+        <p>浏览量：{{info.viewNum}}</p>
+        <p>所属标签：{{info.tag}}</p>
+      </div>
+
+      <p v-if="info.createTime===info.changeTime">修改时间{{info.changeTime}}</p>
+    </div>
     <article v-html="info.cont"></article>
+    <div class="copyright">
+      <p>博客内容遵循 署名-非商业性使用-相同方式共享 4.0 国际 (CC BY-NC-SA 4.0) 协议，转载请注明出处！</p>
+      <p>本文永久链接是：<a :href="url">{{url}}</a></p>
+    </div>
   </div>
 </template>
 
@@ -16,7 +30,12 @@ import '~/assets/css/monokai-sublime.css'
 import {getArticleDetail} from '~/api/article'
 export default {
   name: 'articleDetails',
-
+  async asyncData(context) {
+    console.log(context);
+    const data = await getArticleDetail({id:context.params.id})
+    const url = 'http://120.26.59.199'+context.route.path
+    return { info:data,url }
+  },
   components: {},
 
   data () {
@@ -26,10 +45,6 @@ export default {
   },
 
   async mounted () {
-    console.log(this.$route.params.id);
-    const data = await getArticleDetail({id:this.$route.params.id})
-    this.info = data
-    console.log(data);
   },
 
   destroyed () {},
@@ -39,20 +54,89 @@ export default {
 
 </script>
 <style lang='less' scoped>
-article{
-  /deep/p{
-    padding: 10px 0;
-    line-height: 30px;
-    font-size: 17px;
-    letter-spacing: 0.5px;
-    font-family: 'Mirages Custom', 'Merriweather', 'Open Sans', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft Yahei', 'WenQuanYi Micro Hei',  'Segoe UI Emoji', 'Segoe UI Symbol', Helvetica, Arial, sans-serif;
+#articleDetails{
+  background-color: #fff;
+  padding: 20px;
+  margin-top: 15px;
+  border-radius: 10px;
+  .articleDetails-info{
+    .info-title{
+      text-align: center;
+      font-size: 28px;
+      color: #000;
+      padding: 30px 0 10px;
+    }
+    .info-desc{
+      color: #8D8D8D;
+      font-size: 12px;
+      padding-bottom: 30px;
+      p{
+        padding-right: 15px;
+      }
+    }
+  }
+  article{
+    padding-bottom: 50px;
+    /deep/a{
+      word-break: break-all;
+      color: blue;
+    }
+    /deep/p{
+      padding: 10px 0;
+      line-height: 30px;
+      font-size: 17px;
+      letter-spacing: 0.5px;
+      font-family: 'Mirages Custom', 'Merriweather', 'Open Sans', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft Yahei', 'WenQuanYi Micro Hei',  'Segoe UI Emoji', 'Segoe UI Symbol', Helvetica, Arial, sans-serif;
+    }
+    /deep/h2{
+      font-size: 28px;
+      font-weight: 400;
+      color: #000;
+      margin-top: 20px;
+    }
+    /deep/blockquote{
+          word-break: break-all;
+    background-color: #F5F5F5;
+    box-sizing: border-box;
+    border-left: 4px solid #797979;
+    border-radius: 4px;
+    position: relative;
+    width: 100%;
+    padding: 16px;
+    transition: all .28s ease;
+    -moz-transition: all .28s ease;
+    -webkit-transition: all .28s ease;
+    -o-transition: all .28s ease;
+    }
+    /deep/.JavaScript{
+      overflow-x: auto;
+      margin: 20px 0;
+      padding: 10px 0;
+      display: block;
+      background-color: #F5F5F5;
+      font-family: Consolas,Menlo,Monaco,"lucida console","Liberation Mono","Courier New","andale mono",monospaceX,monospace,sans-serif;
+    }
+  }
+  .copyright{
+    word-break: break-all;
+    background-color: #F5F5F5;
+    box-sizing: border-box;
+    border-left: 4px solid #797979;
+    border-radius: 4px;
+    position: relative;
+    width: 100%;
+    padding: 16px;
+    transition: all .28s ease;
+    -moz-transition: all .28s ease;
+    -webkit-transition: all .28s ease;
+    -o-transition: all .28s ease;
+     a{
+      word-break: break-all;
+      color: rgb(65, 65, 255);
+    }
   }
 }
-/deep/.JavaScript{
-  margin: 20px 0;
-  padding: 10px 0;
-  display: block;
-  background-color: #cccc;
-  font-family: Consolas,Menlo,Monaco,"lucida console","Liberation Mono","Courier New","andale mono",monospaceX,monospace,sans-serif;
-}
+
+
+
 </style>
