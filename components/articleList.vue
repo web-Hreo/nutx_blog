@@ -1,12 +1,14 @@
 <template>
   <div id="articleList">
     <!-- 文章盒子 -->
-    <div class="blog_item"
+    <nuxt-link class="blog_item"
       :style="{'background-image': `url(${item.bg})`}"
-      v-for="(item, index) in articleList" :key="index">
+      v-for="(item, index) in articleList" :key="index"
+       :to="`articleDetails/${item._id}`"
+      >
       <p class="item_name">{{item.title}}</p>
-      <p class="item_time">{{item.createTime}}・{{item.tag}}</p>
-    </div>
+      <p class="item_time">{{item.createTime}}・{{item.tag}}・{{item.viewNum}}次浏览</p>
+    </nuxt-link>
      <!-- 分页器  -->
     <div class="pagination fbc">
       <div class="btn">上一页</div>
@@ -44,9 +46,10 @@ export default {
 
 <style lang='less' scoped>
 .blog_item {
+  display: block;
   margin: 30px 0;
   padding: 100px 10px;
-  background-color: #fff;
+  background-color: transparent;
   color: #fff;
   border-radius: 5px;
   background-position: center;
@@ -173,4 +176,5 @@ export default {
     color: #fff;
   }
 }
+
 </style>

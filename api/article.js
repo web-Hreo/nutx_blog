@@ -10,12 +10,12 @@ export function getArticle(params) {
     params,
   })
 }
-//新增标签
-export function setTag(params) {
+//根据文章id获取文章详情id
+export function getArticleDetail(params) {
   return request({
-    url: `${baseUrl}/set`,
-    method: 'post',
-    data:params,
+    url: `${baseUrl}/byId`,
+    method: 'get',
+    params,
   })
 }
 //编辑标签
