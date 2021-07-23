@@ -3,7 +3,7 @@
     <!-- 文章盒子 -->
     <nuxt-link class="blog_item"
       :style="{'background-image': `url(${item.bg})`}"
-      v-for="(item, index) in articleList" :key="index"
+      v-for="(item, index) in articleList.data" :key="index"
        :to="`articleDetails/${item._id}`"
       >
       <p class="item_name">{{item.title}}</p>
@@ -11,8 +11,12 @@
     </nuxt-link>
      <!-- 分页器  -->
     <div class="pagination fbc">
-      <div class="btn">上一页</div>
-      <div class="btn">下一页</div>
+      <div class="btnBox">
+        <p class="btn" v-if="articleList.pageNo !==1" @click="previous()">上一页</p>
+      </div>
+      <div class="btnBox">
+        <p class="btn" v-if="articleList.pageNo*articleList.pageSize <articleList.total" @click="next()">下一页</p>
+      </div>
     </div>
     
   </div>
@@ -26,19 +30,27 @@ export default {
   },
   props: ["articleList"],
   created(){
-    this.articleList.forEach(it =>{
+    console.log( this.articleList);
+    this.articleList.data.forEach(it =>{
       const rendom = Math.floor(Math.random()*32 + 1)
       it.bg = require(`../assets/image/article_bg/${rendom}.jpg`)
     })
   },
   watch:{
     articleList(val){
-      console.log('val',val);
-      val.forEach(it =>{
+      val.data.forEach(it =>{
         const rendom = Math.floor(Math.random()*32 + 1)
         it.bg = require(`../assets/image/article_bg/${rendom}.jpg`)
       })
       this.articleList = val
+    },
+  },
+  methods:{
+    previous(){
+      this.$emit('turnPages',this.articleList.pageNo - 1)
+    },
+    next(){
+      this.$emit('turnPages',this.articleList.pageNo + 1)
     }
   }
 };

@@ -1,6 +1,14 @@
 import request from './request'
 const appKey ='09b204bf1bf14028b01dfb2ffb9d45eb'
 
+//查询文章 标签 日志长度
+export function getLength(params) {
+  return request({
+    url: `public/length`,
+    method: 'get',
+    params,
+  })
+}
 //查询所有日志
 export function getMood(params) {
   return request({

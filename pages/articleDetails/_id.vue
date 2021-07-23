@@ -8,14 +8,14 @@
 <template>
   <div id='articleDetails'>
     <div class="articleDetails-info">
-      <h2 class="info-title">vue实战分享--投票系统</h2>
+      <h2 class="info-title">{{info.title}}</h2>
       <div class="info-desc fc">
         <p>创建时间：{{info.createTime}}</p>
         <p>浏览量：{{info.viewNum}}</p>
         <p>所属标签：{{info.tag}}</p>
       </div>
 
-      <p v-if="info.createTime===info.changeTime">修改时间{{info.changeTime}}</p>
+      <!-- <p v-if="info.createTime===info.changeTime">修改时间{{info.changeTime}}</p> -->
     </div>
     <article v-html="info.cont"></article>
     <div class="copyright">
@@ -94,23 +94,35 @@ export default {
       color: #000;
       margin-top: 20px;
     }
+    /deep/ul{
+      list-style-type: disc;
+      li{
+        margin-left: 20px;
+        padding: 5px 0;
+      }
+    }
+    /deep/img{
+      margin: 5px 10%;
+      width: 80%;
+    }
     /deep/blockquote{
-          word-break: break-all;
-    background-color: #F5F5F5;
-    box-sizing: border-box;
-    border-left: 4px solid #797979;
-    border-radius: 4px;
-    position: relative;
-    width: 100%;
-    padding: 16px;
-    transition: all .28s ease;
-    -moz-transition: all .28s ease;
-    -webkit-transition: all .28s ease;
-    -o-transition: all .28s ease;
+      margin: 5px 0;
+      word-break: break-all;
+      background-color: #F5F5F5;
+      box-sizing: border-box;
+      border-left: 4px solid #797979;
+      border-radius: 4px;
+      position: relative;
+      width: 100%;
+      padding: 10px;
+      transition: all .28s ease;
+      -moz-transition: all .28s ease;
+      -webkit-transition: all .28s ease;
+      -o-transition: all .28s ease;
     }
     /deep/.JavaScript{
       overflow-x: auto;
-      margin: 20px 0;
+      margin: 5px 0;
       padding: 10px 0;
       display: block;
       background-color: #F5F5F5;

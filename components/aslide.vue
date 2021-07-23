@@ -11,9 +11,9 @@
         <p>保持热爱 奔赴山海</p>
       </div>
       <ul class="my_article fbc">
-        <li><p>文章</p><p>80</p></li>
-        <li><p>标签</p><p>80</p></li>
-        <li><p>分类</p><p>80</p></li>
+        <nuxt-link to="/"><p>文章</p><p>{{lengthList.article_length}}</p></nuxt-link>
+        <nuxt-link to="/tags"><p>标签</p><p>{{lengthList.tags_length}}</p></nuxt-link>
+        <nuxt-link to="/mood"><p>日志</p><p>{{lengthList.mood_length}}</p></nuxt-link>
       </ul>
     </div>
     <!-- 天气 -->
@@ -76,20 +76,22 @@
 
 <script>
 import { getTags } from '~/api/tags'
-import { getApiAddress,getWeather } from '~/api/public'
+import { getApiAddress,getWeather,getLength } from '~/api/public'
 // import { apiAddress, weather } from "../../axios/api.js"; //引入api
 export default {
   data() {
     return {
       tagList:[],
       userinfo: [],
-      Weather: []
+      Weather: [],
+      lengthList:{}
     };
   },
   created() {
     console.log('aslide created');
     this.getdata();
     this.getTag()
+    this.getLength()
   },
   methods: {
     async getTag(){
@@ -121,6 +123,10 @@ export default {
       } catch (err) {
         console.log(err);
       }
+    },
+    async getLength(){
+      const {data} = await getLength()
+      this.lengthList = data
     },
     //该方法返回一个不规则背景色
     randomRgb(item) {
@@ -209,14 +215,6 @@ export default {
   .my_article{
     padding: 10px 20px;
     text-align: center;
-    li{
-      p{
-        &:nth-child(2){
-          font-size: 20px;
-          padding-top: 5px;
-        }
-      }
-    }
   }
 }
 .info_weather {

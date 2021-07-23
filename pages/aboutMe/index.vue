@@ -83,7 +83,7 @@ export default {
       line-height: 30px;
       font-size: 17px;
       letter-spacing: 0.5px;
-      color: #000;
+      color: #555;
       font-family: 'Mirages Custom', 'Merriweather', 'Open Sans', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft Yahei', 'WenQuanYi Micro Hei',  'Segoe UI Emoji', 'Segoe UI Symbol', Helvetica, Arial, sans-serif;
     }
     /deep/a{
