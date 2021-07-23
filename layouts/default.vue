@@ -30,6 +30,7 @@
 </template>
 
 <script>
+import  '../assets/css/iconfont.css'
 import 'element-ui/lib/theme-chalk/index.css';
 import 'element-ui/lib/theme-chalk/display.css';
 import '~/assets/common/common.css'//引入全局通用样式
@@ -69,10 +70,13 @@ export default {
 #home {
   max-width: 1200px;
   min-width: 320px;
-  margin: 60px auto 0 auto;
-  padding-top: 20px;
+  margin:  0 auto;
+  padding-top: 80px;
   overflow: hidden;
-
+  //m端
+  @media only screen and (max-width: 766.99px) {
+      padding-top: 0;
+  }
   .home_cont {
     height: 100%;
     .home_cont_blog,

@@ -1,53 +1,60 @@
 <template>
   <div id="head">
     <div id="head_cont">
-      <el-row class="head_cont fbc">
-        <!-- <el-col :span="8">
-          <div class="grid-content bg-purple">
-            <div class="head_img">
-              <img src="../assets/head/logo.png" alt />
-            </div>
-          </div>
-        </el-col> -->
-        <el-col  class="head_nav">
+      <div class="head_cont fbc">
+        <div  class="head_nav">
           <div class="grid-content bg-purple">
             <div class="hidden-xs-only fc">
-              <p class="head_name">LOGI</p>
+              <p class="head_name">HHUA</p>
               <ul class=" fc ml-20">
                 <li v-for="item in routerList" :key="item.id">
-                  <a class="active-a" v-if="item.children" href="javascript:void(0);">
+                  <a class="active-a" v-if="item.children" href="javascript:void(0);" @click.stop="openChildren(item)">
                     <span>{{item.name}}</span><i class="iconfont icon-xiala"></i>
-                    <ul class="active-hover-a">
+                    <ul class="active-hover-a" :class="{'active-hover-a-block':item.id===currentRouterIndex}">
                       <li v-for="it in item.children" :key="it.id">
                         <router-link :to="it.path" ><span>{{it.name}}</span></router-link>
                       </li>
                     </ul>
                   </a>
                   <router-link v-else :to="item.path" ><span>{{item.name}}</span></router-link>
-
                 </li>
               </ul>
            
             </div>
-            <el-dropdown trigger="click" class="hidden-sm-and-up">
-              <span class="el-dropdown-link">
-                {{routername}}
-                <i class="el-icon-arrow-down el-icon--right"></i>
-              </span>
-              <el-dropdown-menu slot="dropdown">
-                <el-dropdown-item v-for="item in routerList" :key="item.id" :command="item.id">
-                  <router-link :to="item.path">{{item.name}}</router-link>
-                </el-dropdown-item>
-              </el-dropdown-menu>
-            </el-dropdown>
           </div>
-        </el-col>
-        <el-col class="head_search fec">
+        </div>
+        <div class="head_search fc">
           <div>A</div>
           <div>B</div>
           <div>C</div>
-        </el-col>
-      </el-row>
+        </div>
+      </div>
+    </div>
+    <div
+      class="m_head_cont_btn fcc hidden-sm-and-up"
+      :class="{'m_head_cont_btn_open':is_m_oepn}"
+      @click="open_m_menu"
+      >
+      MENU
+    </div>
+    <div class="m_head_cont hidden-sm-and-up"  >
+      <div class="m_head_modal_cont" :class="{'m_head_cont_modal_open':is_m_oepn}" @click="nuxtLink"></div>
+      <div class="m_head_link_cont" :class="{'m_head_cont_link_open':is_m_oepn}">
+        <img src="https://z3.ax1x.com/2021/07/23/Wsoih4.jpg" alt="">
+        <ul>
+          <li @click="nuxtLink"><nuxt-link to="/">首页</nuxt-link></li>
+          <li @click="nuxtLink"><nuxt-link to="/article">文章归档</nuxt-link></li>
+          <li @click="nuxtLink"><nuxt-link to="/tags">文章归档</nuxt-link></li>
+          <li @click="nuxtLink"><nuxt-link to="/hot">热榜</nuxt-link></li>
+          <li @click="nuxtLink"><nuxt-link to="/mood">日志</nuxt-link></li>
+          <li @click="nuxtLink"><nuxt-link to="/links">友链</nuxt-link></li>
+          <li @click="nuxtLink"><nuxt-link to="/message">留言</nuxt-link></li>
+          <li @click="nuxtLink"><nuxt-link to="/aboutMe">关于我</nuxt-link></li>
+          <li @click="nuxtLink"><nuxt-link to="/project">项目分享</nuxt-link></li>
+          <li @click="nuxtLink"><nuxt-link to="/navigation">学习资源</nuxt-link></li>
+        </ul>
+      </div>
+
     </div>
   </div>
 </template>
@@ -79,9 +86,17 @@ export default {
           ]
         }
       ],
+      currentRouterIndex:0,
+      is_m_oepn:false
     };
   },
-  methods: {},
+  mounted(){
+    window.addEventListener("click", this.closeChildren);
+  },
+  beforeDestroy() {  // 实例销毁之前对点击事件进行解绑
+    window.removeEventListener('click', this.closeChildren);
+  },
+
   computed: {
     routername() {
       let arr = this.routerList.filter(v => v.path == this.$route.path);
@@ -89,11 +104,30 @@ export default {
       return arr[0].name;
     }
   },
+  methods:{
+    //关闭全局弹窗
+    closeChildren(){
+      this.currentRouterIndex = 0
+    },
+    //打开二级弹窗
+    openChildren(item){
+      this.currentRouterIndex = item.id === this.currentRouterIndex?0:item.id
+    },
+    //打开m端导航
+    open_m_menu(){
+      this.is_m_oepn = !this.is_m_oepn
+      document.documentElement.style.overflow = this.is_m_oepn?'hidden':''
+    },
+    nuxtLink(){
+      this.is_m_oepn = false
+    }
+  }
 };
 </script>
 
 <style lang='less' scoped>
 #head {
+  display: block;
   z-index: 999;
   font-size: 16px;
   position: fixed;
@@ -103,11 +137,23 @@ export default {
   background-color: rgba(255,255,255,0.7);
   -webkit-backdrop-filter: blur(20px);
   backdrop-filter: blur(10px);
+  transition: all .3s ease;
+    //ipad端
+  @media only screen and (max-width: 1199.99px) {
+    display: block;
+    box-sizing: border-box;
+    padding: 0 30px;
+  }
+
   #head_cont {
     max-width: 1200px;
     min-width: 320px;
     margin: 0 auto;
     height: 80px;
+    //m端
+    @media only screen and (max-width: 766.99px) {
+      display: none;
+    }
   }
   .head_cont {
     height: 80px;
@@ -124,7 +170,7 @@ export default {
   }
   .head_nav {
     height: 80px;
-    max-width: 600px;
+    // max-width: 600px;
     .head_name{
       font-size: 20px;
       color: #000;
@@ -138,8 +184,8 @@ export default {
         line-height: 80px;
         // border-bottom: 2px solid #fff;
         a {
-          font-size: 16.8px;
-          color: #555;
+          font-size: 17px;
+          color: #000;
           display: inline-block;
           padding: 0 7px;
           width: 100%;
@@ -153,10 +199,8 @@ export default {
         }
         .active-a{
           position: relative;
-          &:hover .active-hover-a{
-            display: block;
-          } 
         }
+
         .active-hover-a{
           display: none;
           position: absolute;
@@ -164,7 +208,7 @@ export default {
           top: 70px;
           left: 0;
           background-color: #fff;
-          box-shadow: 0 5px 10px #ccc;
+          box-shadow: 0 1px 5px rgb(0, 0, 0, .05);
           z-index: 9999;
           width: 180px;
           padding: 10px 0;
@@ -188,6 +232,9 @@ export default {
               }
             }
           }
+        }
+        .active-hover-a-block{
+          display: block;
         }
       }
       .active {
@@ -215,32 +262,72 @@ export default {
     }
   }
 }
-.el-dropdown {
-  width: 100%;
+.nuxt-link-exact-active{
+  color: yellowgreen!important;
+}
+
+//m端
+.m_head_cont_btn{
+  position: fixed;
+  top: 10px;
+  left: 15px;
+  width: 80px;
   height: 40px;
-  padding-top: 20px;
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
+  border-radius: 30px;
+  background-color: #fff;
+  color: #000;
+  font-size: 15px;
+  transition: all .4s ease;
+  transform: translateX(0);
+  z-index: 999;
 }
-.el-dropdown-link {
-  padding-right: 20px;
-  font-size: 16px;
-  // cursor: pointer;
-  color: #409eff;
+.m_head_cont{
+
+  .m_head_modal_cont{
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, .3);
+  }
+  .m_head_link_cont{
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: #FAFAFA;
+    width: 280px;
+    height: 100vh;
+    transition: all .5s ease;
+    transform: translateX(-280px);
+    img{
+      width: 110px;
+      margin: 44px auto;
+      height: 110px;
+      border-radius: 50%;
+    }
+    a{
+      font-size: 17px;
+      color: rgba(0, 0, 0, .7);
+      display: inline-block;
+      width: 100%;
+      height: 40px;
+      line-height: 40px;
+      text-align: center;
+    }
+  }
+
 }
-.el-icon-arrow-down {
-  font-size: 12px;
+.m_head_cont_modal_open{
+  display: block!important;
 }
-a {
-  color: #555;
-  display: inline-block;
-  padding: 0 5px;
-  width: 100%;
-  height: 100%;
+.m_head_cont_link_open{
+  transform: translateX(0)!important;
 }
-.router-link-exact-active,
-.router-link-active{
-  color: #000!important;
+.m_head_cont_btn_open{
+  transform: translateX(210px);
+  background-color: #000;
+  color: #fff;
 }
 </style>

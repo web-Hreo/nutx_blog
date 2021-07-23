@@ -68,6 +68,11 @@ export default {
   background-repeat: no-repeat;
   background-size: cover;
   text-align: center;
+  transition: all .3s ease;
+  //移动端
+  @media only screen and (max-width: 768.99px) {
+    padding: 50px 10px;
+  }
   .item_name{
   font-family: 'Mirages Custom', 'Merriweather', 'Open Sans', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft Yahei', 'WenQuanYi Micro Hei',  'Segoe UI Emoji', 'Segoe UI Symbol', Helvetica, Arial, sans-serif;
     font-size: 24px;
@@ -183,6 +188,11 @@ export default {
   overflow: hidden;
   text-overflow: ellipsis;
   transition: 0.3s ease all;
+  //移动端
+  @media only screen and (max-width: 768.99px) {
+    font-size: 14px;
+    padding: 8px 25px;
+  }
   &:hover{
     background-color: #000;
     color: #fff;
