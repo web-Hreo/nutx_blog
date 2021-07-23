@@ -7,7 +7,7 @@
             <div class="hidden-xs-only fc">
               <p class="head_name">HHUA</p>
               <ul class=" fc ml-20">
-                <li v-for="item in routerList" :key="item.id">
+                <li v-for="item in pc_routerList" :key="item.id">
                   <a class="active-a" v-if="item.children" href="javascript:void(0);" @click.stop="openChildren(item)">
                     <span>{{item.name}}</span><i class="iconfont icon-xiala"></i>
                     <ul class="active-hover-a" :class="{'active-hover-a-block':item.id===currentRouterIndex}">
@@ -42,16 +42,10 @@
       <div class="m_head_link_cont" :class="{'m_head_cont_link_open':is_m_oepn}">
         <img src="https://z3.ax1x.com/2021/07/23/Wsoih4.jpg" alt="">
         <ul>
-          <li @click="nuxtLink"><nuxt-link to="/">首页</nuxt-link></li>
-          <li @click="nuxtLink"><nuxt-link to="/article">文章归档</nuxt-link></li>
-          <li @click="nuxtLink"><nuxt-link to="/tags">文章归档</nuxt-link></li>
-          <li @click="nuxtLink"><nuxt-link to="/hot">热榜</nuxt-link></li>
-          <li @click="nuxtLink"><nuxt-link to="/mood">日志</nuxt-link></li>
-          <li @click="nuxtLink"><nuxt-link to="/links">友链</nuxt-link></li>
-          <li @click="nuxtLink"><nuxt-link to="/message">留言</nuxt-link></li>
-          <li @click="nuxtLink"><nuxt-link to="/aboutMe">关于我</nuxt-link></li>
-          <li @click="nuxtLink"><nuxt-link to="/project">项目分享</nuxt-link></li>
-          <li @click="nuxtLink"><nuxt-link to="/navigation">学习资源</nuxt-link></li>
+          <li v-for="(item, index) in m_routerList" :key="index" @click="nuxtLink(item)">
+            <nuxt-link :to="item.path">{{item.name}}</nuxt-link>
+          </li>
+          <li ></li>
         </ul>
       </div>
 
@@ -64,9 +58,8 @@ export default {
   name: "",
   data() {
     return {
-      routerList: [
+      pc_routerList: [
         { name: "首页", id: 1, path: "/" },
-        // { name: "学无止境", id: 2, path: "/style" },
         { 
           name: "归档", id: 2, path: "#",isActive:true,
           children:[
@@ -77,7 +70,7 @@ export default {
         { name: "热榜", id: 5, path: "/hot" },
         { name: "日志", id: 6, path: "/mood" },
         { name: "友链", id: 7, path: "/links" },
-        { name: "留言", id: 8, path: "/message" },
+        // { name: "留言", id: 8, path: "/message" },
         { name: "更多", id: 9, path: "#",
           children:[
             { name: "关于我", id: 10, path: "/aboutMe"},
@@ -86,23 +79,30 @@ export default {
           ]
         }
       ],
+      m_routerList:[
+        { name: "首页", id: 1, path: "/" ,routeName:'pageNo',isActive:false,},
+        { name: "文章归档", id: 3, path: "/article",routeName:'article',isActive:false,},
+        { name: "文章标签", id: 4, path: "/tags" ,routeName:  'tags',isActive:false,},
+        { name: "热榜", id: 5, path: "/hot" ,routeName:'hot-pageNo',isActive:false,},
+        { name: "日志", id: 6, path: "/mood" ,routeName:'mood',isActive:false,},
+        { name: "友链", id: 7, path: "/links" ,routeName:'links',isActive:false,},
+        // { name: "留言", id: 8, path: "/message" ,routeName:'message',isActive:false,},
+        { name: "关于我", id: 10, path: "/aboutMe",routeName:'aboutMe',isActive:false,},
+        { name: "项目分享", id: 11, path: "/project",routeName:'project',isActive:false,},
+        { name: "学习资源", id: 12, path: "/navigation",routeName:'navigation',isActive:false,},
+      ],
       currentRouterIndex:0,
       is_m_oepn:false
     };
+  },
+  created(){
+    this.handleRouter(this.$route)
   },
   mounted(){
     window.addEventListener("click", this.closeChildren);
   },
   beforeDestroy() {  // 实例销毁之前对点击事件进行解绑
     window.removeEventListener('click', this.closeChildren);
-  },
-
-  computed: {
-    routername() {
-      let arr = this.routerList.filter(v => v.path == this.$route.path);
-      if (arr.length === 0) return "首页";
-      return arr[0].name;
-    }
   },
   methods:{
     //关闭全局弹窗
@@ -120,6 +120,21 @@ export default {
     },
     nuxtLink(){
       this.is_m_oepn = false
+      document.documentElement.style.overflow = this.is_m_oepn?'hidden':''
+    },
+    handleRouter(router){
+      // console.log(router);
+      // if(router.name === 'articleDetails-id'){
+
+      // }else{
+      //   const _ARR = this.m_routerList.find(it=> it.routeName===router.name)
+      //   console.log(_ARR);
+      // }
+    }
+  },
+  watch:{
+    $route(val){
+      this.handleRouter(val)
     }
   }
 };
@@ -187,7 +202,7 @@ export default {
           font-size: 17px;
           color: #000;
           display: inline-block;
-          padding: 0 7px;
+          padding: 0 8px;
           width: 100%;
           height: 100%;
           display: flex;
@@ -208,7 +223,7 @@ export default {
           top: 70px;
           left: 0;
           background-color: #fff;
-          box-shadow: 0 1px 5px rgb(0, 0, 0, .05);
+          box-shadow: 0 1px 5px #ccc;
           z-index: 9999;
           width: 180px;
           padding: 10px 0;
@@ -262,9 +277,12 @@ export default {
     }
   }
 }
-.nuxt-link-exact-active{
-  color: yellowgreen!important;
-}
+// .nuxt-link-active{
+//   color: yellowgreen!important;
+// }
+// .nuxt-link-exact-active{
+//   color: yellowgreen!important;
+// }
 
 //m端
 .m_head_cont_btn{

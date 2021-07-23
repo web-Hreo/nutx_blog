@@ -32,14 +32,14 @@ export default {
   created(){
     console.log( this.articleList);
     this.articleList.data.forEach(it =>{
-      const rendom = Math.floor(Math.random()*32 + 1)
+      const rendom = Math.floor(Math.random()*30 + 1)
       it.bg = require(`../assets/image/article_bg/${rendom}.jpg`)
     })
   },
   watch:{
     articleList(val){
       val.data.forEach(it =>{
-        const rendom = Math.floor(Math.random()*32 + 1)
+        const rendom = Math.floor(Math.random()*30 + 1)
         it.bg = require(`../assets/image/article_bg/${rendom}.jpg`)
       })
       this.articleList = val
