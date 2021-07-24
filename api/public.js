@@ -42,7 +42,7 @@ export function getNavigation(params) {
   })
 }
 /**
- * @desc 获取当前用户ip及地址
+ * @desc 获取当前用户ip及地址  
  * @param {*} params 
  * @returns 
  */
@@ -59,5 +59,22 @@ export function getWeather(params) {
     url: `https://www.tianqiapi.com/free/day?appid=58211714&appsecret=m6u0Ufq5`,
     method: 'get',
     params,
+  })
+}
+/**
+ * @desc 获取当前用户ip及地址  
+ * @param {*} params 
+ * @returns 
+ */
+// 将地址逆转为经纬度坐标
+export function getUserIp () {
+  return new Promise((resolve, reject) => {
+    window.getInfo = (res) => { resolve(res.result) }
+    const script = document.createElement('script')
+    script.src = `http://pv.sohu.com/cityjson?ie=utf-8?callback=getInfo`
+    document.body.appendChild(script)
+    setTimeout(() => {
+      document.body.removeChild(script)
+    }, 1000)
   })
 }

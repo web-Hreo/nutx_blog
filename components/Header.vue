@@ -70,7 +70,7 @@ export default {
         { name: "热榜", id: 5, path: "/hot" },
         { name: "日志", id: 6, path: "/mood" },
         { name: "友链", id: 7, path: "/links" },
-        // { name: "留言", id: 8, path: "/message" },
+        { name: "留言", id: 8, path: "/comment" },
         { name: "更多", id: 9, path: "#",
           children:[
             { name: "关于我", id: 10, path: "/aboutMe"},
@@ -86,7 +86,7 @@ export default {
         { name: "热榜", id: 5, path: "/hot" ,routeName:'hot-pageNo',isActive:false,},
         { name: "日志", id: 6, path: "/mood" ,routeName:'mood',isActive:false,},
         { name: "友链", id: 7, path: "/links" ,routeName:'links',isActive:false,},
-        // { name: "留言", id: 8, path: "/message" ,routeName:'message',isActive:false,},
+        { name: "留言", id: 8, path: "/comment" ,routeName:'message',isActive:false,},
         { name: "关于我", id: 10, path: "/aboutMe",routeName:'aboutMe',isActive:false,},
         { name: "项目分享", id: 11, path: "/project",routeName:'project',isActive:false,},
         { name: "学习资源", id: 12, path: "/navigation",routeName:'navigation',isActive:false,},

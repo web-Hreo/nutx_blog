@@ -34,6 +34,7 @@ import {
   DropdownItem,
   Timeline,
   TimelineItem,
+  Notification,
 } from 'element-ui'
 
 Vue.use(Select);
@@ -70,3 +71,4 @@ Vue.use(TimelineItem);
 Vue.prototype.$message = Message;
 Vue.prototype.$confirm = MessageBox.confirm;
 Vue.prototype.$loading = Loading.service;
+Vue.prototype.$notify = Notification;

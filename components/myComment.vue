@@ -1,0 +1,372 @@
+<!--
+  @name: 'myComment',
+  @describe: 我的留言板组件 
+  @author: HeHua,
+  @createDate: 2021年07月24日 14:57:22,
+  @changeDate: ,
+-->
+<template>
+  <div id='myComment'>
+  <!-- 留言模板 -->
+  <div class="form" v-if="replyIndex===-1">
+    <h2 class="myComment_title cff6c6c">添加新留言</h2>
+    <div class="fb">
+      <div class="form_avatar">
+        <img :src="form.leavingAvatar" alt="">
+      </div>
+      <div class="form_ipt">
+        <el-input type="textarea" v-model="form.leavingCont"  maxlength="50" show-word-limit></el-input>
+        <div class="leavingInfo">
+          <el-input v-model="form.leavingName" placeholder="必填">
+            <template slot="prepend">昵称</template>
+            </el-input>
+          <el-input v-model="form.leavingEmail" placeholder="必填 建议填写QQ邮箱" @change="emailChange">
+            <template slot="prepend">邮箱</template>
+            </el-input>
+          <el-input v-model="form.leavingUrl" placeholder="选填">
+            <template slot="prepend">网址</template>
+          </el-input>
+        </div>
+        <el-button type="primary" @click="addComment()">提交</el-button>
+        <p class="tips">TIPS:建议填写QQ邮箱 否则头像为企鹅头像</p>
+        <p class="tips">TIPS:破站无流量,大神勿写脚本刷回复</p>
+      </div>
+    </div>
+  </div>
+    <!-- 留言内容回显 -->
+    <div class="myComment_cont">
+      <h3 class="cont_title cff6c6c">已有 {{commentLength}} 条评论</h3>
+      <div class="cont-item" v-for="(item, index) in commentList" :key="index">
+        <!-- 留言父模板 -->
+        <div class="item_father">
+          <div style="display:flex">
+            <div class="item_img">
+              <img :src="item.leavingAvatar" alt="">
+            </div>
+            <div class="item_user">
+              <div class="usre_name">{{item.leavingName}}</div>
+              <div class="usre_time fbc">
+                <p>{{item.createTime}}</p>
+                <p class="reply" @click.stop="replyOne(item,index,1)">回复</p>
+              </div>
+              <div class="usre_cont">
+                <p>{{item.leavingCont}} </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- 回复子模版 -->
+        <div class="item_children" v-if="item.children.length>0">
+          <div style="display:flex;padding:10px 0" v-for="(it,i) in item.children" :key="i">
+            <div class="item_img">
+              <img :src="it.leavingAvatar" alt="">
+            </div>
+            <div class="item_user">
+              <div class="usre_name">{{it.leavingName}}</div>
+              <div class="usre_time fbc">
+                <p>{{it.createTime}}</p>
+                <p class="reply" @click.stop="replyOne(it,index,2)">回复</p>
+              </div>
+              <div class="usre_cont">
+                <p>@{{it.replyName}} {{it.leavingCont}} </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- 回复模板 -->
+        <div class="childrenForm form" v-if="replyIndex===index" @click.stop>
+          <div class="form_avatar fc" style="margin-bottom:5px">
+            <img :src="form.leavingAvatar" alt="">
+            <p style="padding-left:20px">回复<span class="cff6c6c">{{replyTitle}}</span></p>
+          </div>
+          <div class="form_ipt" style="margin-left:0">
+            <el-input type="textarea" v-model="form.leavingCont"  maxlength="50" show-word-limit></el-input>
+            <div class="leavingInfo">
+              <el-input v-model="form.leavingName" placeholder="必填">
+                <template slot="prepend">昵称</template>
+                </el-input>
+              <el-input v-model="form.leavingEmail" placeholder="必填 建议填写QQ邮箱" @change="emailChange">
+                <template slot="prepend">邮箱</template>
+                </el-input>
+              <el-input v-model="form.leavingUrl" placeholder="选填">
+                <template slot="prepend">网址</template>
+              </el-input>
+            </div>
+            <el-button type="primary" @click="addComment()">提交</el-button>
+            <p class="tips">TIPS:建议填写QQ邮箱 否则头像为企鹅头像</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script>
+import {getComment,addComment} from '~/api/comment'
+import {getApiAddress} from '~/api/public'
+export default {
+  name: 'myComment',
+  props:{
+    from:{type:String},
+    fromId:{type:String,default:''},
+  },
+  components: {},
+
+  data () {
+    return {
+      form:{//留言上传params
+       from:'',
+       fromId:'',
+       fromIp:'',
+       leavingCont:'', 
+       leavingName:'', 
+       leavingEmail:'', 
+       leavingAvatar:'http://q.qlogo.cn/headimg_dl?dst_uin=0&spec=100',
+       leavingUrl:'', 
+       replyLevel:null,
+       parentId:null,
+       replyName:null,
+      },
+      commentList:[],//留言列表
+      commentLength:'',//留言长度
+      replyIndex:-1,//当前回复狂所在index下标 默认头部-1
+      replyTitle:'',//回复时 回复的title 例如 我回复@B
+      replyRow:{},//回复时 被回复人的留言信息
+    }
+  },
+  mounted () {
+    //获取留言
+    this.getComment()
+    //如果用户在本网站留过言 那么直接用缓存获取当前用户信息
+    if(localStorage.getItem('USERINFO')){
+      const USERINFO = JSON.parse(localStorage.getItem('USERINFO'))
+      this.form.leavingName = USERINFO.leavingName
+      this.form.leavingEmail = USERINFO.leavingEmail
+      this.form.leavingAvatar = USERINFO.leavingAvatar
+    }
+    //获取从父组件传来的 来源及来源id
+    this.form.from = this.from
+    this.form.fromId = this.fromId
+    //全局监听 关闭回复狂
+    window.addEventListener("click", this.closeReplyBox);
+  },
+  destroyed () {
+    window.removeEventListener('click', this.closeReplyBox);
+  },
+  methods: {
+  //获取留言
+  async getComment(){
+    const params = {from:this.from}
+    const {data} = await getComment(params)
+    this.commentLength = data.length
+    this.commentList = data.data
+    console.log(data);
+  },
+  //邮箱改变 获取头像事件
+  emailChange(e){
+    // e = '1194150512@qq.com'
+    e.replace('@qq.com','')
+    console.log(e);
+    this.form.leavingAvatar = 
+    `http://q.qlogo.cn/headimg_dl?dst_uin=${e}&spec=100`
+    //     this.form.leavingAvatar = 
+    // `http://qwfu4j9pl.hn-bkt.clouddn.com/1627118360598_avatar.png`
+  },
+  //提交留言
+  async addComment(){
+    const { leavingName,leavingEmail,leavingCont,leavingAvatar,replyLevel } = this.form
+    if(!leavingName){
+      this.notify('昵称为必填项')
+      return false
+    }
+    if(!leavingEmail){
+      this.notify('邮箱为必填项')
+      return false
+    }
+    if(!leavingCont){
+      this.notify('留言内容为必填项')
+      return false
+    }
+
+    //获取当前用户ip
+    const ipInfo = await getApiAddress()
+    this.form.fromIp = ipInfo.data.ip
+
+    //按钮回复等级具体看replyOne传参 顶部留言按钮默认不传参为0级
+    //当按钮为一级回复时 获取被回复人id及
+    replyLevel ===1 && (this.form.parentId = this.replyRow.commentId)
+    replyLevel ===1 && (this.form.replyName = this.replyRow.replyName)
+    //当按钮为二级回复时 获取被回复人id及
+    replyLevel ===2 && (this.form.parentId = this.replyRow.parentId)
+    replyLevel ===2 && (this.form.replyName = this.replyRow.leavingName)
+
+    //当按钮为1级/2级回复时 获取被回复人姓名
+    // (replyLevel ===1 || replyLevel ===2) && (this.form.replyName = this.replyRow.leavingName)
+
+    const data = await addComment(this.form)
+    this.form.leavingCont = ''
+    //存入用户信息至缓存 下次用户进入 直接调用
+    const USERINFO = { leavingName, leavingEmail, leavingAvatar}
+    !(localStorage.getItem('USERINFO')) && localStorage.setItem('USERINFO',JSON.stringify(USERINFO))
+    console.log(data);
+    this.getComment()
+    console.log(this.form);
+    //回复框 复位
+    this.closeReplyBox()
+    
+  },
+  //点击回复按钮 打开回复框
+  replyOne(row,index,replyLevel){
+    this.form.replyLevel = replyLevel
+    this.replyRow = row
+    this.replyIndex = index
+    this.replyTitle = ` @${row.leavingName}`
+    console.log(row);
+  },
+  closeReplyBox(){
+    this.form.replyLevel = 0
+    this.replyIndex = -1
+  },
+  //弹窗提示
+  notify(message,type='warning'){
+    this.$notify({
+      duration:1000,
+      title: '警告',
+      message,
+      type
+    });
+  }
+}
+}
+
+</script>
+<style lang='less' scoped>
+  .myComment_title{
+    padding: 50px 0 20px;
+    font-size: 28px;
+    font-weight: 500;
+    color: rgb(51,51,51);
+  }
+  /deep/.el-textarea__inner{
+    font-family: 'Mirages Custom', 'Merriweather', 'Open Sans', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft Yahei', 'WenQuanYi Micro Hei',  'Segoe UI Emoji', 'Segoe UI Symbol', Helvetica, Arial, sans-serif;
+    width: 100%;
+    height: 120px;
+    resize: none;
+  }
+  .form_avatar{
+    img{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    }
+  }
+  .form_ipt{
+    margin-left: 20px;
+  }
+.leavingInfo{
+  margin: 20px 0;
+    //m端以上
+    @media only screen and (min-width: 767px) {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+  .el-input{
+    font-family: 'Mirages Custom', 'Merriweather', 'Open Sans', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft Yahei', 'WenQuanYi Micro Hei',  'Segoe UI Emoji', 'Segoe UI Symbol', Helvetica, Arial, sans-serif;
+    width: 32%;
+    //m端
+    @media only screen and (max-width: 766.99px) {
+      width: 100%;
+      margin: 5px 0;
+    }
+  }
+}
+.el-button{
+  width: 100%;
+  background: linear-gradient(-45deg, #23A6D5, #23D5AB);
+}
+.myComment_cont{
+  .cont_title{
+    padding: 25px 0;
+    font-size: 24px;
+    font-weight: 500;
+    color: rgb(51,51,51);
+  }
+  .cont-item{
+    // display: flex;
+    padding: 20px 0;
+  }
+  .item_children{
+    padding: 15px 0 10px 70px;
+    position: relative;
+    &::after{
+      content: "";
+      position: absolute;
+      top: 15px;
+      left: 55px;
+      width: 2px;
+      height: calc(100% - 15px);
+      background-color: #ccc;
+    }
+  }
+  .item_img{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    overflow: hidden;
+    img{
+      width: 100%;
+      height: 100%;
+    }
+  }
+  .item_user{
+    flex: 1;
+    padding-left: 20px;
+    .usre_name{
+      color: #ff6c6c !important;
+      line-height: 1.2;
+      font-style: normal;
+      font-size: 15px;
+    
+    }
+    .usre_time{
+      font-size: 12px;
+      color: #ccc;
+      padding-top: 5px;
+      .reply{
+        color: #ff6c6c !important;
+        &:hover{
+          text-decoration: underline
+        }
+      }
+    }
+    .usre_cont{
+      font-size: 15px;
+      line-height: 23px;
+      padding-top: 10px;
+    }
+  }
+}
+.childrenForm{
+  padding:10px 0 0 70px;
+  position: relative;
+    &::after{
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 55px;
+      width: 2px;
+      height: calc(100% - 15px);
+      background-color: #ccc;
+    }
+}
+.tips{
+  font-size: 12px;
+  color: #ff6c6c;
+  padding: 5px 0;
+}
+.cff6c6c{
+  color: #ff6c6c !important;
+}
+
+</style>
