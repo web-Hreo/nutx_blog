@@ -160,7 +160,6 @@ export default {
     const {data} = await getComment(params)
     this.commentLength = data.length
     this.commentList = data.data
-    console.log(data);
   },
   //邮箱改变 获取头像事件
   emailChange(e){
@@ -195,22 +194,19 @@ export default {
     //按钮回复等级具体看replyOne传参 顶部留言按钮默认不传参为0级
     //当按钮为一级回复时 获取被回复人id及
     replyLevel ===1 && (this.form.parentId = this.replyRow.commentId)
-    replyLevel ===1 && (this.form.replyName = this.replyRow.replyName)
+    replyLevel ===1 && (this.form.replyName = this.replyRow.leavingName)
     //当按钮为二级回复时 获取被回复人id及
     replyLevel ===2 && (this.form.parentId = this.replyRow.parentId)
     replyLevel ===2 && (this.form.replyName = this.replyRow.leavingName)
 
-    //当按钮为1级/2级回复时 获取被回复人姓名
-    // (replyLevel ===1 || replyLevel ===2) && (this.form.replyName = this.replyRow.leavingName)
-
     const data = await addComment(this.form)
+    //对错误进行处理
+    !data.success && this.notify(data.data)
     this.form.leavingCont = ''
     //存入用户信息至缓存 下次用户进入 直接调用
     const USERINFO = { leavingName, leavingEmail, leavingAvatar}
-    !(localStorage.getItem('USERINFO')) && localStorage.setItem('USERINFO',JSON.stringify(USERINFO))
-    console.log(data);
+    localStorage.setItem('USERINFO',JSON.stringify(USERINFO))
     this.getComment()
-    console.log(this.form);
     //回复框 复位
     this.closeReplyBox()
     

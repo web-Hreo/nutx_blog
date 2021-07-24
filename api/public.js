@@ -53,14 +53,31 @@ export function getApiAddress(params) {
     params,
   })
 }
-//获取天气 http://www.tianqiapi.com/user/index
+//获取天气 和风天气 https://dev.qweather.com/
 export function getWeather(params) {
   return request({
-    url: `https://www.tianqiapi.com/free/day?appid=58211714&appsecret=m6u0Ufq5`,
+    url: `https://devapi.qweather.com/v7/weather/now?location=101010100&key=8ac42cf130174c918871b2d9cd6bbed7`,
     method: 'get',
     params,
   })
 }
+/**
+ * @desc 获取当前用户ip及地址  
+ * @param {*} params 
+ * @returns 
+ */
+// 将地址逆转为经纬度坐标
+// export function getWeather () {
+//   return new Promise((resolve, reject) => {
+//     window.getInfo = (res) => { resolve(res.result) }
+//     const script = document.createElement('script')
+//     script.src = `http://www.weather.com.cn/data/sk/101010100.html`
+//     document.body.appendChild(script)
+//     setTimeout(() => {
+//       document.body.removeChild(script)
+//     }, 1000)
+//   })
+// }
 /**
  * @desc 获取当前用户ip及地址  
  * @param {*} params 

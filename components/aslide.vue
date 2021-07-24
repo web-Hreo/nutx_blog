@@ -107,6 +107,7 @@ export default {
         //使用weather接口 -> 获取用户所在城市当前天气
         let weatherData = await getWeather(data.mainInfo);
         console.log(weatherData);
+        weatherData = weatherData.now
         this.Weather = {
           address: weatherData.city, //地址
           time: weatherData.update_time, //当前刷新时间
