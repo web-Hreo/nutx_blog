@@ -31,8 +31,7 @@ import {getArticleDetail} from '~/api/article'
 export default {
   name: 'articleDetails',
   async asyncData(context) {
-    console.log(context);
-    const data = await getArticleDetail({id:context.params.id})
+    const data = await getArticleDetail({id:context.params.id,from:'pc'})
     const url = 'http://120.26.59.199'+context.route.path
     return { info:data,url }
   },

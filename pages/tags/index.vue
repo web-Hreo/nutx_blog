@@ -7,7 +7,7 @@
 -->
 <template>
   <div id='tags'>
-    <p class="note warning no-icon" style="margin-left:15px">文章标签数量：80</p>
+    <p class="note warning no-icon" style="margin-left:15px">文章标签数量：{{length.tags_length}}</p>
     <ul class="fc mt-20">
       <li v-for="item in tagList" :key="item.id" :style="randomRgb()">🔖 {{item.name}}</li>
     </ul>
@@ -16,15 +16,15 @@
 
 <script>
 import { getTags } from '~/api/tags'
+import { getLength } from '~/api/public'
 export default {
   name: 'tags',
 
   components: {},
   async asyncData() {
     const {data} = await getTags()
-    console.log('data',data);
-    // this.tagList =data
-    return{tagList:data}
+    const length = (await getLength()).data
+    return{tagList:data,length}
   },
 
   data () {
@@ -45,6 +45,7 @@ export default {
         // { id: 13, name: "git", path: "#" },
         // { id: 13, name: "数据结构", path: "#" },
       ],
+      length:{}
     }
   },
   async created(){

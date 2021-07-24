@@ -293,6 +293,7 @@ export default {
   height: 40px;
   border-radius: 30px;
   background-color: #fff;
+  box-shadow: 0 1px 5px #ccc;
   color: #000;
   font-size: 15px;
   transition: all .4s ease;

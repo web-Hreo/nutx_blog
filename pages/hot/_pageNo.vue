@@ -22,10 +22,9 @@ import MyArticleList from "~/components/articleList.vue";
 import {getArticle} from '~/api/article'
 export default {
   async asyncData(context) {
-    console.log(context);
     const pageNo = context.params.pageNo?context.params.pageNo:1
     //获取文章列表
-    const {data} = await getArticle({pageNo})
+    const {data} = await getArticle({pageNo,sort:'viewNum'})
     return {articleList:data }
   },
   data() {
@@ -38,11 +37,7 @@ export default {
   created(){
   },
   methods: {
-    handleCurrentChange(val) {
-      console.log(`当前页: /hot/${val}`);
-    },
     async turnPages(pageNo){
-      console.log('翻页');
       this.$router.push(`/hot/${pageNo}`)
     },
   },
