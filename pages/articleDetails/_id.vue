@@ -22,12 +22,14 @@
       <p>博客内容遵循 署名-非商业性使用-相同方式共享 4.0 国际 (CC BY-NC-SA 4.0) 协议，转载请注明出处！</p>
       <p>本文永久链接是：<a :href="url">{{url}}</a></p>
     </div>
+    <MyComment from="article" :fromId="$route.params.id" />
   </div>
 </template>
 
 <script>
 import '~/assets/css/monokai-sublime.css'
 import {getArticleDetail} from '~/api/article'
+import MyComment from '~/components/myComment.vue'
 export default {
   name: 'articleDetails',
   async asyncData(context) {
@@ -35,7 +37,7 @@ export default {
     const url = 'http://120.26.59.199'+context.route.path
     return { info:data,url }
   },
-  components: {},
+  components: { MyComment },
 
   data () {
     return {

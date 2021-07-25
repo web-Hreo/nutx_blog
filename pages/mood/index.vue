@@ -64,6 +64,15 @@ export default {
   color: #444;
   padding: 20px;
   border-radius: 10px;
+  /deep/img{
+    width: 50%;
+    margin: 0 25%;
+      //m端
+  @media only screen and (max-width: 766.99px) {
+    width: 100%;
+    margin: auto;
+  }
+  }
 }
 /deep/.el-timeline-item__timestamp{
   font-family: 'Mirages Custom', 'Merriweather', 'Open Sans', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft Yahei', 'WenQuanYi Micro Hei',  'Segoe UI Emoji', 'Segoe UI Symbol', Helvetica, Arial, sans-serif;

@@ -19,7 +19,7 @@
 </template>
 
 <script>
-import MyComment from '../../components/myComment.vue'
+import MyComment from '~/components/myComment.vue'
 export default {
   name: 'comment',
 

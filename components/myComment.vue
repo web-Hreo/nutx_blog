@@ -34,7 +34,7 @@
     </div>
   </div>
     <!-- 留言内容回显 -->
-    <div class="myComment_cont">
+    <div class="myComment_cont" v-if="commentList.length>0">
       <h3 class="cont_title cff6c6c">已有 {{commentLength}} 条评论</h3>
       <div class="cont-item" v-for="(item, index) in commentList" :key="index">
         <!-- 留言父模板 -->
@@ -98,6 +98,9 @@
         </div>
       </div>
     </div>
+    <div class="myComment_no_cont" v-else>
+      暂无评论~ 
+    </div>
   </div>
 </template>
 
@@ -135,8 +138,7 @@ export default {
     }
   },
   mounted () {
-    //获取留言
-    this.getComment()
+
     //如果用户在本网站留过言 那么直接用缓存获取当前用户信息
     if(localStorage.getItem('USERINFO')){
       const USERINFO = JSON.parse(localStorage.getItem('USERINFO'))
@@ -149,6 +151,8 @@ export default {
     this.form.fromId = this.fromId
     //全局监听 关闭回复狂
     window.addEventListener("click", this.closeReplyBox);
+    //获取留言
+    this.getComment()
   },
   destroyed () {
     window.removeEventListener('click', this.closeReplyBox);
@@ -156,7 +160,7 @@ export default {
   methods: {
   //获取留言
   async getComment(){
-    const params = {from:this.from}
+    const params = {from:this.from,fromId:this.form.fromId}
     const {data} = await getComment(params)
     this.commentLength = data.length
     this.commentList = data.data
@@ -200,8 +204,9 @@ export default {
     replyLevel ===2 && (this.form.replyName = this.replyRow.leavingName)
 
     const data = await addComment(this.form)
-    //对错误进行处理
-    !data.success && this.notify(data.data)
+    //对正确和错误进行弹窗告知
+    const _STR = replyLevel===0?'留言成功':'回复成功'
+    data.success ? this.notify(_STR,'提示','success'):this.notify(data.data)
     this.form.leavingCont = ''
     //存入用户信息至缓存 下次用户进入 直接调用
     const USERINFO = { leavingName, leavingEmail, leavingAvatar}
@@ -224,10 +229,10 @@ export default {
     this.replyIndex = -1
   },
   //弹窗提示
-  notify(message,type='warning'){
+  notify(message,title='警告',type='warning'){
     this.$notify({
       duration:1000,
-      title: '警告',
+      title,
       message,
       type
     });
@@ -363,6 +368,14 @@ export default {
 }
 .cff6c6c{
   color: #ff6c6c !important;
+}
+.myComment_no_cont{
+  padding: 100px 0;
+  text-align: center;
+  //m端
+  @media only screen and (max-width: 766.99px) {
+    padding: 40px 0;
+  }
 }
 
 </style>
