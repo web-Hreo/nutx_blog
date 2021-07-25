@@ -95,6 +95,11 @@ export default {
     padding: 10px;
     display: inline-block;
     margin: 0 15px 15px;
+    //m端
+    @media only screen and (max-width: 766.99px) {
+      font-size: 14px;
+      padding: 9px;
+    }
   }
   .note{
     width: calc(100% - 15px);
