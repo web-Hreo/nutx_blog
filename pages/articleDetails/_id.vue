@@ -14,7 +14,6 @@
         <p>浏览量：{{info.viewNum}}</p>
         <p>所属标签：{{info.tag}}</p>
       </div>
-
       <!-- <p v-if="info.createTime===info.changeTime">修改时间{{info.changeTime}}</p> -->
     </div>
     <article v-html="info.cont"></article>

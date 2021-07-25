@@ -41,6 +41,15 @@ export function getNavigation(params) {
     params,
   })
 }
+//获取友链列表
+// 获取所有资源
+export function getLinks(params) {
+  return request({
+    url: `links/all`,
+    method: 'get',
+    params,
+  })
+}
 /**
  * @desc 获取当前用户ip及地址  
  * @param {*} params 
@@ -59,39 +68,5 @@ export function getWeather(params) {
     url: `https://devapi.qweather.com/v7/weather/now?location=101010100&key=8ac42cf130174c918871b2d9cd6bbed7`,
     method: 'get',
     params,
-  })
-}
-/**
- * @desc 获取当前用户ip及地址  
- * @param {*} params 
- * @returns 
- */
-// 将地址逆转为经纬度坐标
-// export function getWeather () {
-//   return new Promise((resolve, reject) => {
-//     window.getInfo = (res) => { resolve(res.result) }
-//     const script = document.createElement('script')
-//     script.src = `http://www.weather.com.cn/data/sk/101010100.html`
-//     document.body.appendChild(script)
-//     setTimeout(() => {
-//       document.body.removeChild(script)
-//     }, 1000)
-//   })
-// }
-/**
- * @desc 获取当前用户ip及地址  
- * @param {*} params 
- * @returns 
- */
-// 将地址逆转为经纬度坐标
-export function getUserIp () {
-  return new Promise((resolve, reject) => {
-    window.getInfo = (res) => { resolve(res.result) }
-    const script = document.createElement('script')
-    script.src = `http://pv.sohu.com/cityjson?ie=utf-8?callback=getInfo`
-    document.body.appendChild(script)
-    setTimeout(() => {
-      document.body.removeChild(script)
-    }, 1000)
   })
 }

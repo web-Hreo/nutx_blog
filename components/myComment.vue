@@ -9,7 +9,7 @@
   <div id='myComment'>
   <!-- 留言模板 -->
   <div class="form" v-if="replyIndex===-1">
-    <h2 class="myComment_title cff6c6c">添加新留言</h2>
+    <h2 class="myComment_title abc9">添加新留言</h2>
     <div class="fb">
       <div class="form_avatar">
         <img :src="form.leavingAvatar" alt="">
@@ -35,7 +35,7 @@
   </div>
     <!-- 留言内容回显 -->
     <div class="myComment_cont" v-if="commentList.length>0">
-      <h3 class="cont_title cff6c6c">已有 {{commentLength}} 条评论</h3>
+      <h3 class="cont_title abc9">已有 {{commentLength}} 条评论</h3>
       <div class="cont-item" v-for="(item, index) in commentList" :key="index">
         <!-- 留言父模板 -->
         <div class="item_father">
@@ -44,10 +44,12 @@
               <img :src="item.leavingAvatar" alt="">
             </div>
             <div class="item_user">
-              <div class="usre_name">{{item.leavingName}}</div>
+              <div class="usre_name abc9" :class="{'isMaster':item.isMaster}">
+                {{item.leavingName}}
+                </div>
               <div class="usre_time fbc">
                 <p>{{item.createTime}}</p>
-                <p class="reply" @click.stop="replyOne(item,index,1)">回复</p>
+                <p class="reply abc9" @click.stop="replyOne(item,index,1)">回复</p>
               </div>
               <div class="usre_cont">
                 <p>{{item.leavingCont}} </p>
@@ -62,13 +64,15 @@
               <img :src="it.leavingAvatar" alt="">
             </div>
             <div class="item_user">
-              <div class="usre_name">{{it.leavingName}}</div>
+              <div class="usre_name abc9" :class="{'isMaster':it.isMaster}">
+                {{it.leavingName}}
+                </div>
               <div class="usre_time fbc">
                 <p>{{it.createTime}}</p>
-                <p class="reply" @click.stop="replyOne(it,index,2)">回复</p>
+                <p class="reply abc9" @click.stop="replyOne(it,index,2)">回复</p>
               </div>
               <div class="usre_cont">
-                <p>@{{it.replyName}} {{it.leavingCont}} </p>
+                <p><span class="abc9">@{{it.replyName}}</span> {{it.leavingCont}} </p>
               </div>
             </div>
           </div>
@@ -77,7 +81,7 @@
         <div class="childrenForm form" v-if="replyIndex===index" @click.stop>
           <div class="form_avatar fc" style="margin-bottom:5px">
             <img :src="form.leavingAvatar" alt="">
-            <p style="padding-left:20px">回复<span class="cff6c6c">{{replyTitle}}</span></p>
+            <p style="padding-left:20px">回复<span class="abc9">{{replyTitle}}</span></p>
           </div>
           <div class="form_ipt" style="margin-left:0">
             <el-input type="textarea" v-model="form.leavingCont"  maxlength="50" show-word-limit></el-input>
@@ -246,7 +250,6 @@ export default {
     padding: 50px 0 20px;
     font-size: 28px;
     font-weight: 500;
-    color: rgb(51,51,51);
   }
   /deep/.el-textarea__inner{
     font-family: 'Mirages Custom', 'Merriweather', 'Open Sans', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft Yahei', 'WenQuanYi Micro Hei',  'Segoe UI Emoji', 'Segoe UI Symbol', Helvetica, Arial, sans-serif;
@@ -291,7 +294,6 @@ export default {
     padding: 25px 0;
     font-size: 24px;
     font-weight: 500;
-    color: rgb(51,51,51);
   }
   .cont-item{
     // display: flex;
@@ -324,7 +326,6 @@ export default {
     flex: 1;
     padding-left: 20px;
     .usre_name{
-      color: #ff6c6c !important;
       line-height: 1.2;
       font-style: normal;
       font-size: 15px;
@@ -335,7 +336,6 @@ export default {
       color: #ccc;
       padding-top: 5px;
       .reply{
-        color: #ff6c6c !important;
         &:hover{
           text-decoration: underline
         }
@@ -363,11 +363,7 @@ export default {
 }
 .tips{
   font-size: 12px;
-  color: #ff6c6c;
   padding: 5px 0;
-}
-.cff6c6c{
-  color: #ff6c6c !important;
 }
 .myComment_no_cont{
   padding: 100px 0;
@@ -375,6 +371,20 @@ export default {
   //m端
   @media only screen and (max-width: 766.99px) {
     padding: 40px 0;
+  }
+}
+
+//博主class
+.isMaster{
+  position: relative;
+  &::after{
+    content: "博主";
+    margin-left: 5px;
+    font-size: 12px;
+    color: #fff;
+    background: #ccc;
+    border-radius: 5px;
+    padding: 4px 8px;
   }
 }
 

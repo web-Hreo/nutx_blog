@@ -7,7 +7,7 @@
        :to="`/articleDetails/${item._id}`"
       >
       <p class="item_name text-eli-1 ">{{item.title}}</p>
-      <p class="item_time">{{item.createTime}}・<span class="ac9">{{item.tag}}</span>・{{item.viewNum}}次浏览</p>
+      <p class="item_time">{{item.createTime}}・<span class="abc9">{{item.tag}}</span>・{{item.viewNum}}次浏览</p>
     </nuxt-link>
      <!-- 分页器  -->
     <div class="pagination fbc">

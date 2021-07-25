@@ -14,34 +14,72 @@
 -->
 <template>
   <div id='links'>
-    <div class="note warning no-icon" style="">常客 —— 没有不劳而获的工作，更没有坐享其成的收获</div>
-    <el-row class="linkeBox" :gutter="10">
-      <el-col :xs="24" :sm="12" :md="8"  v-for="item in linkList" :key="item.id">
-        <div class="link-item" :class="{'link-item-hover':item.href !=='#'}" >
-          <a :href="item.href==='#'?'javascript:void(0);':item.href" :title="item.title" :target="item.href==='#'?'_self':'_blank'" data-pjax-state="external">
-            <img :src="item.imgSrc"><span class="sitename">{{item.name}}</span>
-            <p class="linkdes">{{item.title}}</p>
-          </a>
-        </div>
-      </el-col>
-    </el-row>
-    <div class="note warning no-icon" style="">失联 —— 黎耀辉 好久不见</div>
-    <el-row class="linkeBox" :gutter="10">
-      <el-col :xs="24" :sm="12" :md="8"  v-for="item in linkList" :key="item.id">
-        <div class="link-item" :class="{'link-item-hover':item.href !=='#'}" >
-          <a :href="item.href==='#'?'javascript:void(0);':item.href" :title="item.title" :target="item.href==='#'?'_self':'_blank'" data-pjax-state="external">
-            <img :src="item.imgSrc"><span class="sitename">{{item.name}}</span>
-            <p class="linkdes">{{item.title}}</p>
-          </a>
-        </div>
-      </el-col>
-    </el-row>
+    <!-- 亲友 -->
+    <div class="relatives" v-if="relativesList.length>0">
+      <div class="note warning no-icon" style="">亲友 —— 没有不劳而获的工作，更没有坐享其成的收获</div>
+      <el-row class="linkeBox" :gutter="10">
+        <el-col :xs="24" :sm="12" :md="8"  v-for="item in relativesList" :key="item._id">
+          <div class="link-item" :class="{'link-item-hover':item.url !=='#'}" >
+            <a :href="item.url==='#'?'javascript:void(0);':item.url" :title="item.title" :target="item.url==='#'?'_self':'_blank'" data-pjax-state="external">
+              <img :src="item.avatar"><span class="sitename abc9">{{item.title}}</span>
+              <p class="linkdes">{{item.title}}</p>
+            </a>
+          </div>
+        </el-col>
+      </el-row>
+    </div>
+    <!-- 常客 -->
+    <div class="regulars" v-if="regularsList.length>0">
+      <div class="note warning no-icon" style="">常客 —— 没有不劳而获的工作，更没有坐享其成的收获</div>
+      <el-row class="linkeBox" :gutter="10">
+        <el-col :xs="24" :sm="12" :md="8"  v-for="item in regularsList" :key="item._id">
+          <div class="link-item" :class="{'link-item-hover':item.url !=='#'}" >
+            <a :href="item.url==='#'?'javascript:void(0);':item.url" :title="item.title" :target="item.url==='#'?'_self':'_blank'" data-pjax-state="external">
+              <img :src="item.avatar"><span class="sitename">{{item.title}}</span>
+              <p class="linkdes">{{item.desc}}</p>
+            </a>
+          </div>
+        </el-col>
+      </el-row>
+    </div>
+    <!-- 失联 -->
+    <div class="lose" v-if="loseList.length>0">
+      <div class="note warning no-icon" style="">失联 —— 黎耀辉 好久不见</div>
+      <el-row class="linkeBox" :gutter="10">
+        <el-col :xs="24" :sm="12" :md="8"  v-for="item in relativesList" :key="item._id">
+          <div class="link-item" :class="{'link-item-hover':item.url !=='#'}" >
+            <a :href="item.url==='#'?'javascript:void(0);':item.url" :title="item.title" :target="item.url==='#'?'_self':'_blank'" data-pjax-state="external">
+              <img :src="item.avatar"><span class="sitename">{{item.title}}</span>
+              <p class="linkdes">{{item.title}}</p>
+            </a>
+          </div>
+        </el-col>
+      </el-row>
+    </div>
+
     </div>
 </template>
 
 <script>
+import {getLinks} from '~/api/public'
 export default {
-  name: 'links',
+  async asyncData(context){
+    const {data} = await getLinks({pageNo:1,pageSize:100})
+    console.log(data);
+    const relativesList = []//亲友列表
+    const regularsList = []//常客列表
+    const loseList = []//亲友列表
+    data.data.forEach(it =>{
+      if(it.type==='亲友'){
+        relativesList.push(it)
+      }else if(it.type==='常客'){
+        regularsList.push(it)
+      }else{
+        loseList.push(it)
+      }
+    })
+    return { relativesList,regularsList,loseList }
+  },
 
   components: {},
 
@@ -60,11 +98,16 @@ export default {
     }
   },
 
-  mounted () {},
+ async  mounted () {
+   console.log(this.relativesList);
+   console.log(this.regularsList);
+   console.log(this.loseList);
+  },
 
   destroyed () {},
 
   methods: {
+    
   },
     
   head(){
@@ -103,7 +146,7 @@ export default {
     }
     img{
       float: right;
-      box-shadow: inset 0 0 10px #000;
+      // box-shadow: inset 0 0 10px #000;
       padding: 5px;
       opacity: 1;
       transform: rotate(0);
@@ -123,7 +166,6 @@ export default {
     }
     .sitename{
       font-size: 18px;
-      color: orange;
       padding-bottom: 10px;
       display: block;
       -webkit-transition: all .3s;
