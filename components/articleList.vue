@@ -6,7 +6,7 @@
       v-for="(item, index) in articleList.data" :key="index"
        :to="`articleDetails/${item._id}`"
       >
-      <p class="item_name">{{item.title}}</p>
+      <p class="item_name text-eli-1 ">{{item.title}}</p>
       <p class="item_time">{{item.createTime}}・{{item.tag}}・{{item.viewNum}}次浏览</p>
     </nuxt-link>
      <!-- 分页器  -->
@@ -30,20 +30,24 @@ export default {
   },
   props: ["articleList"],
   created(){
-    console.log( this.articleList);
-    this.articleList.data.forEach(it =>{
-      const rendom = Math.floor(Math.random()*30 + 1)
-      it.bg = require(`../assets/image/article_bg/${rendom}.jpg`)
+    console.log('mounted');
+      this.articleList.data.forEach(it =>{
+        if(!it.bg){
+          const rendom = Math.floor(Math.random()*30 + 1)
+          it.bg = `https://cdn.jsdelivr.net/gh/web-Hreo/nutx_blog/assets/image/article_bg/${rendom}.jpg`
+          console.log(it.bg);
+        }
     })
   },
   watch:{
-    articleList(val){
-      val.data.forEach(it =>{
-        const rendom = Math.floor(Math.random()*30 + 1)
-        it.bg = require(`../assets/image/article_bg/${rendom}.jpg`)
-      })
-      this.articleList = val
-    },
+    // articleList(val){
+    //   val.data.forEach(it =>{
+    //     const rendom = Math.floor(Math.random()*30 + 1)
+    //     it.bg = `https://cdn.jsdelivr.net/gh/web-Hreo/nutx_blog/assets/image/article_bg/${rendom}.jpg`
+    //     // it.bg = require(`../assets/image/article_bg/${rendom}.jpg`)
+    //   })
+    //   this.articleList = val
+    // },
   },
   methods:{
     previous(){
@@ -62,6 +66,7 @@ export default {
   margin: 30px 0;
   padding: 100px 10px;
   background-color: transparent;
+  // background-color: #ccc;
   color: #fff;
   border-radius: 5px;
   background-position: center;
@@ -79,7 +84,8 @@ export default {
   }
   .item_time{
     padding-top: 15px;
-    font-size: 16px;
+    font-size: 14px;
+    letter-spacing: 1px;
   }
   &:nth-child(1){
     margin-top: 15px;

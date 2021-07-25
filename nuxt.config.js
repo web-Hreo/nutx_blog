@@ -66,25 +66,17 @@ export default {
     // },
   },
 
-  // Auto import components (https://go.nuxtjs.dev/config-components)
   components: true,
-
-  // Modules for dev and build (recommended) (https://go.nuxtjs.dev/config-modules)
   buildModules: [
     // https://go.nuxtjs.dev/eslint
     // '@nuxtjs/eslint-module',
   ],
-
-  // Modules (https://go.nuxtjs.dev/config-modules)
   modules: [
     // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
   ],
-
-  // Axios module configuration (https://go.nuxtjs.dev/config-axios)
   axios: {},
 
-  // Build Configuration (https://go.nuxtjs.dev/config-build)
   build: {
     html: {
       minify: {
@@ -124,15 +116,6 @@ export default {
     },
   },
   router: {
-    // extendRoutes(routes, resolve) { 此处用于处理 找不到路由跳转方向
-    //   routes.push({
-    //     name: 'custom',
-    //     path: '*',
-    //     component: resolve(__dirname, 'pages/404.vue'),
-    //   })
-    // },
-    // base: '/',
-    // middleware: ['metaTitle'],
     scrollBehavior(to, from, savedPosition) {
       return { x: 0, y: 0 }
     },

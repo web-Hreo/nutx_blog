@@ -2,7 +2,7 @@
   <div id="aslide">
     <!-- 个人信息 -->
     <div class="info_my background">
-      <img src="@/assets/common/avatar.jpg" alt />
+      <img src="https://cdn.jsdelivr.net/gh/web-Hreo/nutx_blog/assets/common/avatar.jpg" alt />
       <div class="my_information">
         <p>Hhua | 何华</p>
         <p>web前端开发工程师</p>
@@ -42,19 +42,10 @@
     <!-- 热度榜 -->
     <div class="info_rankingList background">
       <p class="info_title">热度榜</p>
-      <div class="rankingList_item" v-for="(item, index) in [1,2]" :key="index">
-        <a href>
-          <p class="item_title text-eli-1">小程序插件</p>
-          <div class="item_text fbc">
-            <div class="item_img">
-              <img src="https://www.yxiaowei.com/Public/upload/article_banner/2019/12-30/5e09c45564d98.jpg" alt />
-            </div>
-            <div class="item_desc text-eli-3">
-              <p>一款超好用的插件——WxParse，在解析内容的时候就需要将内容中的HTML标签转换成微信小程序所支持</p>
-            </div>
-          </div>
-        </a>
-      </div>
+      <nuxt-link class="rankingList_item"  :to="`/articleDetails/${item._id}`" v-for="(item,index) in articleList" :key="item._id">
+        {{item.title}}
+      </nuxt-link>
+
     </div>
     <!-- 友情链接 -->
     <!-- <div class="info_friendChain background">
@@ -76,6 +67,7 @@
 
 <script>
 import { getTags } from '~/api/tags'
+import {getArticle} from '~/api/article'
 import { getApiAddress,getWeather,getLength } from '~/api/public'
 // import { apiAddress, weather } from "../../axios/api.js"; //引入api
 export default {
@@ -84,19 +76,24 @@ export default {
       tagList:[],
       userinfo: [],
       Weather: [],
-      lengthList:{}
+      lengthList:{},
+      articleList:[],
     };
   },
   created() {
-    console.log('aslide created');
     this.getdata();
     this.getTag()
     this.getLength()
+    this.getArticle()
   },
   methods: {
     async getTag(){
       const {data} = await getTags()
       this.tagList = data
+    },
+    async getArticle(){
+      const {data} = await getArticle({pageNo:1,pageSize:5,sort:'viewNum'})
+      this.articleList = data.data
     },
     //在getdata内调用所有方法
     async getdata() {
@@ -125,6 +122,7 @@ export default {
         console.log(err);
       }
     },
+    //获取文章标签日志等长度
     async getLength(){
       const {data} = await getLength()
       this.lengthList = data
@@ -164,9 +162,9 @@ export default {
   background-color: #fff;
   border-radius: 5px;
   transition: all .3s ;
-  &:hover{
-    box-shadow: 0 0 10px 5px rgb(223, 223, 223);
-  }
+  // &:hover{
+  //   box-shadow: 0 0 10px 5px rgb(223, 223, 223);
+  // }
   .info_title {
     color: #000;
     font-size: 18px;
@@ -255,9 +253,6 @@ export default {
       border-radius: 5px;
       font-size: 14px;
       transition: all ease 0.5s;
-      &:hover {
-        border-radius: 0;
-      }
       a {
         display: inline-block;
         width: 100%;
@@ -269,39 +264,18 @@ export default {
 }
 .info_rankingList {
   .rankingList_item {
+    display: block;
     padding: 10px 0;
     border-bottom: 1px solid #eaeaea;
-    a {
-      color: #555;
-      &:hover {
-        color: #000;
-      }
-      &:hover img {
-        transform: scale(1.2);
-      }
+    font-size: 14px;
+    letter-spacing: 1px;
+    font-weight: 500;
+    color: #555;
+    &:nth-last-child(1){
+      border-bottom: 0;
     }
-    .item_title {
-      padding: 5px 0;
-      font-size: 14px;
-      letter-spacing: 1px;
-      font-weight: 600;
-    }
-    .item_text {
-      width: 100%;
-      .item_img {
-        overflow: hidden;
-        width: 100%;
-        img {
-          width: 100%;
-          transition: all ease 0.6s;
-        }
-      }
-      .item_desc {
-        letter-spacing: 1px;
-        margin: 5px;
-        font-size: 14px;
-        word-break: break-all;
-      }
+    &:hover{
+      color: #000;
     }
   }
 }

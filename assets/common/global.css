@@ -415,3 +415,22 @@ html {
   -webkit-text-size-adjust: none;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
+.note {
+  box-sizing: border-box;
+  position: relative;
+  padding: 15px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  border: initial;
+  border-left: 3px solid #eee;
+  background-color: #f9f9f9;
+  border-radius: 3px;
+  font-size: var(--content-font-size);
+  width: 100%;
+  font-size: 16x;
+  margin: 30px 0 10px 0;
+}
+.warning {
+  background-color: #fdf8ea;
+  border-left-color: #f0ad4e;
+}

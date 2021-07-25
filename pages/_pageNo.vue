@@ -25,7 +25,6 @@ import MyArticleList from "~/components/articleList.vue";
 import {getArticle} from '~/api/article'
 export default {
   async asyncData(context) {
-    console.log(context);
     const pageNo = context.params.pageNo?context.params.pageNo:1
     //获取文章列表
     const {data} = await getArticle({pageNo})
@@ -41,17 +40,24 @@ export default {
   created(){
   },
   methods: {
-    handleCurrentChange(val) {
-      console.log(`当前页: ${val}`);
-    },
     async turnPages(pageNo){
-      console.log('翻页');
       this.$router.push(`/${pageNo}`)
     },
   },
   components: {
     MyArticleList
-  }
+  },
+  
+//独立设置head信息
+  head(){
+      return{
+        title:'何华个人博客——首页',
+        meta:[
+          {hid:'description',name:'news',content:'This is news page'}
+        ]
+      }
+    }
+
 };
 </script>
 

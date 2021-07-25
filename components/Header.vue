@@ -40,7 +40,7 @@
     <div class="m_head_cont hidden-sm-and-up"  >
       <div class="m_head_modal_cont" :class="{'m_head_cont_modal_open':is_m_oepn}" @click="nuxtLink"></div>
       <div class="m_head_link_cont" :class="{'m_head_cont_link_open':is_m_oepn}">
-        <img src="https://z3.ax1x.com/2021/07/23/Wsoih4.jpg" alt="">
+        <img src="https://cdn.jsdelivr.net/gh/web-Hreo/nutx_blog/assets/common/avatar.jpg" alt="">
         <ul>
           <li v-for="(item, index) in m_routerList" :key="index" @click="nuxtLink(item)">
             <nuxt-link :to="item.path">{{item.name}}</nuxt-link>
@@ -52,7 +52,6 @@
     </div>
   </div>
 </template>
-
 <script>
 export default {
   name: "",
@@ -96,7 +95,6 @@ export default {
     };
   },
   created(){
-    this.handleRouter(this.$route)
   },
   mounted(){
     window.addEventListener("click", this.closeChildren);
@@ -122,20 +120,7 @@ export default {
       this.is_m_oepn = false
       document.documentElement.style.overflow = this.is_m_oepn?'hidden':''
     },
-    handleRouter(router){
-      // console.log(router);
-      // if(router.name === 'articleDetails-id'){
 
-      // }else{
-      //   const _ARR = this.m_routerList.find(it=> it.routeName===router.name)
-      //   console.log(_ARR);
-      // }
-    }
-  },
-  watch:{
-    $route(val){
-      this.handleRouter(val)
-    }
   }
 };
 </script>
@@ -229,8 +214,8 @@ export default {
           padding: 10px 0;
           border-radius: 5px;
           li{
-            height: 38px;
-            line-height: 38px;
+            height: 40px;
+            line-height: 40px;
             a{
               width: 100%;
               height: 100%;
