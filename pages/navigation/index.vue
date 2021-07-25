@@ -69,6 +69,12 @@ export default {
     select(item){
       this.menuActive = item.index
     }
+  },
+    
+  head(){
+    return{
+      title:'Hhua_前端个人博客_学习资源',
+    }
   }
 }
 

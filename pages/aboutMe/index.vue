@@ -63,6 +63,12 @@ export default {
   destroyed () {},
 
   methods: {
+  },
+    
+  head(){
+    return{
+      title:'Hhua_前端个人博客_关于我',
+    }
   }
 }
 

@@ -116,6 +116,12 @@ export default {
       console.log(index);
       this.menuActive = index
     }
+  },
+    
+  head(){
+    return{
+      title:'Hhua_前端个人博客_文章归档',
+    }
   }
 }
 

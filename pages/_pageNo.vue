@@ -48,15 +48,11 @@ export default {
     MyArticleList
   },
   
-//独立设置head信息
   head(){
-      return{
-        title:'何华个人博客——首页',
-        meta:[
-          {hid:'description',name:'news',content:'This is news page'}
-        ]
-      }
+    return{
+      title:'Hhua_前端个人博客_首页',
     }
+  }
 
 };
 </script>

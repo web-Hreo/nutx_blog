@@ -43,6 +43,12 @@ export default {
   },
   components: {
     MyArticleList
+  },
+    
+  head(){
+    return{
+      title:'Hhua_前端个人博客_热榜',
+    }
   }
 };
 </script>

@@ -65,6 +65,12 @@ export default {
       let B = Math.floor(Math.random() * 200);
       return { background: "rgb(" + R + "," + G + "," + B + ")" };
     }
+  },
+    
+  head(){
+    return{
+      title:'Hhua_前端个人博客_文章标签',
+    }
   }
 }
 

@@ -4,7 +4,7 @@ export default {
   // target: 'static',
   // Global page headers (https://go.nuxtjs.dev/config-head)
   head: {
-    title: '景同舟',
+    title: 'Hhua_前端个人博客',
     meta: [
       { charset: 'utf-8' },
       {
@@ -16,12 +16,12 @@ export default {
         hid: 'description',
         name: 'description',
         content:
-          '景同舟，整合国内众多优质大景区，推出景区大联盟年票产品，游客一票可无限次畅玩联盟景区。智慧景区平台为景区赋能，并通过智能化运营管理手段，解决传统景区的诸多困扰，便利消费者同时，助力联盟景区销售增长。',
+          '何华_前端工程师技术博客_是记录与分享我在各种互联网_前端_服务端技术工作以及学习经验的自媒体博客_作为一名开发工程师来说_拥有自己的博客网站_是一件很美好的事情_虽然工作中不是在改bug就是在改bug的路上_但是我一直认为我会成为一名优秀的前端开发工程师',
       },
       {
         name: 'keywords',
         content:
-          '景同舟 旅游年票 景区年票 景区联票 全国景区联票 旅游票打折 景区年卡 门票优惠',
+          '前端开发 web开发 大前端 服务端 程序员 vue flutter react ',
       },
     ],
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],

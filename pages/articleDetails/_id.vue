@@ -9,7 +9,7 @@
   <div id='articleDetails'>
     <div class="articleDetails-info">
       <h2 class="info-title">{{info.title}}</h2>
-      <div class="info-desc fc">
+      <div class="info-desc">
         <p>创建时间：{{info.createTime}}</p>
         <p>浏览量：{{info.viewNum}}</p>
         <p>所属标签：{{info.tag}}</p>
@@ -35,13 +35,14 @@ export default {
   async asyncData(context) {
     const data = await getArticleDetail({id:context.params.id,from:'pc'})
     const url = 'http://120.26.59.199'+context.route.path
-    return { info:data,url }
+    return { info:data,url,title:'Hhua_前端个人博客_文章_'+data.title }
   },
   components: { MyComment },
 
   data () {
     return {
-      info:{}
+      info:{},
+      title:'Hhua_前端个人博客_文章'
     }
   },
 
@@ -50,7 +51,13 @@ export default {
 
   destroyed () {},
 
-  methods: {}
+  methods: {},
+    
+  head(){
+    return{
+      title:this.title
+    }
+  }
 }
 
 </script>
@@ -66,11 +73,20 @@ export default {
       font-size: 28px;
       color: #000;
       padding: 30px 0 10px;
+      //m端
+      @media only screen and (max-width: 766.99px) {
+        font-size: 24px;
+      }
     }
     .info-desc{
       color: #8D8D8D;
       font-size: 12px;
       padding-bottom: 30px;
+      //m端
+      @media only screen and (min-width: 767px) {
+        display: flex;
+        align-items: center;
+      }
       p{
         padding-right: 15px;
       }

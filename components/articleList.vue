@@ -4,10 +4,10 @@
     <nuxt-link class="blog_item"
       :style="{'background-image': `url(${item.bg})`}"
       v-for="(item, index) in articleList.data" :key="index"
-       :to="`articleDetails/${item._id}`"
+       :to="`/articleDetails/${item._id}`"
       >
       <p class="item_name text-eli-1 ">{{item.title}}</p>
-      <p class="item_time">{{item.createTime}}・{{item.tag}}・{{item.viewNum}}次浏览</p>
+      <p class="item_time">{{item.createTime}}・<span class="ac9">{{item.tag}}</span>・{{item.viewNum}}次浏览</p>
     </nuxt-link>
      <!-- 分页器  -->
     <div class="pagination fbc">
@@ -66,7 +66,7 @@ export default {
   margin: 30px 0;
   padding: 100px 10px;
   background-color: transparent;
-  // background-color: #ccc;
+  background-color: rgb(218, 218, 218);
   color: #fff;
   border-radius: 5px;
   background-position: center;

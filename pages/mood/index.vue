@@ -45,7 +45,13 @@ export default {
 
   destroyed () {},
 
-  methods: {}
+  methods: {},
+    
+  head(){
+    return{
+      title:'Hhua_前端个人博客_日志',
+    }
+  }
 }
 
 </script>
