@@ -21,7 +21,7 @@ export default {
       {
         name: 'keywords',
         content:
-          '前端开发 web开发 大前端 服务端 程序员 vue flutter react ',
+          '前端开发 前端博客 web前端 web前端博客  服务端博客 程序员博客 vue博客 flutter博客 react博客 uniapp博客 小程序博客',
       },
     ],
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
