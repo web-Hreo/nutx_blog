@@ -41,8 +41,15 @@ export function getNavigation(params) {
     params,
   })
 }
+//获取文章归档列表
+export function getArchives(params) {
+  return request({
+    url: `article/archives`,
+    method: 'get',
+    params,
+  })
+}
 //获取友链列表
-// 获取所有资源
 export function getLinks(params) {
   return request({
     url: `links/all`,

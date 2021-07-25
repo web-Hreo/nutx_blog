@@ -11,17 +11,14 @@
       <el-row >
         <div class="article-cont">
           <div class="article-list">
-            <div v-for="(item,index) in articleList" :key="index" class="list-item">
-              <h3>{{ item.date }}</h3>
-              <div  v-for="(MIt,MIn) in item.list" :key="MIn">
-                <h4>{{MIt.date}}</h4>
+            <div v-for="(item,index) in archivesList" :key="index" class="list-item">
+              <h3>{{ item.year }}</h3>
+              <div class="month" v-for="(MIt,MIn) in item.data" :key="MIn">
+                <h4>{{MIt.month}}</h4>
                 <ul class="list-ul">
-                  <li v-for="(DIt, DIn) in MIt.list" :key="DIn">
-                    <p>
-                      <span class="list-date">{{ DIt.date }}</span>
-                      <a href="" class="list-name">{{ DIt.name }}</a>
-                    </p>
-                  </li>
+                  <nuxt-link :to="`articleDetails/${DIt._id}`"  class="nuxtLink" v-for="(DIt, DIn) in MIt.data" :key="DIn">
+                    <span class="nuxtLink_link">{{ DIt.createTime }}</span>{{ DIt.title }}
+                  </nuxt-link>
                 </ul> 
               </div>
             </div>
@@ -35,89 +32,27 @@
 </template>
 
 <script>
+import {getArchives} from '~/api/public'
 export default {
-  name: 'article',
+  async asyncData(context){
+      const {data} = await getArchives()
+      //处理时间
+      data.forEach(yearItem =>{
+        yearItem.data.forEach(monthItem =>{
+          monthItem.data.forEach(item =>{
+            item.createTime = item.createTime.substring(5,10)
+          })
+        })
+      })
+      return { archivesList:data }
+  },
 
   components: {},
 
   data () {
     return {
-      menuActive:'2',
-      labelList: [
-        { id: 1, label: "HTML(5)", path: "#" },
-        { id: 2, label: "CSS(3)", path: "#" },
-        { id: 3, label: "JavaScript", path: "#" },
-        { id: 4, label: "ES6", path: "#" },
-        { id: 5, label: "jQuery", path: "#" },
-        { id: 6, label: "UI框架", path: "#" },
-        { id: 7, label: "VUE", path: "#" },
-        { id: 8, label: "React", path: "#" },
-        { id: 9, label: "Angular", path: "#" },
-        { id: 10, label: "Node", path: "#" },
-        { id: 11, label: "MongoDB", path: "#" },
-        { id: 12, label: "Webpack", path: "#" },
-        { id: 13, label: "git", path: "#" }
-      ],
-      articleList:[
-        {
-          date:'2021',
-          list:[
-            {
-              date:'2021-12',
-              list:[
-                { id:1,name:'js一些操作运算符',num:100,date:'2020-08-07' },
-                { id:2,name:'decodeURIComponent在解析浏览器参数中含有%时报错处理',num:100,date:'2020-08-07' },
-              ]
-            }
-          ]
-        },
-        {
-          date:'2021',
-          list:[
-            {
-              date:'2021-12',
-              list:[
-                { id:1,name:'js一些操作运算符',num:100,date:'2020-08-07' },
-                { id:2,name:'decodeURIComponent在解析浏览器参数中含有%时报错处理',num:100,date:'2020-08-07' },
-              ]
-            }
-          ]
-        },
-        {
-          date:'2021',
-          list:[
-            {
-              date:'2021-12',
-              list:[
-                { id:1,name:'js一些操作运算符',num:100,date:'2020-08-07' },
-                { id:2,name:'decodeURIComponent在解析浏览器参数中含有%时报错处理',num:100,date:'2020-08-07' },
-                { id:2,name:'decodeURIComponent在解析浏览器参数中含有%时报错处理',num:100,date:'2020-08-07' },
-                { id:2,name:'decodeURIComponent在解析浏览器参数中含有%时报错处理',num:100,date:'2020-08-07' },
-                { id:2,name:'decodeURIComponent在解析浏览器参数中含有%时报错处理',num:100,date:'2020-08-07' },
-                { id:2,name:'decodeURIComponent在解析浏览器参数中含有%时报错处理',num:100,date:'2020-08-07' },
-                { id:2,name:'decodeURIComponent在解析浏览器参数中含有%时报错处理',num:100,date:'2020-08-07' },
-                { id:2,name:'decodeURIComponent在解析浏览器参数中含有%时报错处理',num:100,date:'2020-08-07' },
-                { id:2,name:'decodeURIComponent在解析浏览器参数中含有%时报错处理',num:100,date:'2020-08-07' },
-              ]
-            }
-          ]
-        },
-   
-      ]
     }
   },
-
-  mounted () {},
-
-  destroyed () {},
-
-  methods: {
-    select(index){
-      console.log(index);
-      this.menuActive = index
-    }
-  },
-    
   head(){
     return{
       title:'Hhua_前端个人博客_文章归档',
@@ -184,7 +119,7 @@ export default {
       background-color: #fff;
       border-radius: 10px;
       h3{
-        padding: 10px 0;
+        padding: 0 0 10px;
         font-size: 30px;
         margin: 0;
         line-height: 1.5;
@@ -193,14 +128,24 @@ export default {
         letter-spacing: .5px;
       }
       h4{
-        font-size: 22px;
+        font-size: 20px;
+        padding: 10px 0;
+      }
+      .nuxtLink{
+        display: block;
+        &:hover{
+          background-color: #eee;
+        }
+      }
+      .nuxtLink_link{
+        color: #ccc;
+        padding:0 10px;
       }
     }
     .list-ul{
       // list-style-type: disc;
-      li{
-        padding: 5px 0;
-        margin: 10px 0;
+      a{
+        padding: 15px 0;
         .list-date{
           margin: 12px 0 10px;
           font-size: 15px;
