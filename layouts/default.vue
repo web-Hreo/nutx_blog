@@ -69,12 +69,13 @@ export default {
 }
 #home {
   max-width: 1200px;
-  min-width: 320px;
+  min-width: 300px;
   margin:  0 auto;
   padding-top: 80px;
   overflow: hidden;
   //m端
   @media only screen and (max-width: 766.99px) {
+    min-height: calc(100vh - 93px);
       padding-top: 0;
   }
   .home_cont {

@@ -23,6 +23,10 @@ export default {
         content:
           '前端开发 前端博客 web前端 web前端博客  服务端博客 程序员博客 vue博客 flutter博客 react博客 uniapp博客 小程序博客',
       },
+      {
+        name: 'baidu-site-verification',
+        content:'code-PARmzBc4N7'
+      }
     ],
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
     script: [

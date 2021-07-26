@@ -7,7 +7,7 @@
     </p>
     <p>
       <img src="https://www.yxiaowei.com/Public/static/images/beian.png" />
-      <a target="_blank" href="#" title="花未央个人博客" rel="nofollow">赣公网安备 00000000000000号</a>
+      <a target="_blank" href="https://beian.miit.gov.cn/" title="花未央个人博客" rel="nofollow">赣ICP备2021006777号-1</a>
     </p>
     <p>本站总访问量为 7483 次 访客数为 3325 人</p>
   </div>
