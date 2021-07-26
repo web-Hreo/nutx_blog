@@ -6,53 +6,36 @@ export default {
   head: {
     title: 'Hhua_前端个人博客',
     meta: [
-      { charset: 'utf-8' },
-      {
-        name: 'viewport',
-        content:
-          'width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no',
-      },
-      {
-        hid: 'description',
-        name: 'description',
-        content:
-          '何华_前端工程师技术博客_是记录与分享我在各种互联网_前端_服务端技术工作以及学习经验的自媒体博客_作为一名开发工程师来说_拥有自己的博客网站_是一件很美好的事情_虽然工作中不是在改bug就是在改bug的路上_但是我一直认为我会成为一名优秀的前端开发工程师',
-      },
-      {
-        name: 'keywords',
-        content:
-          '前端开发 前端博客 web前端 web前端博客  服务端博客 程序员博客 vue博客 flutter博客 react博客 uniapp博客 小程序博客',
-      },
-      {
+      { 
+        charset: 'utf-8'
+      },{
         name: 'baidu-site-verification',
         content:'code-PARmzBc4N7'
-      }
+      },{
+        name: 'viewport',
+        content: 'width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no',
+      },{
+        hid: 'description',
+        name: 'description',
+        content: '何华_前端工程师技术博客_是记录与分享我在各种互联网_前端_服务端技术工作以及学习经验的自媒体博客_作为一名开发工程师来说_拥有自己的博客网站_是一件很美好的事情_虽然工作中不是在改bug就是在改bug的路上_但是我一直认为我会成为一名优秀的前端开发工程师',
+      },{
+        name: 'keywords',
+        content: '前端开发 前端博客 web前端 web前端博客  服务端博客 程序员博客 vue博客 flutter博客 react博客 uniapp博客 小程序博客',
+      },
     ],
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
     script: [
-      {
-        src: '/js/flexible.js',
-        type: 'text/javascript',
-        charset: 'utf-8',
-      },
-      { src: 'https://hm.baidu.com/hm.js?6cea48c3f80744bd36e90de25cc171a8' },
-      // {
-      //   src: 'http://z1-pcok6.kuaishangkf.com/bs/ks.j?cI=365555&fI=152281',
-      //   type: 'text/javascript',
-      //   charset: 'utf-8',
-      // },
+      { src: '/js/flexible.js', type: 'text/javascript', charset: 'utf-8' },
     ],
   },
 
-  // Global CSS (https://go.nuxtjs.dev/config-css)
   css: ['element-ui/lib/theme-chalk/index.css', 'swiper/dist/css/swiper.css'],
 
-  // Plugins to run before rendering page (https://go.nuxtjs.dev/config-plugins)
   plugins: [
-    { src: '@/plugins/element-ui', ssr: true },
-    { src: '@/plugins/vue-swiper', ssr: true },
-    { src: '@/plugins/baiduGa.js', ssr: false },
-    { src: '@/plugins/route.js', ssr: true },
+    { src: '~/plugins/element-ui', ssr: true },
+    { src: '~/plugins/vue-swiper', ssr: true },
+    { src: '~/plugins/baidu.js' },
+    { src: '~/plugins/route.js', ssr: true },
   ],
   hooks: {
     // 'vue-renderer:ssr:context'(context) {
@@ -61,13 +44,15 @@ export default {
     //   console.log(routePath)
     //   context.nuxt = { serverRenderer: true, routePath }
     // },
-    // 移除window.__nuxt__
-    // 'render:route': (url, result) => {
-    //   //  window.__nuxt__位于body中的第一个script中 移除了body中第一个脚本标签
-    //   this.$ = cheerio.load(result.html, { decodeEntities: false })
-    //   this.$(`body script`).eq(0).remove()
-    //   result.html = this.$.html()
-    // },
+    //移除window.__nuxt__
+    'render:route': (url, result) => {
+      //  window.__nuxt__位于body中的第一个script中 移除了body中第一个脚本标签
+      result.html = result.html.replace(/data-n-head=\"ssr\"/gi, '');
+      // this.$ = cheerio.load(result.html, { decodeEntities: false })
+      // // this.$(`body script`).eq(0).remove()
+      // this.$(`meta`).removeAttr('data-n-head')
+      // result.html = this.$.html()
+    },
   },
 
   components: true,

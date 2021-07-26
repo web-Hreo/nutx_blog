@@ -18,7 +18,7 @@ fieldset{border:0;display: block;}
 /*@img*/
 img { -webkit-touch-callout: none;border:0;display: block;}
 /*@a*/
-a{color:#333;text-decoration: none;-webkit-touch-callout: none;-webkit-user-select: none; cursor: url('../mouse.png'),auto;}
+a{color:#333;text-decoration: none!important;-webkit-touch-callout: none;-webkit-user-select: none; cursor: url('../mouse.png'),auto;}
 a,a:active,a:focus,a:hover,a:visited {text-decoration: none}
 /*@input*/
 input[type=password],
