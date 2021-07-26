@@ -33,21 +33,11 @@ export default {
     console.log('mounted');
       this.articleList.data.forEach(it =>{
         if(!it.bg){
-          const rendom = Math.floor(Math.random()*30 + 1)
+          const rendom = Math.floor(Math.random()*48 + 1)
           it.bg = `https://cdn.jsdelivr.net/gh/web-Hreo/nutx_blog/assets/image/article_bg/${rendom}.jpg`
           console.log(it.bg);
         }
     })
-  },
-  watch:{
-    // articleList(val){
-    //   val.data.forEach(it =>{
-    //     const rendom = Math.floor(Math.random()*30 + 1)
-    //     it.bg = `https://cdn.jsdelivr.net/gh/web-Hreo/nutx_blog/assets/image/article_bg/${rendom}.jpg`
-    //     // it.bg = require(`../assets/image/article_bg/${rendom}.jpg`)
-    //   })
-    //   this.articleList = val
-    // },
   },
   methods:{
     previous(){
