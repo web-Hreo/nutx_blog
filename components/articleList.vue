@@ -56,7 +56,7 @@ export default {
   margin: 30px 0;
   padding: 100px 10px;
   background-color: transparent;
-  background-color: rgb(218, 218, 218);
+  // background-color: rgb(218, 218, 218);
   color: #fff;
   border-radius: 5px;
   background-position: center;

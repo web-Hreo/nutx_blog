@@ -5,8 +5,8 @@
         <div  class="head_nav">
           <div class="grid-content bg-purple">
             <div class="hidden-xs-only fc">
-              <p class="head_name">HHUA</p>
-              <ul class=" fc ml-20">
+              <!-- <p class="head_name">HHUA</p> -->
+              <ul class=" fc">
                 <li v-for="item in pc_routerList" :key="item.id">
                   <a class="active-a" v-if="item.children" href="javascript:void(0);" @click.stop="openChildren(item)">
                     <span>{{item.name}}</span><i class="iconfont icon-xiala"></i>
@@ -24,9 +24,9 @@
           </div>
         </div>
         <div class="head_search fc">
-          <div>A</div>
+          <!-- <div>A</div>
           <div>B</div>
-          <div>C</div>
+          <div>C</div> -->
         </div>
       </div>
     </div>
