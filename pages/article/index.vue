@@ -17,7 +17,8 @@
                 <h4>{{MIt.month}}</h4>
                 <ul class="list-ul">
                   <nuxt-link :to="`articleDetails/${DIt._id}`"  class="nuxtLink" v-for="(DIt, DIn) in MIt.data" :key="DIn">
-                    <span class="nuxtLink_link">{{ DIt.createTime }}</span>{{ DIt.title }}
+                  <p>{{ DIt.createTime }}</p>
+                  <p class="nuxtLink_link">{{ DIt.title }}</p>
                   </nuxt-link>
                 </ul> 
               </div>
@@ -132,12 +133,17 @@ export default {
         padding: 10px 0;
       }
       .nuxtLink{
-        display: block;
+        display: flex;
+        box-sizing: border-box;
+        padding: 15px 10px;
+        border-radius: 5px;
+        transition: all .2s ease;
         &:hover{
           background-color: #eee;
         }
       }
       .nuxtLink_link{
+        flex: 1;
         color: #ccc;
         padding:0 10px;
       }
