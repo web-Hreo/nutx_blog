@@ -76,20 +76,34 @@ export default {
 <style lang='less' scoped>
  #about_me{
    letter-spacing: 2px;
+    //m端
+    @media only screen and (max-width: 766.99px) {
+      padding-top: 1.333333rem;
+    }
    article{
      padding-bottom: 20px;
     /deep/h2{
-      font-size: 24px;
-      font-weight: 600;
+      width: 100%;
+      box-sizing: border-box;
+      position: relative;
+      padding: 8px 15px;
+      border: initial;
+      border-left: 3px solid #3884FF;
+      background-color: rgba(56,132,255,0.07);
       color: #000;
-      margin:10px 0;
+      border-radius: 3px;
+      width:100%;
+      font-size:17px;
+      margin: 15px 0 10px 0;
+      line-height: 25px;
     }
     /deep/p{
       padding: 5px 0;
       line-height: 30px;
-      font-size: 17px;
+      font-size: 16px;
       letter-spacing: 0.5px;
       color: #555;
+      word-break: break-all;
       font-family: 'Mirages Custom', 'Merriweather', 'Open Sans', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft Yahei', 'WenQuanYi Micro Hei',  'Segoe UI Emoji', 'Segoe UI Symbol', Helvetica, Arial, sans-serif;
     }
     /deep/a{

@@ -15,7 +15,7 @@
         <img :src="form.leavingAvatar" alt="">
       </div>
       <div class="form_ipt">
-        <el-input type="textarea" v-model="form.leavingCont"  maxlength="50" show-word-limit></el-input>
+        <el-input type="textarea" v-model="form.leavingCont"  maxlength="100" show-word-limit></el-input>
         <div class="leavingInfo">
           <el-input v-model="form.leavingName" placeholder="必填">
             <template slot="prepend">昵称</template>
@@ -87,7 +87,7 @@
             <p style="padding-left:20px">回复<span class="abc9">{{replyTitle}}</span></p>
           </div>
           <div class="form_ipt" style="margin-left:0">
-            <el-input type="textarea" v-model="form.leavingCont"  maxlength="50" show-word-limit></el-input>
+            <el-input type="textarea" v-model="form.leavingCont"  maxlength="100" show-word-limit></el-input>
             <div class="leavingInfo">
               <el-input v-model="form.leavingName" placeholder="必填">
                 <template slot="prepend">昵称</template>

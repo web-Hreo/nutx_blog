@@ -30,12 +30,10 @@ export default {
   },
   props: ["articleList"],
   created(){
-    console.log('mounted');
       this.articleList.data.forEach(it =>{
         if(!it.bg){
           const rendom = Math.floor(Math.random()*92 + 1)
           it.bg = `https://cdn.jsdelivr.net/gh/web-Hreo/nutx_blog/assets/image/article_bg/${rendom}.jpg`
-          console.log(it.bg);
         }
     })
   },

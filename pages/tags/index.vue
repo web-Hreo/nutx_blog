@@ -9,7 +9,9 @@
   <div id='tags'>
     <p class="note warning no-icon" style="margin-left:15px">文章标签数量：{{length.tags_length}}</p>
     <ul class="fc mt-20">
-      <li v-for="item in tagList" :key="item.id" :style="randomRgb()">🔖 {{item.name}}</li>
+      <li v-for="item in tagList" :key="item.id" :style="randomRgb()">
+        <router-link :to="`tags/${item.name}?pageNo=1`">🔖 {{item.name}}</router-link>
+      </li>
     </ul>
   </div>
 </template>
@@ -29,23 +31,8 @@ export default {
 
   data () {
     return {
-      tagList: [
-        // { id: 1, name: "HTML(5)", path: "#" },
-        // { id: 2, name: "CSS(3)", path: "#" },
-        // { id: 3, name: "JavaScript", path: "#" },
-        // { id: 4, name: "ES6", path: "#" },
-        // { id: 5, name: "jQuery", path: "#" },
-        // { id: 6, name: "UI框架", path: "#" },
-        // { id: 7, name: "VUE", path: "#" },
-        // { id: 8, name: "React", path: "#" },
-        // { id: 9, name: "Angular", path: "#" },
-        // { id: 10, name: "Node", path: "#" },
-        // { id: 11, name: "MongoDB", path: "#" },
-        // { id: 12, name: "Webpack", path: "#" },
-        // { id: 13, name: "git", path: "#" },
-        // { id: 13, name: "数据结构", path: "#" },
-      ],
-      length:{}
+      tagList: [],//tag列表
+      length:{}//length列表
     }
   },
   async created(){
@@ -92,13 +79,21 @@ export default {
     font-size: 16px;
     color: #fff;
     border-radius: 6px;
-    padding: 10px;
+    padding: 0 10px;
+    height: 40px;
+    line-height: 40px;
     display: inline-block;
     margin: 0 15px 15px;
     //m端
     @media only screen and (max-width: 766.99px) {
       font-size: 14px;
       padding: 9px;
+    }
+    a{
+      display: block;
+      width: 100%;
+      height: 100%;
+      color: #fff;
     }
   }
   .note{

@@ -30,14 +30,5 @@ ul, ol { list-style: none; }
 ::-moz-placeholder{ font-family: "Microsoft YaHei"}              
 ::-webkit-input-placeholder{ font-family: "Microsoft YaHei"}    
 ::-ms-input-placeholder{ font-family: "Microsoft YaHei"}
-.popper__arrow{
-  display: none;
-}
-.el-dropdown-menu{
-  /* width: 200px; */
-}
-/* .el-popper{
-  width: 200px;
-} */
-
+.popper__arrow{ display: none;}
 
