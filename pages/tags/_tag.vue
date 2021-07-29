@@ -28,8 +28,6 @@ import MyArticleList from "~/components/articleList.vue";
 import {getArticle} from '~/api/article'
 export default {
   async asyncData(context) {
-    console.log(context.params);
-    console.log(context.query);
     const pageNo = context.query.pageNo?context.query.pageNo:1
     const params = {
       tag:context.params.tag,
@@ -37,7 +35,6 @@ export default {
     }
     //获取文章列表
     const {data} = await getArticle(params)
-    console.log(data);
     return {
       tag:context.params.tag,
       articleList:data,

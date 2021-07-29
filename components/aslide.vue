@@ -35,14 +35,14 @@
       <p class="info_title">标签云</p>
       <ul>
         <li v-for="(item, index) in tagList" :key="index" :style="randomRgb(item)">
-          <a href>{{item.name}}</a>
+          <router-link :to="`/tags/${item.name}?pageNo=1`">{{item.name}}</router-link>
         </li>
       </ul>
     </div>
     <!-- 热度榜 -->
     <div class="info_rankingList background">
       <p class="info_title">热度榜</p>
-      <nuxt-link class="rankingList_item"  :to="`/articleDetails/${item._id}`" v-for="(item,index) in articleList" :key="item._id">
+      <nuxt-link class="rankingList_item"  :to="`/articleDetails/${item._id}`" v-for="item in articleList" :key="item._id">
         {{item.title}}
       </nuxt-link>
 
@@ -249,15 +249,18 @@ export default {
       letter-spacing: 1px;
       font-family: "Linux Biolinum", "Noto Serif SC", Helvetica, Arial, Menlo, Monaco, monospace, sans-serif;
       margin: 7px;
-      padding: 7px;
       border-radius: 5px;
       font-size: 14px;
       transition: all ease 0.5s;
       a {
+        box-sizing: border-box;
         display: inline-block;
         width: 100%;
         height: 100%;
         color: #fff;
+        padding: 0 7px;
+        height: 38px;
+        line-height: 38px;
       }
     }
   }
