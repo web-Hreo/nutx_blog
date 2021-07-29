@@ -4,7 +4,7 @@
     <div class="info_my background">
       <img src="@/assets/common/avatar.jpg" alt />
       <div class="my_information">
-        <p>Hhua | 何华</p>
+        <p>Hhua | 小何</p>
         <p>web前端开发工程师</p>
         <!-- <p>邮箱：ngpeipao9977590@163.com</p>
         <p>微信(添加备注来源)：17779168734</p> -->

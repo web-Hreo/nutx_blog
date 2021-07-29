@@ -2,7 +2,7 @@
   <div id="footer">
     <p>
       Copyright © 2021
-      <a href="javascript:;" title="花未央个人博客">何华_前端个人博客</a>
+      <a href="javascript:;" title="花未央个人博客">小何_前端个人博客</a>
       All rights reserved
     </p>
     <p>

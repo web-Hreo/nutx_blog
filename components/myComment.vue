@@ -9,7 +9,7 @@
   <div id='myComment'>
   <!-- 留言模板 -->
   <div class="form" v-if="replyIndex===-1">
-    <h2 class="myComment_title abc9">添加新留言</h2>
+    <!-- <h2 class="myComment_title abc9">添加新留言</h2> -->
     <div class="fb">
       <div class="form_avatar">
         <img :src="form.leavingAvatar" alt="">
@@ -52,7 +52,7 @@
                 <p class="reply abc9" @click.stop="replyOne(item,index,1)">回复</p>
               </div>
               <div class="usre_cont">
-                <p>{{item.leavingCont}} </p>
+                <p v-html="item.leavingCont"></p>
               </div>
             </div>
           </div>
@@ -72,7 +72,10 @@
                 <p class="reply abc9" @click.stop="replyOne(it,index,2)">回复</p>
               </div>
               <div class="usre_cont">
-                <p><span class="abc9">@{{it.replyName}}</span> {{it.leavingCont}} </p>
+                <div>
+                  <span class="abc9">@{{it.replyName}}</span>
+                  <p v-html="it.leavingCont"></p>
+                </div>
               </div>
             </div>
           </div>
@@ -167,6 +170,12 @@ export default {
     const params = {from:this.from,fromId:this.form.fromId}
     const {data} = await getComment(params)
     this.commentLength = data.length
+    
+    let replaceRegex = /(\n\r|\r\n|\r|\n)/g; 
+    let str = '123啦啦啦\n哦哦哦234\n'
+    data.data.forEach(it =>{
+      it.leavingCont = it.leavingCont.replace(replaceRegex, '<br/>');
+    })
     this.commentList = data.data
   },
   //邮箱改变 获取头像事件
@@ -246,6 +255,9 @@ export default {
 
 </script>
 <style lang='less' scoped>
+#myComment{
+  margin-top: 30px;
+}
   .myComment_title{
     padding: 50px 0 20px;
     font-size: 28px;

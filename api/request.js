@@ -7,8 +7,8 @@ import axios from 'axios' // 引用axios
 
 // create an axios instance
 const service = axios.create({
-  baseURL: 'http://120.26.59.199:3000', // 正式环境
-  // baseURL: 'http://localhost:3000', // 测试环境
+  // baseURL: 'http://120.26.59.199:3000', // 正式环境
+  baseURL: 'http://localhost:3000', // 测试环境
   timeout: 1800000, // request timeout
 })
 // 对响应码做出处理 可自行补充

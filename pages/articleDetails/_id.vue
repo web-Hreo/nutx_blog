@@ -33,7 +33,7 @@ export default {
   name: 'articleDetails',
   async asyncData(context) {
     const data = await getArticleDetail({id:context.params.id,from:'pc'})
-    const url = 'http://120.26.59.199'+context.route.path
+    const url = 'http://www.heblogs.cn'+context.route.path
     return { info:data,url,title:'Hhua_前端个人博客_文章_'+data.title }
   },
   components: { MyComment },

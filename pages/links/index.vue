@@ -57,10 +57,30 @@
       </el-row>
     </div>
 
+    <div class="note defalut no-icon" style="">
+      只接受博客 / 资源网类的网站进行友链互换
+      持续未更新/首页无法访问/违规 自动取消友链<br/>
+      请在下方评论区提供贵站友链信息：<br/>
+      站点名称、链接、一句话描述、头像
+    </div>
+    <div class="note defalut no-icon" style="">
+      本站信息<br/>
+      名字：小何_前端个人博客<br/>
+      描述：保持热爱 奔赴山海<br/>
+      链接：http://www.heblogs.cn<br/>
+      头像：http://q.qlogo.cn/headimg_dl?dst_uin=1194150512@qq.com&spec=100<br/>
+    </div>
+
+
+
+
+
+    <MyComment from="links"  />
     </div>
 </template>
 
 <script>
+import MyComment from '~/components/myComment.vue'
 import {getLinks} from '~/api/public'
 export default {
   async asyncData(context){
@@ -81,7 +101,7 @@ export default {
     return { relativesList,regularsList,loseList }
   },
 
-  components: {},
+  components: { MyComment },
 
   data () {
     return {
@@ -189,4 +209,5 @@ export default {
     }
   }
 }
+
 </style>

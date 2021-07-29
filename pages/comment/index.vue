@@ -6,16 +6,16 @@
   @changeDate: ,
 -->
 <template>
-  <div id='comment'>
-  <div class="comment_desc">
-    <p>如果对本博客有任何建议 欢迎在页面下方留言
-    例如:
-    对某个开源项目感兴趣 想让我踩踩坑
-    某页面有BUG 或有更好的想法
-    已有文章的某些地方存在问题 </p>
-  </div>
+  <div id="comment">
+    <div class="note defalut no-icon" style="">
+      如果对本博客有任何建议 欢迎在页面下方留言<br/>
+      例如:<br/>
+      对某个开源项目感兴趣 想让我踩踩坑<br/>
+      某页面有BUG 或有更好的想法<br/>
+      已有文章的某些地方存在问题 
+    </div>
     <MyComment from="comment" />
-  </div>
+  </div>
 </template>
 
 <script>
@@ -45,7 +45,7 @@ export default {
 </script>
 <style lang='less' scoped>
   #comment{
-    padding: 15px 5% 0;
+    padding: 0 5% 0;
     color: rgb(51,51,51);
     //m端
     @media only screen and (max-width: 766.99px) {
