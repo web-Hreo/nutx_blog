@@ -68,7 +68,7 @@
      站点名称：小何_前端个人博客<br/>
       描述：保持热爱 奔赴山海<br/>
       链接：http://www.heblogs.cn<br/>
-      头像：http://q.qlogo.cn/headimg_dl?dst_uin=1194150512@qq.com&spec=100<br/>
+      头像：https://cdn.jsdelivr.net/gh/web-Hreo/nutx_blog/static/avatar.jpg
     </div>
 
 

@@ -40,7 +40,7 @@
     <div class="m_head_cont hidden-sm-and-up"  >
       <div class="m_head_modal_cont" :class="{'m_head_cont_modal_open':is_m_oepn}" @click="nuxtLink"></div>
       <div class="m_head_link_cont" :class="{'m_head_cont_link_open':is_m_oepn}">
-        <img src="https://cdn.jsdelivr.net/gh/web-Hreo/nutx_blog/assets/common/avatar.jpg" alt="">
+        <img src="https://cdn.jsdelivr.net/gh/web-Hreo/nutx_blog/static/avatar.jpg" alt="">
         <ul>
           <li v-for="(item, index) in m_routerList" :key="index" @click="nuxtLink(item)">
             <nuxt-link :to="item.path">{{item.name}}</nuxt-link>

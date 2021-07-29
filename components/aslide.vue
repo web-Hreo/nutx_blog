@@ -2,7 +2,7 @@
   <div id="aslide">
     <!-- 个人信息 -->
     <div class="info_my background">
-      <img src="https://cdn.jsdelivr.net/gh/web-Hreo/nutx_blog/assets/common/avatar.jpg" alt />
+      <img src="https://cdn.jsdelivr.net/gh/web-Hreo/nutx_blog/static/avatar.jpg" alt />
       <div class="my_information">
         <p>Hhua | 小何</p>
         <p>web前端开发工程师</p>
