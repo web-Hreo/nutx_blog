@@ -5,9 +5,9 @@ html,body{
   /* font-family: Product Sans,Hiragino Sans GB,Hiragino Sans GB W3,Microsoft YaHei,WenQuanYi Micro Hei,sans-serif !important; */
 }
 body {
-  background: #0cebeb;
-  background: -webkit-linear-gradient(to right, #FEF3EB, #F2F0F7, #F0F8F3);
-  background: linear-gradient(to right, #FEF3EB, #F2F0F7, #F0F8F3);
+  background: linear-gradient(
+    90deg
+    ,rgba(247,149,51,.1),rgba(243,112,85,.1) 15%,rgba(239,78,123,.1) 30%,rgba(161,102,171,.1) 44%,rgba(80,115,184,.1) 58%,rgba(16,152,173,.1) 72%,rgba(7,179,155,.1) 86%,rgba(109,186,130,.1));
 }
 address,cite,dfn,em,var, i {font-style:normal;}
 #app { font: 16px "微软雅黑", Arial, Helvetica, sans-serif; color: #555;  }

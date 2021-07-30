@@ -47,7 +47,6 @@ import {getUserDesc} from '~/api/public'
 export default {
   async asyncData() {
     const {data} = await getUserDesc()
-    console.log(data);
     return{ desc:data }
   },
 
@@ -75,7 +74,11 @@ export default {
 </script>
 <style lang='less' scoped>
  #about_me{
+   background-color: #fff;
+   margin-top: 15px;
+   padding: 20px;
    letter-spacing: 2px;
+   border-radius: 5px;
     //m端
     @media only screen and (max-width: 766.99px) {
       padding-top: 1.333333rem;
@@ -83,24 +86,36 @@ export default {
    article{
      padding-bottom: 20px;
     /deep/h2{
-      width: 100%;
-      box-sizing: border-box;
-      position: relative;
-      padding: 8px 15px;
-      border: initial;
-      border-left: 3px solid #3884FF;
-      background-color: rgba(56,132,255,0.07);
+      padding: 10px 0;
       color: #000;
-      border-radius: 3px;
-      width:100%;
-      font-size:17px;
-      margin: 15px 0 10px 0;
-      line-height: 25px;
+      font-weight: 600;
+      position: relative;
+      font-size: 15px;
+      &::before{
+        content: '🍀';
+        padding-left: 2px;
+        // position: absolute;
+        // top: 0;
+        // left: 0;
+      }
+      // width: 100%;
+      // box-sizing: border-box;
+      // position: relative;
+      // padding: 8px 15px;
+      // border: initial;
+      // border-left: 3px solid #3884FF;
+      // background-color: rgba(56,132,255,0.07);
+      // color: #000;
+      // border-radius: 3px;
+      // width:100%;
+      // font-size:17px;
+      // margin: 15px 0 10px 0;
+      // line-height: 25px;
     }
     /deep/p{
       padding: 5px 0;
       line-height: 30px;
-      font-size: 16px;
+      font-size: 14px;
       letter-spacing: 0.5px;
       color: #555;
       word-break: break-all;

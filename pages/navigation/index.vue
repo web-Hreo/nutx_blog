@@ -6,7 +6,7 @@
   @changeDate: ,
 -->
 <template>
-  <div id='navigation'>
+  <div id='navigation' class="def-card">
     <div class="navigation-item" v-for="item in menuList" :key="item._id">
       <p class="note warning no-icon" style="">{{item.name}}</p>
       <el-row class="linkeBox" :gutter="10">
@@ -27,12 +27,9 @@
 <script>
 import {getNavigation} from '~/api/public'
 import MyMenu from '@/components/Menu.vue'
-import {contList} from './data'
 export default {
   async asyncData() {
     const {data} = await getNavigation()
-    console.log(data);
-    console.log(data[0].children);
     return{ menuList:data }
 
   },
@@ -55,16 +52,8 @@ export default {
         { index:'10',name:'综合素材', },
         { index:'11',name:'字体', },
       ],
-      contList,
     }
   },
-  created(){
-    contList.forEach((i,v) => i.index=''+ ( v + 1 ) )
-  },
-  mounted () {},
-
-  destroyed () {},
-
   methods: {
     select(item){
       this.menuActive = item.index

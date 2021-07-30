@@ -13,10 +13,10 @@
   @changeDate: ,
 -->
 <template>
-  <div id='links'>
+  <div id='links' class="def-card">
     <!-- 亲友 -->
     <div class="relatives" v-if="relativesList.length>0">
-      <div class="note warning no-icon" style="">亲友 —— 没有不劳而获的工作，更没有坐享其成的收获</div>
+      <div class="note warning no-icon" style="">亲友 —— 洛范九畴初</div>
       <el-row class="linkeBox" :gutter="10">
         <el-col :xs="24" :sm="12" :md="8"  v-for="item in relativesList" :key="item._id">
           <div class="link-item" :class="{'link-item-hover':item.url !=='#'}" >
@@ -30,7 +30,7 @@
     </div>
     <!-- 常客 -->
     <div class="regulars" v-if="regularsList.length>0">
-      <div class="note warning no-icon" style="">常客 —— 没有不劳而获的工作，更没有坐享其成的收获</div>
+      <div class="note warning no-icon" style="">常客 —— 临池鸟迹舒</div>
       <el-row class="linkeBox" :gutter="10">
         <el-col :xs="24" :sm="12" :md="8"  v-for="item in regularsList" :key="item._id">
           <div class="link-item" :class="{'link-item-hover':item.url !=='#'}" >
@@ -44,14 +44,16 @@
     </div>
     <!-- 失联 -->
     <div class="lose" v-if="loseList.length>0">
-      <div class="note warning no-icon" style="">失联 —— 黎耀辉 好久不见</div>
+      <div class="note warning no-icon" style="">失联 —— 挥手长相谢</div>
       <el-row class="linkeBox" :gutter="10">
-        <el-col :xs="24" :sm="12" :md="8"  v-for="item in relativesList" :key="item._id">
+        <el-col :xs="24" :sm="12" :md="8"  v-for="item in loseList" :key="item._id">
           <div class="link-item" :class="{'link-item-hover':item.url !=='#'}" >
-            <a :href="item.url==='#'?'javascript:void(0);':item.url" :title="item.title" :target="item.url==='#'?'_self':'_blank'" data-pjax-state="external">
-              <img :src="item.avatar"><span class="sitename">{{item.title}}</span>
-              <p class="linkdes">{{item.title}}</p>
-            </a>
+              <a>
+                <p class="lose-img"></p>
+                <span class="sitename">{{item.title}}</span>
+                <p class="linkdes">{{item.desc}}</p>
+              </a>
+             
           </div>
         </el-col>
       </el-row>
@@ -60,8 +62,7 @@
     <div class="note defalut no-icon" style="">
       只接受博客 / 资源网类的网站进行友链互换
       持续未更新/链接无法访问/违规 自动取消友链<br/>
-      请在下方评论区提供贵站友链信息：<br/>
-      站点名称、一句话描述、链接、头像
+      友链展示需要 你的信息格式要包含 站点名称、描述、链接、头像
     </div>
     <div class="note defalut no-icon" style="">
       本站信息<br/>
@@ -85,7 +86,6 @@ import {getLinks} from '~/api/public'
 export default {
   async asyncData(context){
     const {data} = await getLinks({pageNo:1,pageSize:100})
-    console.log(data);
     const relativesList = []//亲友列表
     const regularsList = []//常客列表
     const loseList = []//亲友列表
@@ -119,9 +119,6 @@ export default {
   },
 
  async  mounted () {
-   console.log(this.relativesList);
-   console.log(this.regularsList);
-   console.log(this.loseList);
   },
 
   destroyed () {},
@@ -163,6 +160,27 @@ export default {
       background-color: transparent;
       -webkit-text-decoration-skip: objects;
       color: #42b983;
+    }
+    .lose-img{
+      float: right;
+      // box-shadow: inset 0 0 10px #000;
+      padding: 5px;
+      opacity: 1;
+      transform: rotate(0);
+      -webkit-transform: rotate(0);
+      -moz-transform: rotate(0);
+      -o-transform: rotate(0);
+      -ms-transform: rotate(0);
+      transition: all ease 1s;
+      -webkit-transition: all ease 1s;
+      -moz-transition: all ease 1s;
+      -o-transition: all ease 1s;
+      margin-top: 5px;
+      width: 65px;
+      height: 65px;
+      padding: 2px;
+      border-radius: 100%;
+      background-color: #ccc;
     }
     img{
       float: right;

@@ -6,31 +6,28 @@ html {
   color: #000000;
   line-height: 25px;
 }
-.def_card{
+.def_card {
   background-color: #fff;
   width: 100%;
 }
-//默认居中显示的背景图片
 .def-bg {
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
 }
-.def-card{
+.def-card {
   background-color: #fff;
   padding: 20px;
   margin-top: 15px;
   border-radius: 5px;
 }
-//***********************************************************    浮动   **************
 .fl {
   float: left;
 }
 .fr {
   float: right;
 }
-//***********************************************************    颜色   **************
-.abc9{
+.abc9 {
   color: #1abc9c;
 }
 .fd1 {
@@ -54,7 +51,6 @@ html {
 .orange {
   color: #ff5f16;
 }
-//***********************************************************    背景颜色   **************
 .bg-green {
   background: green;
 }
@@ -67,7 +63,6 @@ html {
 .bg-fff {
   background: #ffffff;
 }
-//***********************************************************    字体   **************
 .font-12 {
   font-size: 12px;
 }
@@ -86,12 +81,10 @@ html {
 .font-20 {
   font-size: 20px !important;
 }
-
 .font-24 {
   font-size: 24px !important;
 }
-
-.pt-5{
+.pt-5 {
   padding-top: 5px;
 }
 .pt-10 {
@@ -103,7 +96,6 @@ html {
 .pt-30 {
   padding-top: 30px;
 }
-//***********************************************************    边框   **************
 .bd {
   border: 1px solid;
 }
@@ -116,60 +108,45 @@ html {
 .tac {
   text-align: center;
 }
-
-//***********************************************************    弹性盒子公共样式   **************
-// 排列方向-横向排列
 .flex {
   display: flex;
 }
-// 纵向排列
 .flex2 {
   display: flex;
   flex-direction: column;
 }
-
-// 水平居中,垂直居中
 .fcc {
   display: flex;
   justify-content: center;
   align-items: center;
 }
-// 两侧分开,垂直居中
 .fbc {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
-// 靠后对齐,垂直居中
 .fec {
   display: flex;
   justify-content: flex-end;
   align-items: center;
 }
-// 垂直居中
 .fc {
   display: flex;
   align-items: center;
 }
-//分散对齐
 .fb {
   display: flex;
   justify-content: space-between;
 }
-//两端对齐
 .jc-sb {
   justify-content: space-between;
 }
-//分散对齐
 .jc-sa {
   justify-content: space-around;
 }
-//垂直居中
 .aic {
   align-items: center;
 }
-
-//***********************************************************    margin设置   **************
 .mt-5 {
   margin-top: 5px;
 }
@@ -206,28 +183,22 @@ html {
 .mt-120 {
   margin-top: 120px;
 }
-
 /* margin-bottom设置 */
 .mb-5 {
   margin-bottom: 5px;
 }
-
 .mb-10 {
   margin-bottom: 10px;
 }
-
 .mb-15 {
   margin-bottom: 15px;
 }
-
 .mb-20 {
   margin-bottom: 20px;
 }
-
 .mb-25 {
   margin-bottom: 25px;
 }
-
 .mb-30 {
   margin-bottom: 30px;
 }
@@ -237,113 +208,88 @@ html {
 .mb-50 {
   margin-bottom: 50px;
 }
-
 /* margin-left设置 */
 .ml-5 {
   margin-left: 5px;
 }
-
 .ml-10 {
   margin-left: 10px;
 }
-
 .ml-15 {
   margin-left: 15px;
 }
-
 .ml-20 {
   margin-left: 20px;
 }
-
 .ml-25 {
   margin-left: 25px;
 }
-
 .ml-30 {
   margin-left: 30px;
 }
 .ml-40 {
   margin-left: 40px;
 }
-
 /* margin-right设置 */
 .mr-5 {
   margin-right: 5px;
 }
-
 .mr-10 {
   margin-right: 10px;
 }
-
 .mr-15 {
   margin-right: 15px;
 }
-
 .mr-20 {
   margin-right: 20px;
 }
-
 .mr-25 {
   margin-right: 25px;
 }
-
 .mr-30 {
   margin-right: 30px;
 }
-//***********************************************************    padding设置   **************
 /* padding-top设置 */
 .pt-5 {
   padding-top: 5px;
 }
-
 .pt-10 {
   padding-top: 10px;
 }
-
 .pt-15 {
   padding-top: 15px;
 }
-
 .pt-20 {
   padding-top: 20px;
 }
-
 .pt-25 {
   padding-top: 25px;
 }
-
 .pt-30 {
   padding-top: 30px;
 }
 .pt-35 {
   padding-top: 35px;
 }
-
 .pt-40 {
   padding-top: 40px;
 }
-
 /* padding-bottom设置 */
 .pb-5 {
   padding-bottom: 5px;
 }
-
 .pb-10 {
   padding-bottom: 10px;
 }
-
 .pb-15 {
   padding-bottom: 15px;
 }
-
 .pb-20 {
   padding-bottom: 20px;
 }
-
 .pb-25 {
   padding-bottom: 25px;
 }
-
 .pb-30 {
   padding-bottom: 30px;
 }
@@ -351,23 +297,18 @@ html {
 .pl-5 {
   padding-left: 5px;
 }
-
 .pl-10 {
   padding-left: 10px;
 }
-
 .pl-15 {
   padding-left: 15px;
 }
-
 .pl-20 {
   padding-left: 20px;
 }
-
 .pl-25 {
   padding-left: 25px;
 }
-
 .pl-30 {
   padding-left: 30px;
 }
@@ -375,33 +316,24 @@ html {
 .pr-5 {
   padding-right: 5px;
 }
-
 .pr-10 {
   padding-right: 10px;
 }
-
 .pr-15 {
   padding-right: 15px;
 }
-
 .pr-20 {
   padding-right: 20px;
 }
-
 .pr-25 {
   padding-right: 25px;
 }
-
 .pr-30 {
   padding-right: 30px;
 }
-
-// 750像素图下默认左右编剧各30
 .plr-default {
   padding: 0 15px;
 }
-
-//***********************************************************    边框弧度   **************
 .br-2 {
   border-radius: 2px;
   overflow: hidden;
@@ -422,7 +354,6 @@ html {
   border-radius: 20px;
   overflow: hidden;
 }
-//上边框弧度
 .btr-10 {
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
@@ -433,7 +364,6 @@ html {
   border-top-right-radius: 20px;
   overflow: hidden;
 }
-//下边框弧度
 .bbr-10 {
   border-bottom-left-radius: 10px;
   border-bottom-right-radius: 10px;
@@ -444,23 +374,17 @@ html {
   border-bottom-right-radius: 20px;
   overflow: hidden;
 }
-
-//***********************************************************    通用杂类   **************
-
-//将a链接变成最大盒子
 .a-blk {
   display: block;
   width: 100%;
   height: 100%;
 }
-//10弧度和15内边距的盒子
 .br-10-p-15 {
   border-radius: 10px;
   padding: 15px;
   background: #ffffff;
   box-shadow: 0px 6px 14px 0px rgba(0, 0, 0, 0.02);
 }
-//一行文本溢出隐藏
 .hed {
   overflow: hidden;
   text-overflow: ellipsis;
@@ -490,7 +414,6 @@ html {
   line-clamp: 3;
   -webkit-box-orient: vertical;
 }
-//换行
 .break {
   word-break: break-all;
 }
@@ -498,11 +421,10 @@ html {
   clear: both;
 }
 * {
-  -webkit-text-size-adjust: none; //避免旋转手机造成字体压缩
-  -webkit-tap-highlight-color: rgba(0, 0, 0, 0); // 修改点击高亮效果
+  -webkit-text-size-adjust: none;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 .note {
-  width: 100%;
   box-sizing: border-box;
   position: relative;
   padding: 15px;
@@ -511,8 +433,8 @@ html {
   background-color: #f9f9f9;
   border-radius: 3px;
   font-size: var(--content-font-size);
-  width:100%;
-  font-size:16x;
+  width: 100%;
+  font-size: 16x;
   margin: 15px 0 10px 0;
   line-height: 25px;
 }
@@ -520,7 +442,7 @@ html {
   background-color: #fdf8ea;
   border-left-color: #f0ad4e;
 }
-.defalut{
-  background-color: rgba(56,132,255,0.07);
+.defalut {
+  background-color: rgba(56, 132, 255, 0.07);
   border-left-color: #3884FF;
 }

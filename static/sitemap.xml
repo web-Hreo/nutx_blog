@@ -13,6 +13,13 @@
 </url>
 
 <url>
+ <loc>http://www.heblogs.cn/2</loc>
+ <priority>0.3</priority>
+ <lastmod>2021-07-30</lastmod>
+ <changefreq>weekly</changefreq>
+</url>
+
+<url>
  <loc>http://www.heblogs.cn/article</loc>
  <priority>0.3</priority>
  <lastmod>2021-07-29</lastmod>
@@ -28,6 +35,13 @@
 
 <url>
  <loc>http://www.heblogs.cn/hot</loc>
+ <priority>0.3</priority>
+ <lastmod>2021-07-29</lastmod>
+ <changefreq>weekly</changefreq>
+</url>
+
+<url>
+ <loc>http://www.heblogs.cn/hot/2</loc>
  <priority>0.3</priority>
  <lastmod>2021-07-29</lastmod>
  <changefreq>weekly</changefreq>

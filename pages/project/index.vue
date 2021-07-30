@@ -6,7 +6,7 @@
   @changeDate: ,
 -->
 <template>
-  <div id='project'>
+  <div id='project' class="def-card">
     <p class="note warning no-icon" style="">本站项目由博主工作以来开发的项目，仅为记录及参考使用</p>
     <el-row class="linkeBox" :gutter="10">
       <el-col :xs="24" :sm="12" :md="12"  v-for="item in projectList" :key="item.id">
@@ -26,7 +26,6 @@ import {getProjectList} from '~/api/public'
 export default {
   async asyncData() {
     const data = await getProjectList()
-    console.log(data);
     return{ projectList:data }
   },
 
@@ -65,7 +64,9 @@ export default {
 
 </script>
 <style lang='less' scoped>
-
+#project{
+  padding-bottom: 50px;
+}
 
 .linkeBox{
   margin: 0;

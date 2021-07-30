@@ -303,6 +303,7 @@ export default {
 .my_article{
   box-sizing: border-box;
   padding: 0 30px 10px;
+  text-align: center;
 }
 .m_head_cont{
   .m_head_modal_cont{

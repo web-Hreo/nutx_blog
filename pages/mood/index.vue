@@ -21,7 +21,6 @@ import {getMood} from '../../api/mood'
 export default {
   async asyncData() {
     const {data} = await getMood()
-    console.log(data);
     return { modeList:data  }
   },
 

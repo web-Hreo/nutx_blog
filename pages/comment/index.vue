@@ -6,7 +6,7 @@
   @changeDate: ,
 -->
 <template>
-  <div id="comment">
+  <div id="comment" class="def-card">
     <div class="note defalut no-icon" style="">
       如果对本博客有任何建议 欢迎在页面下方留言<br/>
       例如:<br/>
@@ -45,11 +45,11 @@ export default {
 </script>
 <style lang='less' scoped>
   #comment{
-    padding: 0 5% 0;
+    padding: 20px 5%;
     color: rgb(51,51,51);
     //m端
     @media only screen and (max-width: 766.99px) {
-      padding-top: 50px;
+      padding-top: 20px;
     }
     .comment_desc{
       p{
