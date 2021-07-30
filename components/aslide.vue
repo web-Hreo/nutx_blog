@@ -115,7 +115,7 @@ export default {
           time: weatherData.updateTime, //当前刷新时间
           tmp: weatherDataNow.temp, //当前气温
           txt: weatherDataNow.text, //天气状况
-          weaImg:require(`../assets/WeatherIcon-master/weather-icon-S1/color-256/${weatherDataNow.icon}.png`),
+          weaImg:`https://cdn.jsdelivr.net/gh/web-Hreo/nutx_blog/assets/WeatherIcon-master/weather-icon-S1/color-256/${weatherDataNow.icon}.png`,
           windDir: weatherDataNow.windDir, //风向
           windScale: weatherDataNow.windScale, //风力等级
           aqi: aqiNow.aqi, //aqi指数
