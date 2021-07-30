@@ -143,6 +143,7 @@ export default {
         }
       }
       .nuxtLink_link{
+        word-break: break-all;
         flex: 1;
         color: #ccc;
         padding:0 10px;

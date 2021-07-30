@@ -267,6 +267,7 @@ export default {
 }
 .info_rankingList {
   .rankingList_item {
+    word-break: break-all;
     display: block;
     padding: 10px 0;
     border-bottom: 1px solid #eaeaea;
