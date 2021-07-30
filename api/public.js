@@ -77,3 +77,11 @@ export function getWeather(params) {
     params,
   })
 }
+//获取天气 和风天气 https://dev.qweather.com/
+export function getAQI(params) {
+  return request({
+    url: `https://devapi.qweather.com/v7/air/now?location=101010100&key=8ac42cf130174c918871b2d9cd6bbed7`,
+    method: 'get',
+    params,
+  })
+}

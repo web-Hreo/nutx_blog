@@ -21,6 +21,9 @@ html {
   margin-top: 15px;
   border-radius: 5px;
 }
+.tac {
+  text-align: center!important;
+}
 .fl {
   float: left;
 }
