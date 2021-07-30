@@ -106,10 +106,6 @@ export default {
   },
   router: {
     scrollBehavior(to, from, savedPosition) {
-      console.log('====================================');
-      console.log(to);
-      console.log(from);
-      console.log('====================================');
       if(from.name==='articleDetails-id'){
         if(to.name==='pageNo'){
           return savedPosition

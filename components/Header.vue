@@ -30,6 +30,7 @@
         </div>
       </div>
     </div>
+    <!-- m端 -->
     <div
       class="m_head_cont_btn fcc hidden-sm-and-up"
       :class="{'m_head_cont_btn_open':is_m_oepn}"
@@ -41,9 +42,14 @@
       <div class="m_head_modal_cont" :class="{'m_head_cont_modal_open':is_m_oepn}" @click="nuxtLink"></div>
       <div class="m_head_link_cont" :class="{'m_head_cont_link_open':is_m_oepn}">
         <img src="https://cdn.jsdelivr.net/gh/web-Hreo/nutx_blog/static/avatar.jpg" alt="">
-        <ul>
+        <ul class="my_article fbc">
+          <li  @click="nuxtLink()"><nuxt-link to="/"><p>文章</p><p>{{lengthList.article_length}}</p></nuxt-link></li>
+          <li  @click="nuxtLink()"><nuxt-link to="/tags"><p>标签</p><p>{{lengthList.tags_length}}</p></nuxt-link></li>
+          <li  @click="nuxtLink()"><nuxt-link to="/mood"><p>日志</p><p>{{lengthList.mood_length}}</p></nuxt-link></li>
+        </ul>
+        <ul class="">
           <li v-for="(item, index) in m_routerList" :key="index" @click="nuxtLink(item)">
-            <nuxt-link :to="item.path">{{item.name}}</nuxt-link>
+            <nuxt-link class="link" :to="item.path">{{item.name}}</nuxt-link>
           </li>
           <li ></li>
         </ul>
@@ -53,6 +59,7 @@
   </div>
 </template>
 <script>
+import { getLength } from '~/api/public'
 export default {
   name: "",
   data() {
@@ -91,17 +98,20 @@ export default {
         { name: "学习资源", id: 12, path: "/navigation",routeName:'navigation',isActive:false,},
       ],
       currentRouterIndex:0,
-      is_m_oepn:false
+      is_m_oepn:false,
+      lengthList:{}
     };
   },
   created(){
   },
   mounted(){
+    this.getLength()
     window.addEventListener("click", this.closeChildren);
   },
   beforeDestroy() {  // 实例销毁之前对点击事件进行解绑
     window.removeEventListener('click', this.closeChildren);
   },
+
   methods:{
     //关闭全局弹窗
     closeChildren(){
@@ -119,6 +129,11 @@ export default {
     nuxtLink(){
       this.is_m_oepn = false
       document.documentElement.style.overflow = this.is_m_oepn?'hidden':''
+    },
+    //获取文章标签日志等长度
+    async getLength(){
+      const {data} = await getLength()
+      this.lengthList = data
     },
 
   }
@@ -285,8 +300,11 @@ export default {
   transform: translateX(0);
   z-index: 999;
 }
+.my_article{
+  box-sizing: border-box;
+  padding: 0 30px 10px;
+}
 .m_head_cont{
-
   .m_head_modal_cont{
     display: none;
     position: fixed;
@@ -296,6 +314,7 @@ export default {
     height: 100vh;
     background-color: rgba(0, 0, 0, .3);
   }
+ 
   .m_head_link_cont{
     position: fixed;
     top: 0;
@@ -306,12 +325,12 @@ export default {
     transition: all .5s ease;
     transform: translateX(-280px);
     img{
-      width: 110px;
-      margin: 44px auto;
-      height: 110px;
+      width: 80px;
+      height: 80px;
+      margin: 44px 100px 20px;
       border-radius: 50%;
     }
-    a{
+    .link{
       font-size: 17px;
       color: rgba(0, 0, 0, .7);
       display: inline-block;
