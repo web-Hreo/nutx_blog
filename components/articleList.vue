@@ -2,7 +2,7 @@
   <div id="articleList">
     <!-- 文章盒子 -->
     <nuxt-link class="blog_item"
-      :style="{'background-image': `url(${item.bg})`}"
+      :style="{'background-image': `url(${item.viewImg})`}"
       v-for="(item, index) in articleList.data" :key="index"
        :to="`/articleDetails/${item._id}`"
       >
@@ -30,12 +30,12 @@ export default {
   },
   props: ["articleList"],
   created(){
-      this.articleList.data.forEach(it =>{
-        if(!it.bg){
-          const rendom = Math.floor(Math.random()*92 + 1)
-          it.bg = `https://cdn.jsdelivr.net/gh/web-Hreo/nutx_blog/assets/image/article_bg/${rendom}.jpg`
-        }
-    })
+    // this.articleList.data.forEach(it =>{
+    //   if(!it.bg){
+    //     const rendom = Math.floor(Math.random()*92 + 1)
+    //     it.bg = `https://cdn.jsdelivr.net/gh/web-Hreo/nutx_blog/assets/image/article_bg/${rendom}.jpg`
+    //   }
+    // })
   },
   methods:{
     previous(){

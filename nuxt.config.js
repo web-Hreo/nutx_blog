@@ -106,7 +106,25 @@ export default {
   },
   router: {
     scrollBehavior(to, from, savedPosition) {
-      return { x: 0, y: 0 }
+      console.log('====================================');
+      console.log(to);
+      console.log(from);
+      console.log('====================================');
+      if(from.name==='articleDetails-id'){
+        if(to.name==='pageNo'){
+          return savedPosition
+        }
+        if(to.name==='hot-pageNo'){
+          return savedPosition
+        }
+        if(to.name==='tags-tag'){
+          return savedPosition
+        }
+        return { x: 0, y: 0 }
+      }else{
+        return { x: 0, y: 0 }
+      }
+
     },
   },
 }
