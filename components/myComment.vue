@@ -142,6 +142,12 @@ export default {
       replyIndex:-1,//当前回复狂所在index下标 默认头部-1
       replyTitle:'',//回复时 回复的title 例如 我回复@B
       replyRow:{},//回复时 被回复人的留言信息
+      xssList:[//恶意评论列表
+        '<div>','<img>','<iframe>','<>','console.log','xss',
+        '</','document','cookie','javascript','<script>','text/javascript',
+        'and','exec','insert','select','delete','update'
+
+      ]
     }
   },
   mounted () {
@@ -172,7 +178,6 @@ export default {
     this.commentLength = data.length
     
     let replaceRegex = /(\n\r|\r\n|\r|\n)/g; 
-    let str = '123啦啦啦\n哦哦哦234\n'
     data.data.forEach(it =>{
       it.leavingCont = it.leavingCont.replace(replaceRegex, '<br/>');
     })
@@ -191,6 +196,14 @@ export default {
   //提交留言
   async addComment(){
     const { leavingName,leavingEmail,leavingCont,leavingAvatar,replyLevel } = this.form
+    for (const it of this.xssList) {
+      if(leavingCont.search(it) !==-1){
+        this.notify('包含恶意评论,已记录ip')
+        return false
+      }
+      if(-1){console.log('1111');}
+    }
+   
     if(!leavingName){
       this.notify('昵称为必填项')
       return false
