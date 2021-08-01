@@ -41,7 +41,9 @@
         <div class="item_father">
           <div style="display:flex">
             <div class="item_img">
-              <img :src="item.leavingAvatar" alt="">
+              <a :href="item.leavingUrl?item.leavingUrl:'javascript:;'" :target="item.leavingUrl?'_black':''">
+                <img :src="item.leavingAvatar" :alt="item.leavingName">
+              </a>
             </div>
             <div class="item_user">
               <div class="usre_name abc9" :class="{'isMaster':item.isMaster}">
@@ -51,7 +53,7 @@
                 <p>{{item.createTime}}</p>
                 <p class="reply abc9" @click.stop="replyOne(item,index,1)">回复</p>
               </div>
-              <div class="usre_cont">
+              <div class="user-cont">
                 <p v-html="item.leavingCont"></p>
               </div>
             </div>
@@ -71,7 +73,7 @@
                 <p>{{it.createTime}}</p>
                 <p class="reply abc9" @click.stop="replyOne(it,index,2)">回复</p>
               </div>
-              <div class="usre_cont">
+              <div class="user-cont">
                 <div>
                   <span class="abc9">@{{it.replyName}}</span>
                   <p v-html="it.leavingCont"></p>
@@ -136,6 +138,7 @@ export default {
        replyLevel:null,
        parentId:null,
        replyName:null,
+       replyEmail:null,
       },
       commentList:[],//留言列表
       commentLength:'',//留言长度
@@ -173,7 +176,9 @@ export default {
   methods: {
   //获取留言
   async getComment(){
-    const params = {from:this.from,fromId:this.form.fromId}
+    //当传参为comment 获取所有留言
+    const from = this.from === 'comment'?'':this.from
+    const params = {from,fromId:this.form.fromId}
     const {data} = await getComment(params)
     this.commentLength = data.length
     
@@ -195,15 +200,13 @@ export default {
   },
   //提交留言
   async addComment(){
-    const { leavingName,leavingEmail,leavingCont,leavingAvatar,replyLevel } = this.form
+    let { leavingName,leavingEmail,leavingCont,leavingAvatar,replyLevel } = this.form
     for (const it of this.xssList) {
       if(leavingCont.search(it) !==-1){
         this.notify('包含恶意评论,已记录ip')
         return false
       }
-      if(-1){console.log('1111');}
     }
-   
     if(!leavingName){
       this.notify('昵称为必填项')
       return false
@@ -216,20 +219,31 @@ export default {
       this.notify('留言内容为必填项')
       return false
     }
-
     //获取当前用户ip
     const ipInfo = await getApiAddress()
     this.form.fromIp = ipInfo.data.ip
 
     //按钮回复等级具体看replyOne传参 顶部留言按钮默认不传参为0级
+    //当按钮不为一级/二级回复时 当前from fromId等于被回复人的来源参数
+    replyLevel !==0 && (this.form.from = this.replyRow.from)
+    replyLevel !==0 && (this.form.fromId = this.replyRow.fromId)
     //当按钮为一级回复时 获取被回复人id及
     replyLevel ===1 && (this.form.parentId = this.replyRow.commentId)
     replyLevel ===1 && (this.form.replyName = this.replyRow.leavingName)
     //当按钮为二级回复时 获取被回复人id及
+    console.log('this.replyRow',this.replyRow);
     replyLevel ===2 && (this.form.parentId = this.replyRow.parentId)
     replyLevel ===2 && (this.form.replyName = this.replyRow.leavingName)
+    replyLevel ===2 && (this.form.LV2Id = this.replyRow.commentId)
+    console.log('this.form',this.form);
+    //替换/n
+    let replaceRegex = /(\n\r|\r\n|\r|\n)/g; 
+    const params = {
+      ...this.form,
+      leavingCont:leavingCont.replace(replaceRegex, '<br/>')
+    }
 
-    const data = await addComment(this.form)
+    const data = await addComment(params)
     //对正确和错误进行弹窗告知
     const _STR = replyLevel===0?'留言成功':'回复成功'
     data.success ? this.notify(_STR,'提示','success'):this.notify(data.data)
@@ -244,6 +258,7 @@ export default {
   },
   //点击回复按钮 打开回复框
   replyOne(row,index,replyLevel){
+    console.log(row,index,replyLevel);
     this.form.replyLevel = replyLevel
     this.replyRow = row
     this.replyIndex = index
@@ -270,6 +285,7 @@ export default {
 <style lang='less' scoped>
 #myComment{
   margin-top: 30px;
+  font-size: 14px;
 }
   .myComment_title{
     padding: 50px 0 20px;
@@ -327,15 +343,15 @@ export default {
   .item_children{
     padding: 15px 0 10px 70px;
     position: relative;
-    &::after{
-      content: "";
-      position: absolute;
-      top: 15px;
-      left: 55px;
-      width: 2px;
-      height: calc(100% - 15px);
-      background-color: #ccc;
-    }
+    // &::after{
+    //   content: "";
+    //   position: absolute;
+    //   top: 15px;
+    //   left: 55px;
+    //   width: 2px;
+    //   height: calc(100% - 15px);
+    //   background-color: #ccc;
+    // }
   }
   .item_img{
     width: 50px;
@@ -353,8 +369,16 @@ export default {
     .usre_name{
       line-height: 1.2;
       font-style: normal;
-      font-size: 15px;
-    
+      font-size: 14px;
+      &::after{
+      content: "访客";
+      margin-left: 5px;
+      font-size: 12px;
+      color: #fff;
+      background: #ccc;
+      border-radius: 5px;
+      padding: 4px 8px;
+  }
     }
     .usre_time{
       font-size: 12px;
@@ -366,8 +390,9 @@ export default {
         }
       }
     }
-    .usre_cont{
-      font-size: 15px;
+    .user-cont{
+      word-break: break-all;
+      font-size: 14px;
       line-height: 23px;
       padding-top: 10px;
     }
@@ -376,15 +401,15 @@ export default {
 .childrenForm{
   padding:10px 0 0 70px;
   position: relative;
-    &::after{
-      content: "";
-      position: absolute;
-      top: 0;
-      left: 55px;
-      width: 2px;
-      height: calc(100% - 15px);
-      background-color: #ccc;
-    }
+    // &::after{
+    //   content: "";
+    //   position: absolute;
+    //   top: 0;
+    //   left: 55px;
+    //   width: 2px;
+    //   height: calc(100% - 15px);
+    //   background-color: #ccc;
+    // }
 }
 .tips{
   font-size: 12px;
@@ -401,15 +426,9 @@ export default {
 
 //博主class
 .isMaster{
-  position: relative;
   &::after{
-    content: "博主";
-    margin-left: 5px;
-    font-size: 12px;
-    color: #fff;
-    background: #ccc;
-    border-radius: 5px;
-    padding: 4px 8px;
+    content: "博主"!important;
+    background: #ffa51e!important;
   }
 }
 
