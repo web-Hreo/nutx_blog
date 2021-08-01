@@ -76,8 +76,6 @@ export default {
   width: 100%;
   display: inline-block;
   .link-item{
-    // width: 42%;
-    // float: left;
     border: 1px solid #ececec;
     padding: 10px 30px;
     margin: 4px 0;
@@ -87,6 +85,7 @@ export default {
     transition: all .6s;
     border-radius: 10px;
     background-color: #fff;
+    transition: all .2s ease-in;
     a{
       color: var(--base-color);
       text-decoration: none;
@@ -94,6 +93,32 @@ export default {
       background-color: transparent;
       -webkit-text-decoration-skip: objects;
       color: #42b983;
+    }
+    .lose-img{
+      float: right;
+      // box-shadow: inset 0 0 10px #000;
+      padding: 5px;
+      opacity: 1;
+      transform: rotate(0);
+      -webkit-transform: rotate(0);
+      -moz-transform: rotate(0);
+      -o-transform: rotate(0);
+      -ms-transform: rotate(0);
+      transition: all ease 1s;
+      -webkit-transition: all ease 1s;
+      -moz-transition: all ease 1s;
+      -o-transition: all ease 1s;
+      margin-top: 5px;
+      width: 65px;
+      height: 65px;
+      padding: 2px;
+      border-radius: 100%;
+      background-color: #ccc;
+      //m端
+      @media only screen and (max-width: 766.99px) {
+        width: 40px;
+        height: 40px;
+      }
     }
     img{
       float: right;
@@ -114,10 +139,14 @@ export default {
       height: 65px;
       padding: 2px;
       border-radius: 100%;
+      //m端
+      @media only screen and (max-width: 766.99px) {
+        width: 40px;
+        height: 40px;
+      }
     }
     .sitename{
       font-size: 18px;
-      color: orange;
       padding-bottom: 10px;
       display: block;
       -webkit-transition: all .3s;
@@ -126,6 +155,11 @@ export default {
       text-overflow: ellipsis;
       -o-text-overflow: ellipsis;
       white-space: nowrap;
+      //m端
+      @media only screen and (max-width: 766.99px) {
+        font-size: 14px;
+        padding-bottom: 5px;
+      }
     }
     .linkdes {
       color: #949494;
@@ -138,14 +172,13 @@ export default {
       line-height: 25px;
       -webkit-transition: all .5s;
       transition: all .5s;
+      //m端
+      @media only screen and (max-width: 766.99px) {
+        font-size: 12px;
+        padding: 2px 0;
+      }
     }
-    
   }
-  // .link-item-hover{
-  //   &:hover{
-  //     box-shadow:0 0 7px 5px #d1d1d1;
-  //   }
-  // }
 }
  
 </style>

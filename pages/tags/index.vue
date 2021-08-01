@@ -84,10 +84,9 @@ export default {
     line-height: 40px;
     display: inline-block;
     margin: 0 15px 15px;
-    //m端
-    @media only screen and (max-width: 766.99px) {
-      font-size: 14px;
-      padding: 9px;
+    @media only screen and (max-width: 766.99px) {//m端
+      font-size: 13px;
+      padding: 5px 9px;
     }
     a{
       display: block;

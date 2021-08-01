@@ -67,13 +67,21 @@ export default {
     padding: 50px 10px;
   }
   .item_name{
-  font-family: 'Mirages Custom', 'Merriweather', 'Open Sans', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft Yahei', 'WenQuanYi Micro Hei',  'Segoe UI Emoji', 'Segoe UI Symbol', Helvetica, Arial, sans-serif;
     font-size: 24px;
+    //m端
+    @media only screen and (max-width: 766.99px) {
+      padding: 0 20px;
+      font-size: 18px;
+    }
   }
   .item_time{
     padding-top: 15px;
     font-size: 14px;
-    letter-spacing: 1px;
+    letter-spacing: 1.2px;
+    //m端
+    @media only screen and (max-width: 766.99px) {
+      font-size: 12px;
+    }
   }
   &:nth-child(1){
     margin-top: 15px;

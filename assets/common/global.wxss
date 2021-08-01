@@ -441,6 +441,12 @@ html {
   margin: 15px 0 10px 0;
   line-height: 25px;
 }
+@media only screen and (max-width: 766.99px) {
+  .note {
+    font-size: 13px;
+    padding: 10px;
+  }
+}
 .warning {
   background-color: #fdf8ea;
   border-left-color: #f0ad4e;

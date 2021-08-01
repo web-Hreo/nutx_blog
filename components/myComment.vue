@@ -343,21 +343,21 @@ export default {
   .item_children{
     padding: 15px 0 10px 70px;
     position: relative;
-    // &::after{
-    //   content: "";
-    //   position: absolute;
-    //   top: 15px;
-    //   left: 55px;
-    //   width: 2px;
-    //   height: calc(100% - 15px);
-    //   background-color: #ccc;
-    // }
+    //m端
+    @media only screen and (max-width: 766.99px) {
+      padding-left: 38px;
+    }
   }
   .item_img{
     width: 50px;
     height: 50px;
     border-radius: 50%;
     overflow: hidden;
+    //m端
+    @media only screen and (max-width: 766.99px) {
+      width: 30px;
+      height: 30px;
+    }
     img{
       width: 100%;
       height: 100%;
@@ -366,6 +366,10 @@ export default {
   .item_user{
     flex: 1;
     padding-left: 20px;
+    //m端
+    @media only screen and (max-width: 766.99px) {
+      padding-left: 8px;
+    }
     .usre_name{
       line-height: 1.2;
       font-style: normal;
@@ -391,10 +395,15 @@ export default {
       }
     }
     .user-cont{
-      word-break: break-all;
       font-size: 14px;
       line-height: 23px;
       padding-top: 10px;
+      p{
+        background: #f2f6fc;
+        padding: 10px;
+        border-radius: 10px;
+        word-break: break-all;
+      }
     }
   }
 }

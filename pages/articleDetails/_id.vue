@@ -96,19 +96,27 @@ export default {
     /deep/a{
       word-break: break-all;
       color: blue;
+      font-size: 14px;
     }
     /deep/p{
       padding: 10px 0;
       line-height: 30px;
       font-size: 17px;
       letter-spacing: 0.5px;
-      font-family: 'Mirages Custom', 'Merriweather', 'Open Sans', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft Yahei', 'WenQuanYi Micro Hei',  'Segoe UI Emoji', 'Segoe UI Symbol', Helvetica, Arial, sans-serif;
+      //m端
+      @media only screen and (max-width: 766.99px) {
+        font-size: 14px;
+      }
     }
     /deep/h2{
       font-size: 28px;
       font-weight: 400;
       color: #000;
       margin-top: 20px;
+    //m端
+    @media only screen and (max-width: 766.99px) {
+      font-size: 20px;
+    }
     }
     /deep/ul{
       list-style-type: disc;
@@ -143,6 +151,10 @@ export default {
       display: block;
       background-color: #F5F5F5;
       font-family: Consolas,Menlo,Monaco,"lucida console","Liberation Mono","Courier New","andale mono",monospaceX,monospace,sans-serif;
+      //m端
+      @media only screen and (max-width: 766.99px) {
+        font-size: 14px;
+      }
     }
   }
   .copyright{
@@ -158,6 +170,10 @@ export default {
     -moz-transition: all .28s ease;
     -webkit-transition: all .28s ease;
     -o-transition: all .28s ease;
+    //m端
+    @media only screen and (max-width: 766.99px) {
+      font-size: 12px;
+    }
      a{
       word-break: break-all;
       color: rgb(65, 65, 255);

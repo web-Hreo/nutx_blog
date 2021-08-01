@@ -86,6 +86,7 @@ import {getLinks} from '~/api/public'
 export default {
   async asyncData(context){
     const {data} = await getLinks({pageNo:1,pageSize:100})
+    data.data.reverse()
     const relativesList = []//亲友列表
     const regularsList = []//常客列表
     const loseList = []//亲友列表
@@ -105,16 +106,7 @@ export default {
 
   data () {
     return {
-      linkList:[
-        { id:1,name:'reuixiy',title:'我的博客审美来源，哲学/简约美/细节美',imgSrc:'https://site-1258928558.cos.ap-guangzhou.myqcloud.com/javadoop.png',href:'https://io-oi.me/' },
-        { id:2,name:'reuixiy',title:'我的博客审美来源，哲学/简约美/细节美',imgSrc:'https://site-1258928558.cos.ap-guangzhou.myqcloud.com/javadoop.png',href:'https://io-oi.me/' },
-        { id:3,name:'reuixiy',title:'我的博客审美来源，哲学/简约美/细节美',imgSrc:'https://site-1258928558.cos.ap-guangzhou.myqcloud.com/javadoop.png',href:'https://io-oi.me/' },
-        { id:4,name:'reuixiy',title:'我的博客审美来源，哲学/简约美/细节美',imgSrc:'https://site-1258928558.cos.ap-guangzhou.myqcloud.com/javadoop.png',href:'https://io-oi.me/' },
-        { id:5,name:'reuixiy',title:'我的博客审美来源，哲学/简约美/细节美',imgSrc:'https://site-1258928558.cos.ap-guangzhou.myqcloud.com/javadoop.png',href:'https://io-oi.me/' },
-        { id:6,name:'reuixiy',title:'我的博客审美来源，哲学/简约美/细节美',imgSrc:'https://site-1258928558.cos.ap-guangzhou.myqcloud.com/javadoop.png',href:'https://io-oi.me/' },
-        { id:7,name:'reuixiy',title:'我的博客审美来源，哲学/简约美/细节美',imgSrc:'https://site-1258928558.cos.ap-guangzhou.myqcloud.com/javadoop.png',href:'https://io-oi.me/' },
-        { id:8,name:'reuixiy',title:'我的博客审美来源，哲学/简约美/细节美',imgSrc:'https://site-1258928558.cos.ap-guangzhou.myqcloud.com/javadoop.png',href:'https://io-oi.me/' },
-      ]
+      linkList:[]
     }
   },
 
@@ -181,6 +173,11 @@ export default {
       padding: 2px;
       border-radius: 100%;
       background-color: #ccc;
+      //m端
+      @media only screen and (max-width: 766.99px) {
+        width: 40px;
+        height: 40px;
+      }
     }
     img{
       float: right;
@@ -201,6 +198,11 @@ export default {
       height: 65px;
       padding: 2px;
       border-radius: 100%;
+      //m端
+      @media only screen and (max-width: 766.99px) {
+        width: 40px;
+        height: 40px;
+      }
     }
     .sitename{
       font-size: 18px;
@@ -212,6 +214,11 @@ export default {
       text-overflow: ellipsis;
       -o-text-overflow: ellipsis;
       white-space: nowrap;
+      //m端
+      @media only screen and (max-width: 766.99px) {
+        font-size: 14px;
+        padding-bottom: 5px;
+      }
     }
     .linkdes {
       color: #949494;
@@ -224,6 +231,11 @@ export default {
       line-height: 25px;
       -webkit-transition: all .5s;
       transition: all .5s;
+      //m端
+      @media only screen and (max-width: 766.99px) {
+        font-size: 12px;
+        padding: 2px 0;
+      }
     }
   }
 }

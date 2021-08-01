@@ -71,47 +71,11 @@ export default {
     .article-box{
 
     }
-    .article-menu{
-      background-color: #fff;
-      margin-right: 10px;
-      .el-menu-vertical-demo{
-        border-right: none;
-      }
-    }
     .article-cont{
       width: 100%;
       box-sizing: border-box;
-      // padding: 30px;
-      // background-color: #fff;
-      .el-tag{
-        // cursor: pointer;
-      }
-      .label-list{
-        flex-wrap: wrap;
-      }
-      .label-item{
-        color: #000;
-        box-sizing: border-box;
-        width: 49%;
-        padding: 10px 20px;
-        margin-top: 20px;
-        background-color: #f5f5f5;
-        // cursor: pointer;
-        border-radius: 5px;
-        transition: all .2s ease-in;
-        letter-spacing: 1px;
-        &:hover{
-          color: #409EFF;
-          background-color: rgba(0, 0, 0, .1);
-        }
-        &:nth-child(1),
-        &:nth-child(2){
-          margin-top: 0;
-        }
-      }
     }
     .list-item{
-      // padding: 30px 10px 40px;
       padding: 30px;
       border-left: none;
       box-shadow: none;
@@ -119,6 +83,10 @@ export default {
       margin-bottom: 30px;
       background-color: #fff;
       border-radius: 10px;
+      @media only screen and (max-width: 766.99px) {//m端
+        font-size: 24px;
+        padding: 30px 15px;
+      }
       h3{
         padding: 0 0 10px;
         font-size: 30px;
@@ -127,10 +95,16 @@ export default {
         font-family: Product Sans !important;
         font-weight: 600 !important;
         letter-spacing: .5px;
+        @media only screen and (max-width: 766.99px) {//m端
+          font-size: 24px;
+        }
       }
       h4{
         font-size: 20px;
         padding: 10px 0;
+        @media only screen and (max-width: 766.99px) {//m端
+          font-size: 16px;
+        }
       }
       .nuxtLink{
         display: flex;
@@ -140,6 +114,9 @@ export default {
         transition: all .2s ease;
         &:hover{
           background-color: #eee;
+        }
+        @media only screen and (max-width: 766.99px) {//m端
+          padding: 8px 10px;
         }
       }
       .nuxtLink_link{
@@ -153,6 +130,11 @@ export default {
       // list-style-type: disc;
       a{
         padding: 15px 0;
+        //m端
+        @media only screen and (max-width: 766.99px) {
+          font-size: 13px;
+          padding: 5px 0;
+        }
         .list-date{
           margin: 12px 0 10px;
           font-size: 15px;
@@ -165,7 +147,7 @@ export default {
           border-radius: 4px;
           font-style: normal;
           margin-right: 10px;
-              }
+        }
         .list-name{
           // color: #3d658d;
           text-decoration: none
