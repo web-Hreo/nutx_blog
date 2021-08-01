@@ -17,7 +17,7 @@
       <div class="form_ipt">
         <el-input type="textarea" v-model="form.leavingCont"  maxlength="500" show-word-limit></el-input>
         <div class="leavingInfo">
-          <el-input v-model="form.leavingName" placeholder="必填">
+          <el-input v-model="form.leavingName" maxlength="10" placeholder="必填">
             <template slot="prepend">昵称</template>
             </el-input>
           <el-input v-model="form.leavingEmail" placeholder="必填 建议填写QQ邮箱" @change="emailChange">
@@ -91,7 +91,7 @@
           <div class="form_ipt" style="margin-left:0">
             <el-input type="textarea" v-model="form.leavingCont"  maxlength="500" show-word-limit></el-input>
             <div class="leavingInfo">
-              <el-input v-model="form.leavingName" placeholder="必填">
+              <el-input v-model="form.leavingName" maxlength="10" placeholder="必填">
                 <template slot="prepend">昵称</template>
                 </el-input>
               <el-input v-model="form.leavingEmail" placeholder="必填 建议填写QQ邮箱" @change="emailChange">
