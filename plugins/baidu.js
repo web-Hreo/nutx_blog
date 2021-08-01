@@ -13,6 +13,13 @@ if (process.client && process.env.NODE_ENV === 'production') {
    var s = document.getElementsByTagName("script")[0];
    s.parentNode.insertBefore(hm, s);
  })();
+ (function(){
+  var el = document.createElement("script");
+  el.src = "https://sf1-scmcdn-tos.pstatp.com/goofy/ttzz/push.js?d2c84cb47420de78e9d2f43b7d5af9cdb8a509fa71fe4410baccefa66f5bae7c17f697e76f46c2be2cb26f008d344f947e89255d8f597e444cf700e525b1b2cf";
+  el.id = "ttzz";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(el, s);
+  })(window)
 }
 
 export default ({ app: { router }, store }) => {
@@ -30,6 +37,14 @@ export default ({ app: { router }, store }) => {
       var s = document.getElementsByTagName("script")[0];
       s.parentNode.insertBefore(hm, s);
     })();
+
+    (function(){
+      var el = document.createElement("script");
+      el.src = "https://sf1-scmcdn-tos.pstatp.com/goofy/ttzz/push.js?d2c84cb47420de78e9d2f43b7d5af9cdb8a509fa71fe4410baccefa66f5bae7c17f697e76f46c2be2cb26f008d344f947e89255d8f597e444cf700e525b1b2cf";
+      el.id = "ttzz";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(el, s);
+      })(window)
   })
 }
 }
