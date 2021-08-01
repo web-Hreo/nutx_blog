@@ -302,16 +302,23 @@ export default {
     img{
     width: 50px;
     height: 50px;
-    border-radius: 50%;
+    border-radius: 5px;
+      
+      @media only screen and (max-width: 766.99px) {//m端
+        width: 30px;
+        height: 30px;
+      }
     }
   }
   .form_ipt{
-    margin-left: 20px;
+    margin-left: 20px;  
+    @media only screen and (max-width: 766.99px) {//m端
+      margin-left: 8px;  
+    } 
   }
 .leavingInfo{
   margin: 20px 0;
-    //m端以上
-    @media only screen and (min-width: 767px) {
+    @media only screen and (min-width: 767px) {//m端
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -319,8 +326,8 @@ export default {
   .el-input{
     font-family: 'Mirages Custom', 'Merriweather', 'Open Sans', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft Yahei', 'WenQuanYi Micro Hei',  'Segoe UI Emoji', 'Segoe UI Symbol', Helvetica, Arial, sans-serif;
     width: 32%;
-    //m端
-    @media only screen and (max-width: 766.99px) {
+    
+    @media only screen and (max-width: 766.99px) {//m端
       width: 100%;
       margin: 5px 0;
     }
@@ -343,18 +350,18 @@ export default {
   .item_children{
     padding: 15px 0 10px 70px;
     position: relative;
-    //m端
-    @media only screen and (max-width: 766.99px) {
+    
+    @media only screen and (max-width: 766.99px) {//m端
       padding-left: 38px;
     }
   }
   .item_img{
     width: 50px;
     height: 50px;
-    border-radius: 50%;
+    border-radius: 5px;
     overflow: hidden;
-    //m端
-    @media only screen and (max-width: 766.99px) {
+    
+    @media only screen and (max-width: 766.99px) {//m端
       width: 30px;
       height: 30px;
     }
@@ -366,8 +373,8 @@ export default {
   .item_user{
     flex: 1;
     padding-left: 20px;
-    //m端
-    @media only screen and (max-width: 766.99px) {
+    
+    @media only screen and (max-width: 766.99px) {//m端
       padding-left: 8px;
     }
     .usre_name{
@@ -401,7 +408,7 @@ export default {
       p{
         background: #f2f6fc;
         padding: 10px;
-        border-radius: 10px;
+        border-radius: 5px;
         word-break: break-all;
       }
     }
@@ -410,6 +417,9 @@ export default {
 .childrenForm{
   padding:10px 0 0 70px;
   position: relative;
+    @media only screen and (max-width: 766.99px) {//m端
+      padding:10px 0 0 38px;
+    } 
     // &::after{
     //   content: "";
     //   position: absolute;
@@ -427,8 +437,8 @@ export default {
 .myComment_no_cont{
   padding: 100px 0;
   text-align: center;
-  //m端
-  @media only screen and (max-width: 766.99px) {
+  
+  @media only screen and (max-width: 766.99px) {//m端
     padding: 40px 0;
   }
 }

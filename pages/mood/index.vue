@@ -62,13 +62,12 @@ export default {
   padding: 15px 30px 10px;
 }
 .mode-card{
-  font-family: 'Mirages Custom', 'Merriweather', 'Open Sans', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft Yahei', 'WenQuanYi Micro Hei',  'Segoe UI Emoji', 'Segoe UI Symbol', Helvetica, Arial, sans-serif;
   z-index: 1;
   // background: linear-gradient(90deg,rgba(247,149,51,.1) 0,rgba(243,112,85,.1) 15%,rgba(239,78,123,.1) 30%,rgba(161,102,171,.1) 44%,rgba(80,115,184,.1) 58%,rgba(16,152,173,.1) 72%,rgba(7,179,155,.1) 86%,rgba(109,186,130,.1) 100%);
   background-color: #f5f5f5;
   color: #999;
   padding: 20px;
-  border-radius: 10px;
+  border-radius: 5px;
   /deep/img{
     width: 50%;
     margin: 0 25%;
@@ -80,7 +79,6 @@ export default {
   }
 }
 /deep/.el-timeline-item__timestamp{
-  font-family: 'Mirages Custom', 'Merriweather', 'Open Sans', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft Yahei', 'WenQuanYi Micro Hei',  'Segoe UI Emoji', 'Segoe UI Symbol', Helvetica, Arial, sans-serif;
   padding-top: 20px;
   color: #000;
   font-size: 16px;

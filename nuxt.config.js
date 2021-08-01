@@ -20,7 +20,7 @@ export default {
         content: '小何_前端工程师技术博客_是记录与分享我在各种互联网_前端_服务端技术工作以及学习经验的自媒体博客_作为一名开发工程师来说_拥有自己的博客网站_是一件很美好的事情_虽然工作中不是在改bug就是在改bug的路上_但是我一直认为我会成为一名优秀的前端开发工程师',
       },{
         name: 'keywords',
-        content: '前端开发 前端博客 web前端 web前端博客  服务端博客 程序员博客 vue博客 flutter博客 react博客 uniapp博客 小程序博客',
+        content: '前端开发,前端博客,web前端,web前端博客,服务端博客,程序员博客,vue博客,flutter博客,react博客,uniapp博客,小程序博客',
       },
     ],
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
