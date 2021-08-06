@@ -11,7 +11,7 @@
       <h2 class="info-title">{{info.title}}</h2>
       <div class="info-desc">
         <p>创建时间：{{info.createTime}}</p>
-        <p>浏览量：{{info.viewNum}}</p>
+        <p>浏览量：{{info.viewNum}}次</p>
         <p>所属标签：{{info.tag}}</p>
       </div>
       <!-- <p v-if="info.createTime===info.changeTime">修改时间{{info.changeTime}}</p> -->
