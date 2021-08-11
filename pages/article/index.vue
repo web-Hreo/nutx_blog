@@ -37,15 +37,41 @@ import {getArchives} from '~/api/public'
 export default {
   async asyncData(context){
       const {data} = await getArchives()
+      // console.log(data);
+
+      const yearMap = ['2021','2022','2023','2024','2025']//定义需要查询的年份
+      const monthMap = ['01','02','03','04','05','06','07','08','09','10','11','12']//定义需要查询的月份
+      const list = []
+      
+      yearMap.forEach(yIt =>{
+        let yearDataList = {} //定义存放年份数据列表
+        let monthDataList = {} //定义存放月份数据列表
+        //查找年份数据
+        const YEAR_ARR = data.find(it =>it.createTime.indexOf(yIt)>=0)
+        console.log(YEAR_ARR,yIt);
+        //查找月份数据
+        if(YEAR_ARR){
+          yearDataList = { year:yIt, data:[] }
+          monthMap.forEach(mIt =>{
+            const MONTH_ARR = data.filter(it =>it.createTime.indexOf(`${yIt}-${mIt}`)>=0)
+            if(MONTH_ARR.length){
+              monthDataList = { month:`${yIt}-${mIt}`,data:MONTH_ARR }
+              yearDataList.data.unshift(monthDataList)
+            }
+          })
+          list.unshift(yearDataList)
+        }
+      })
+      console.log(list);
       //处理时间
-      data.forEach(yearItem =>{
+      list.forEach(yearItem =>{
         yearItem.data.forEach(monthItem =>{
           monthItem.data.forEach(item =>{
             item.createTime = item.createTime.substring(5,10)
           })
         })
       })
-      return { archivesList:data }
+      return { archivesList:list }
   },
 
   components: {},
