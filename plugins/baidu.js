@@ -4,6 +4,7 @@
 if (process.client && process.env.NODE_ENV === 'production') {
   /*
   ** baidu 统计分析脚本
+  **头条 自动收录   https://zhanzhang.toutiao.com/page/inner/link/auto_include
   */
  var _hmt = _hmt || [];
  (function() {
