@@ -5,7 +5,7 @@
 import axios from 'axios' // 引用axios
 
 // create an axios instance
-const baseURL = process.env.NODE_ENV === "development"?
+const baseURL = process.env.NODE_ENV == "development"?
 "http://localhost:3000" :
 "http://www.heblogs.cn/api";
 const service = axios.create({

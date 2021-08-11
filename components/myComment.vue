@@ -27,7 +27,7 @@
             <template slot="prepend">网址</template>
           </el-input>
         </div>
-        <el-button type="primary" @click="addComment()">提交</el-button>
+        <el-button type="primary" :disabled="disabled" @click="addComment()">提交</el-button>
         <p class="tips">TIPS:建议填写QQ邮箱 否则头像为企鹅头像</p>
         <p class="tips">TIPS:破站无流量,大神勿写脚本刷回复</p>
       </div>
@@ -68,7 +68,7 @@
             <div class="item_user">
               <div class="usre_name abc9" :class="{'isMaster':it.isMaster}">
                 {{it.leavingName}}
-                </div>
+              </div>
               <div class="usre_time fbc">
                 <p>{{it.createTime}}</p>
                 <p class="reply abc9" @click.stop="replyOne(it,index,2)">回复</p>
@@ -101,7 +101,7 @@
                 <template slot="prepend">网址</template>
               </el-input>
             </div>
-            <el-button type="primary" @click="addComment()">提交</el-button>
+            <el-button type="primary" :disabled="disabled" @click="addComment()">提交</el-button>
             <p class="tips">TIPS:建议填写QQ邮箱 否则头像为企鹅头像</p>
           </div>
         </div>
@@ -110,7 +110,7 @@
     <div class="myComment_no_cont" v-else>
       暂无评论~ 
     </div>
-  </div>
+    </div>
 </template>
 
 <script>
@@ -140,6 +140,7 @@ export default {
        replyName:null,
        replyEmail:null,
       },
+      disabled:false,//评论开关
       commentList:[],//留言列表
       commentLength:'',//留言长度
       replyIndex:-1,//当前回复狂所在index下标 默认头部-1
@@ -148,12 +149,15 @@ export default {
       xssList:[//恶意评论列表
         '<div>','<img>','<iframe>','<>','console.log','xss',
         '</','document','cookie','javascript','<script>','text/javascript',
-        'and','exec','insert','select','delete','update'
-
+        'and','exec','insert','select','delete','update','import','java','php',
+        'JAVA','PHP','COOKIE','LOG','log'
       ]
     }
   },
   mounted () {
+  //获取缓存内的
+    const disabled = localStorage.getItem('disabled')?localStorage.getItem('disabled'):this.disabled
+    this.disabled = JSON.parse(disabled)
 
     //如果用户在本网站留过言 那么直接用缓存获取当前用户信息
     if(localStorage.getItem('USERINFO')){
@@ -200,6 +204,14 @@ export default {
   },
   //提交留言
   async addComment(){
+    const disabled = localStorage.getItem('disabled')?localStorage.getItem('disabled'):this.disabled
+    if(disabled){ return false  }
+    localStorage.setItem('disabled',true)
+    this.disabled = true
+    setTimeout(()=>{
+      localStorage.getItem('disabled',false)
+      this.disabled = false
+    },60000)
     let { leavingName,leavingEmail,leavingCont,leavingAvatar,replyLevel } = this.form
     for (const it of this.xssList) {
       if(leavingCont.search(it) !==-1){
