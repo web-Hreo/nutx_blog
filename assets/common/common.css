@@ -10,7 +10,11 @@ body {
     ,rgba(247,149,51,.1),rgba(243,112,85,.1) 15%,rgba(239,78,123,.1) 30%,rgba(161,102,171,.1) 44%,rgba(80,115,184,.1) 58%,rgba(16,152,173,.1) 72%,rgba(7,179,155,.1) 86%,rgba(109,186,130,.1));
 }
 address,cite,dfn,em,var, i {font-style:normal;}
-#app { font: 16px "微软雅黑", Arial, Helvetica, sans-serif; color: #555;  }
+#app {
+  /* font: 16px "微软雅黑", Arial, Helvetica, sans-serif; color: #555; */
+  font-weight: 400;
+  font-size: 14px;
+}
 table { border-collapse:collapse; border-spacing:0; }
 h1, h2, h3, h4, h5, h6, th { font-size: 100%; font-weight: normal; }
 button,input,select,textarea{font-size:100%;}

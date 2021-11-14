@@ -8,9 +8,9 @@ import axios from 'axios' // 引用axios
 // const baseURL = process.env.NODE_ENV == "development"?
 // "http://localhost:3000" :
 // "http://www.heblogs.cn/api";
+const baseURL ="http://www.heblogs.cn/api";
 const service = axios.create({
-  baseURL: 'http://www.heblogs.cn/api', // 正式环境
-  // baseURL: 'http://localhost:3000', // 测试环境
+  baseURL, // 正式环境
   timeout: 1800000, // request timeout
 })
 // 对响应码做出处理 可自行补充

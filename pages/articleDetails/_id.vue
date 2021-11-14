@@ -99,23 +99,23 @@ export default {
       font-size: 14px;
     }
     /deep/p{
-      padding: 10px 0;
+      padding: 3px 0;
       line-height: 30px;
-      font-size: 17px;
+      font-size: 14px;
       letter-spacing: 0.5px;
       //m端
       @media only screen and (max-width: 766.99px) {
-        font-size: 14px;
+        font-size: 13px;
       }
     }
     /deep/h2{
-      font-size: 28px;
+      font-size: 20px;
       font-weight: 400;
       color: #000;
-      margin-top: 20px;
+      margin-top: 5px;
     //m端
     @media only screen and (max-width: 766.99px) {
-      font-size: 20px;
+      font-size: 16px;
     }
     }
     /deep/ul{
@@ -144,7 +144,7 @@ export default {
       -webkit-transition: all .28s ease;
       -o-transition: all .28s ease;
     }
-    /deep/.JavaScript{
+    /deep/.JavaScript,/deep/code,/deep/ pre{
       overflow-x: auto;
       margin: 5px 0;
       padding: 10px 0;

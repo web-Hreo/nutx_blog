@@ -74,10 +74,10 @@
                 <p class="reply abc9" @click.stop="replyOne(it,index,2)">回复</p>
               </div>
               <div class="user-cont">
-                <div>
-                  <span class="abc9">@{{it.replyName}}</span>
-                  <p v-html="it.leavingCont"></p>
-                </div>
+                  <p>
+                    <span class="abc9" style="margin-right:5px">@{{it.replyName}}：</span>
+                    <span v-html="it.leavingCont"></span>
+                  </p>
               </div>
             </div>
           </div>
@@ -147,18 +147,15 @@ export default {
       replyTitle:'',//回复时 回复的title 例如 我回复@B
       replyRow:{},//回复时 被回复人的留言信息
       xssList:[//恶意评论列表
-        '<div>','<img>','<iframe>','<>','console.log','xss',
-        '</','document','cookie','javascript','<script>','text/javascript',
-        'and','exec','insert','select','delete','update','import','java','php',
-        'JAVA','PHP','COOKIE','LOG','log'
+      '<div>','<img>','<iframe>','<>','console.log','xss',
+      '</','document','cookie','javascript','<script>','text/javascript',
+      'and','END','exec','EXEC','insert','INSERT','select','SELECT',
+      'delete','DELETE','update','UPDATE','import','IMPORT','query','QUERY',
+      'java','php','JAVA','PHP','COOKIE','LOG','log'
       ]
     }
   },
   mounted () {
-  //获取缓存内的
-    const disabled = localStorage.getItem('disabled')?localStorage.getItem('disabled'):this.disabled
-    this.disabled = JSON.parse(disabled)
-
     //如果用户在本网站留过言 那么直接用缓存获取当前用户信息
     if(localStorage.getItem('USERINFO')){
       const USERINFO = JSON.parse(localStorage.getItem('USERINFO'))
@@ -204,14 +201,7 @@ export default {
   },
   //提交留言
   async addComment(){
-    const disabled = localStorage.getItem('disabled')?localStorage.getItem('disabled'):this.disabled
-    if(disabled){ return false  }
-    localStorage.setItem('disabled',true)
-    this.disabled = true
-    setTimeout(()=>{
-      localStorage.getItem('disabled',false)
-      this.disabled = false
-    },60000)
+
     let { leavingName,leavingEmail,leavingCont,leavingAvatar,replyLevel } = this.form
     for (const it of this.xssList) {
       if(leavingCont.search(it) !==-1){
@@ -231,6 +221,12 @@ export default {
       this.notify('留言内容为必填项')
       return false
     }
+    
+    if(this.disabled){ return false  }
+    this.disabled = true
+    setTimeout(()=>{
+      this.disabled = false
+    },20000)
     //获取当前用户ip
     const ipInfo = await getApiAddress()
     this.form.fromIp = ipInfo.data.ip

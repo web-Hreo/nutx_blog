@@ -71,11 +71,6 @@
       链接：http://www.heblogs.cn<br/>
       头像：https://cdn.jsdelivr.net/gh/web-Hreo/nutx_blog/static/avatar.jpg
     </div>
-
-
-
-
-
     <MyComment from="links"  />
     </div>
 </template>

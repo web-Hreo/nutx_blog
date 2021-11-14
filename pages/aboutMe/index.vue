@@ -72,15 +72,15 @@ export default {
     /deep/p{
       padding: 5px 0;
       line-height: 30px;
-      font-size: 15px;
+      font-size: 14px;
       letter-spacing: 0.5px;
       color: #555;
       word-break: break-all;
       font-family: 'Mirages Custom', 'Merriweather', 'Open Sans', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft Yahei', 'WenQuanYi Micro Hei',  'Segoe UI Emoji', 'Segoe UI Symbol', Helvetica, Arial, sans-serif;
       //m端
-      @media only screen and (max-width: 766.99px) {
-        font-size: 14px;
-      }
+      // @media only screen and (max-width: 766.99px) {
+      //   font-size: 14px;
+      // }
     }
     /deep/a{
       font-size: 16px!important;
