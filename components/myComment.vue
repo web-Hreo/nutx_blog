@@ -67,7 +67,7 @@
             </div>
             <div class="item_user">
               <div class="usre_name abc9" :class="{'isMaster':it.isMaster}">
-                {{it.leavingName}}
+                {{it.leavingName==='何华'?'博主大人':it.leavingName}}
               </div>
               <div class="usre_time fbc">
                 <p>{{it.createTime}}</p>
@@ -75,7 +75,9 @@
               </div>
               <div class="user-cont">
                   <p>
-                    <span class="abc9" style="margin-right:5px">@{{it.replyName}}：</span>
+                    <span class="abc9" style="margin-right:5px">
+                      @{{it.replyName==='何华'?'博主大人':it.replyName}}:
+                    </span>
                     <span v-html="it.leavingCont"></span>
                   </p>
               </div>
@@ -390,11 +392,11 @@ export default {
       font-style: normal;
       font-size: 14px;
       &::after{
-      content: "访客";
+      content: "Passerby";
       margin-left: 5px;
       font-size: 12px;
       color: #fff;
-      background: #ccc;
+      background: rgb(99, 187, 87);
       border-radius: 5px;
       padding: 4px 8px;
   }
@@ -454,7 +456,7 @@ export default {
 //博主class
 .isMaster{
   &::after{
-    content: "博主"!important;
+    content: "Master"!important;
     background: #ffa51e!important;
   }
 }

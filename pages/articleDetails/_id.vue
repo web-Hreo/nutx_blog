@@ -80,7 +80,7 @@ export default {
     .info-desc{
       color: #8D8D8D;
       font-size: 12px;
-      padding-bottom: 30px;
+      padding-bottom: 15px;
       //m端
       @media only screen and (min-width: 767px) {
         display: flex;
@@ -130,24 +130,24 @@ export default {
       width: 80%;
     }
     /deep/blockquote{
-      margin: 5px 0;
-      word-break: break-all;
-      background-color: #F5F5F5;
-      box-sizing: border-box;
-      border-left: 4px solid #797979;
-      border-radius: 4px;
-      position: relative;
-      width: 100%;
-      padding: 10px;
-      transition: all .28s ease;
-      -moz-transition: all .28s ease;
-      -webkit-transition: all .28s ease;
-      -o-transition: all .28s ease;
+      // margin: 5px 0;
+      // word-break: break-all;
+      // background-color: #F5F5F5;
+      // box-sizing: border-box;
+      // border-left: 4px solid #797979;
+      // border-radius: 4px;
+      // position: relative;
+      // width: 100%;
+      // padding: 10px;
+      // transition: all .28s ease;
+      // -moz-transition: all .28s ease;
+      // -webkit-transition: all .28s ease;
+      // -o-transition: all .28s ease;
     }
     /deep/.JavaScript,/deep/code,/deep/ pre{
       overflow-x: auto;
-      margin: 5px 0;
-      padding: 10px 0;
+      // margin: 5px 0;
+      // padding: 10px 0;
       display: block;
       background-color: #F5F5F5;
       font-family: Consolas,Menlo,Monaco,"lucida console","Liberation Mono","Courier New","andale mono",monospaceX,monospace,sans-serif;
@@ -178,6 +178,12 @@ export default {
       word-break: break-all;
       color: rgb(65, 65, 255);
     }
+  }
+  /deep/ p code{
+    display: inline-flex!important;
+  }
+  /deep/ p pre code{
+    display: block!important;
   }
 }
 
