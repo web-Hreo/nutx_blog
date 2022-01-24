@@ -6,7 +6,7 @@
       <a href="/sitemap.xml" target="_blank">sitemap</a>
     </p>
     <p>
-      <img src="https://cdn.jsdelivr.net/gh/web-Hreo/nutx_blog/assets/beian.png" alt="小何_前端个人博客_备案图片">
+      <img src="http://cdn.heblogs.cn/beian.png" alt="小何_前端个人博客_备案图片">
       <a target="_blank" href="https://beian.miit.gov.cn/" title="小何_前端个人博客" rel="nofollow">赣ICP备2021006777号-1</a>
     </p>
   </div>

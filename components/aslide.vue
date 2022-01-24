@@ -2,10 +2,10 @@
   <div id="aslide">
     <!-- 个人信息 -->
     <div class="info_my background">
-      <img src="https://cdn.jsdelivr.net/gh/web-Hreo/nutx_blog/static/avatar.jpg" alt />
+      <div class="imgBox"><img src="http://cdn.heblogs.cn/avatar.jpg" alt /></div>
       <div class="my_information">
         <p>Hhua | 小何</p>
-        <p>web前端开发工程师</p>
+        <p>职业：web前端</p>
         <!-- <p>邮箱：ngpeipao9977590@163.com</p>
         <p>微信(添加备注来源)：17779168734</p> -->
         <p>保持热爱 奔赴山海</p>
@@ -21,6 +21,7 @@
 
     <!-- 天气 -->
     <div class="info_weather background" v-if="Weather">
+      <div class="info_weather-background"></div>
       <p>您的位置 -> {{Weather.address}}</p>
       <!-- {{Weather.basic.update.loc}} -->
       <p>当前风向：{{Weather.windScale}}级{{Weather.windDir}}</p>
@@ -42,13 +43,13 @@
       </ul>
     </div>
     <!-- 热度榜 -->
-    <div class="info_rankingList background">
+    <!-- <div class="info_rankingList background">
       <p class="info_title">热度榜</p>
       <nuxt-link class="rankingList_item"  :to="`/articleDetails/${item._id}`" v-for="item in articleList" :key="item._id">
         {{item.title}}
       </nuxt-link>
 
-    </div>
+    </div> -->
     <!-- 友情链接 -->
     <!-- <div class="info_friendChain background">
       <p class="info_title">
@@ -166,7 +167,7 @@ export default {
   margin: 15px 0;
   padding: 15px 10px;
   background-color: #fff;
-  border-radius: 5px;
+  border-radius: 15px;
   transition: all .3s ;
   // &:hover{
   //   box-shadow: 0 0 10px 5px rgb(223, 223, 223);
@@ -194,11 +195,18 @@ export default {
 .info_my {
   position: relative;
   // padding: 0 !important;
-  img {
-    margin: 0 auto;
+  background-color: #fff;
+  .imgBox{
     width: 120px;
     height: 120px;
     border-radius: 50%;
+    overflow: hidden;
+    margin: 0 auto;
+  }
+  img {
+    width: 104%;
+    height: 104%;
+    margin: -2%;
   }
   .my_information {
     padding: 15px 10px;
@@ -222,13 +230,34 @@ export default {
     text-align: center;
     a{
       height: 40px;
+      p{
+          color: #999;
+      }
     }
   }
 }
 .info_weather {
-  background-image: linear-gradient(#7d90a0, #9198e5);
+  transition: all 0.3s ease;
+  // background-image: linear-gradient(#7d90a0, #9198e5);
   color: #fff;
   text-align: center;
+  letter-spacing: 2px;
+  position: relative;
+  background-color: transparent;
+  overflow: hidden;
+  .info_weather-background{
+    background-image: url('http://cdn.heblogs.cn/_35.jpg');
+    filter: blur(3px);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
   .img-box{
     width: 100%;
     height: 100px;
@@ -263,6 +292,7 @@ export default {
       border-radius: 5px;
       font-size: 14px;
       transition: all ease 0.5s;
+      letter-spacing: 2px;
       a {
         box-sizing: border-box;
         display: inline-block;
