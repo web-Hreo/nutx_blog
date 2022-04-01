@@ -29,7 +29,7 @@
         </div>
         <el-button type="primary" :disabled="disabled" @click="addComment()">提交</el-button>
         <p class="tips">TIPS:建议填写QQ邮箱 否则头像为企鹅头像</p>
-        <p class="tips">TIPS:破站无流量,大神勿写脚本刷回复</p>
+        <!-- <p class="tips">TIPS:破站无流量,大神勿写脚本刷回复</p> -->
       </div>
     </div>
   </div>
@@ -50,7 +50,7 @@
                 {{item.leavingName}}
                 </div>
               <div class="usre_time fbc">
-                <p>{{item.createTime}}</p>
+                <p>{{item.time}}</p>
                 <p class="reply abc9" @click.stop="replyOne(item,index,1)">回复</p>
               </div>
               <div class="user-cont">
@@ -67,7 +67,7 @@
             </div>
             <div class="item_user">
               <div class="usre_name abc9" :class="{'isMaster':it.isMaster}">
-                {{it.leavingName==='何华'?'博主大人':it.leavingName}}
+                {{it.leavingName==='何华'?'博主':it.leavingName}}
               </div>
               <div class="usre_time fbc">
                 <p>{{it.createTime}}</p>
@@ -118,6 +118,7 @@
 <script>
 import {getComment,addComment} from '~/api/comment'
 import {getApiAddress} from '~/api/public'
+import {getDateDiff} from '~/components/methods';
 export default {
   name: 'myComment',
   props:{
@@ -149,7 +150,7 @@ export default {
       replyTitle:'',//回复时 回复的title 例如 我回复@B
       replyRow:{},//回复时 被回复人的留言信息
       xssList:[//恶意评论列表
-      '<div>','<img>','<iframe>','<>','console.log','xss',
+      '<div>','<img>','<iframe>','<>','console.log','xss','JAVA','>',
       '</','document','cookie','javascript','<script>','text/javascript',
       'and','END','exec','EXEC','insert','INSERT','select','SELECT',
       'delete','DELETE','update','UPDATE','import','IMPORT','query','QUERY',
@@ -188,6 +189,7 @@ export default {
     let replaceRegex = /(\n\r|\r\n|\r|\n)/g; 
     data.data.forEach(it =>{
       it.leavingCont = it.leavingCont.replace(replaceRegex, '<br/>');
+      it.time = getDateDiff(it.dateNow)
     })
     this.commentList = data.data
   },
@@ -456,7 +458,7 @@ export default {
 //博主class
 .isMaster{
   &::after{
-    content: "Master"!important;
+    content: "Handsome"!important;
     background: #ffa51e!important;
   }
 }

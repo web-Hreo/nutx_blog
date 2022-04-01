@@ -7,8 +7,18 @@
        :to="`/articleDetails/${item._id}`"
       >
       <p class="item_name text-eli-1 ">{{item.title}}</p>
-      <p class="item_time">{{item.createTime}}・<span class="abc9">{{item.tag}}</span>・{{item.viewNum}}次浏览</p>
+      <p class="item_time">{{item.time}}・<span class="abc9">{{item.tag}}</span>・{{item.viewNum}}次浏览</p>
     </nuxt-link>
+    <!-- <div class="fc mt-20" style="flex-wrap:warp">
+    <div class="article_item" v-for="it in 2">
+      <img src="http://cdn.heblogs.cn/_30.jpg" alt="">
+      <div class="item-desc">
+        <div class="fc"><p class="cir"></p><p class="desc-tag">元素</p></div>
+        <h3 class="desc-title text-eli-1">故乡的樱花又开了</h3>
+      </div>
+    </div>
+    </div> -->
+
      <!-- 分页器  -->
     <div class="pagination fbc">
       <div class="btnBox">
@@ -23,6 +33,7 @@
 </template>
 
 <script>
+import {getDateDiff} from '~/components/methods';
 export default {
   name: "",
   data() {
@@ -30,12 +41,10 @@ export default {
   },
   props: ["articleList"],
   created(){
-    // this.articleList.data.forEach(it =>{
-    //   if(!it.bg){
-    //     const rendom = Math.floor(Math.random()*92 + 1)
-    //     it.bg = `https://cdn.jsdelivr.net/gh/web-Hreo/nutx_blog/assets/image/article_bg/${rendom}.jpg`
-    //   }
-    // })
+    this.articleList.data.forEach(it =>{
+      it.time = getDateDiff(new Date(it.createTime))
+      console.log(it.time);
+    })
   },
   methods:{
     previous(){
@@ -49,6 +58,30 @@ export default {
 </script>
 
 <style lang='less' scoped>
+.article_item{
+  width: 45%;
+  border-radius: 10px;
+  margin-right: 5%;
+  overflow: hidden;
+  img{
+    width: 100%;
+  }
+  .item-desc{
+    padding: 3%;
+    background-color: #ffffff;
+    .cir{
+      border: 1px solid #1abc9c;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+    }
+    .desc-tag{
+      color: #9fa0a7;
+      font-size: 12px;
+      padding-left: 10px;
+    }
+  }
+}
 .blog_item {
   display: block;
   margin: 30px 0;
