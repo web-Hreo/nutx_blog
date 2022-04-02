@@ -17,7 +17,7 @@
       <div class="item-head fc">
         <img class="head-avatar" src="http://cdn.heblogs.cn/avatar.jpg" alt="">
         <p class="head-name">handsome</p>
-        <p class="head-time">15小时前</p>
+        <p class="head-time">{{item.time}}</p>
       </div>
       <div class="mode-card" v-html="item.cont"></div>
     </div>
@@ -26,9 +26,14 @@
 
 <script>
 import {getMood} from '../../api/mood'
+import {getDateDiff} from '~/components/methods';
 export default {
   async asyncData() {
     const {data} = await getMood()
+    data.forEach(it =>{
+      it.time = getDateDiff(new Date(it.createTime))
+      console.log(it.time);
+    })
     return { modeList:data  }
   },
 
