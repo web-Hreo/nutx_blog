@@ -59,17 +59,16 @@
       </el-row>
     </div>
 
-    <div class="note defalut no-icon" style="">
+    <!-- <div class="note defalut no-icon" style="">
       只接受博客 / 资源网类的网站进行友链互换
       持续未更新/链接无法访问/违规 自动取消友链<br/>
       友链展示需要 你的信息格式要包含 站点名称、描述、链接、头像
-    </div>
-    <div class="note defalut no-icon" style="">
-      本站信息<br/>
-     站点名称：小何_前端个人博客<br/>
+    </div> -->
+    <div class="note defalut no-icon" style="">本站信息<br/>
+      站点名称：小何_前端个人博客<br/>
       描述：保持热爱 奔赴山海<br/>
       链接：http://www.heblogs.cn<br/>
-      头像：https://cdn.jsdelivr.net/gh/web-Hreo/nutx_blog/static/avatar.jpg
+      头像：http://cdn.heblogs.cn/avatar.jpg
     </div>
     <MyComment from="links"  />
     </div>

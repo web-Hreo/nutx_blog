@@ -31,8 +31,7 @@ export default {
   async asyncData() {
     const {data} = await getMood()
     data.forEach(it =>{
-      it.time = getDateDiff(new Date(it.createTime))
-      console.log(it.time);
+      it.time = getDateDiff(it.createTime)
     })
     return { modeList:data  }
   },

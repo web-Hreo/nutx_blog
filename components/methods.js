@@ -1,4 +1,12 @@
-export const getDateDiff = (dateTimeStamp) =>{
+//type=1 => 时间戳
+//type=2 => yyyy-dd-mm hh-mm
+export const getDateDiff = (dateTimeStamp,type=2) =>{
+  // .getTime()
+  
+if(type==2){
+  dateTimeStamp = dateTimeStamp.replace(/-/g, '/') // 把所有-转化成/
+  dateTimeStamp = new Date(dateTimeStamp).getTime()
+}
   var minute = 1000 * 60
 	var hour = minute * 60
 	var day = hour * 24

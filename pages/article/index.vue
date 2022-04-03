@@ -48,7 +48,7 @@ export default {
         let monthDataList = {} //定义存放月份数据列表
         //查找年份数据
         const YEAR_ARR = data.find(it =>it.createTime.indexOf(yIt)>=0)
-        console.log(YEAR_ARR,yIt);
+        // console.log(YEAR_ARR,yIt);
         //查找月份数据
         if(YEAR_ARR){
           yearDataList = { year:yIt, data:[] }
@@ -62,7 +62,7 @@ export default {
           list.unshift(yearDataList)
         }
       })
-      console.log(list);
+      // console.log(list);
       //处理时间
       list.forEach(yearItem =>{
         yearItem.data.forEach(monthItem =>{

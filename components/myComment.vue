@@ -70,7 +70,7 @@
                 {{it.leavingName==='何华'?'博主':it.leavingName}}
               </div>
               <div class="usre_time fbc">
-                <p>{{it.createTime}}</p>
+                <p>{{it.time}}</p>
                 <p class="reply abc9" @click.stop="replyOne(it,index,2)">回复</p>
               </div>
               <div class="user-cont">
@@ -189,7 +189,12 @@ export default {
     let replaceRegex = /(\n\r|\r\n|\r|\n)/g; 
     data.data.forEach(it =>{
       it.leavingCont = it.leavingCont.replace(replaceRegex, '<br/>');
-      it.time = getDateDiff(it.dateNow)
+      it.time = getDateDiff(it.createTime)
+      if(it.children){
+        it.children.forEach(cIt =>{
+          cIt.time = getDateDiff(cIt.createTime)
+        })
+      }
     })
     this.commentList = data.data
   },
@@ -197,7 +202,6 @@ export default {
   emailChange(e){
     // e = '1194150512@qq.com'
     e.replace('@qq.com','')
-    console.log(e);
     this.form.leavingAvatar = 
     `http://q.qlogo.cn/headimg_dl?dst_uin=${e}&spec=100`
     //     this.form.leavingAvatar = 
@@ -243,11 +247,11 @@ export default {
     replyLevel ===1 && (this.form.parentId = this.replyRow.commentId)
     replyLevel ===1 && (this.form.replyName = this.replyRow.leavingName)
     //当按钮为二级回复时 获取被回复人id及
-    console.log('this.replyRow',this.replyRow);
+    // console.log('this.replyRow',this.replyRow);
     replyLevel ===2 && (this.form.parentId = this.replyRow.parentId)
     replyLevel ===2 && (this.form.replyName = this.replyRow.leavingName)
     replyLevel ===2 && (this.form.LV2Id = this.replyRow.commentId)
-    console.log('this.form',this.form);
+    // console.log('this.form',this.form);
     //替换/n
     let replaceRegex = /(\n\r|\r\n|\r|\n)/g; 
     const params = {
@@ -270,12 +274,12 @@ export default {
   },
   //点击回复按钮 打开回复框
   replyOne(row,index,replyLevel){
-    console.log(row,index,replyLevel);
+    // console.log(row,index,replyLevel);
     this.form.replyLevel = replyLevel
     this.replyRow = row
     this.replyIndex = index
     this.replyTitle = ` @${row.leavingName}`
-    console.log(row);
+    // console.log(row);
   },
   closeReplyBox(){
     this.form.replyLevel = 0
@@ -357,7 +361,10 @@ export default {
   }
   .cont-item{
     // display: flex;
-    padding: 20px 0;
+    padding: 20px;
+    background-color: #f2f6fc;
+    margin-bottom: 20px;
+    border-radius: 10px;
   }
   .item_children{
     padding: 15px 0 10px 70px;
@@ -368,9 +375,9 @@ export default {
     }
   }
   .item_img{
-    width: 50px;
-    height: 50px;
-    border-radius: 5px;
+    width: 40px;
+    height: 40px;
+    border-radius: 7px;
     overflow: hidden;
     
     @media only screen and (max-width: 766.99px) {//m端
@@ -419,7 +426,7 @@ export default {
       padding-top: 10px;
       p{
         background: #f2f6fc;
-        padding: 10px;
+        // padding: 10px;
         border-radius: 5px;
         word-break: break-all;
       }

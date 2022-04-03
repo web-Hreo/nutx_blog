@@ -42,8 +42,7 @@ export default {
   props: ["articleList"],
   created(){
     this.articleList.data.forEach(it =>{
-      it.time = getDateDiff(new Date(it.createTime))
-      console.log(it.time);
+      it.time = getDateDiff(it.createTime)
     })
   },
   methods:{
@@ -98,6 +97,7 @@ export default {
   //移动端
   @media only screen and (max-width: 768.99px) {
     padding: 50px 10px;
+    margin: 10px 0;
   }
   .item_name{
     font-size: 24px;

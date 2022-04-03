@@ -106,8 +106,8 @@ export default {
         //使用weather接口 -> 获取用户所在城市当前天气
         let weatherData = await getWeather(data.mainInfo);
         const aqiList = await getAQI(data.mainInfo)
-        console.log(weatherData);
-        console.log(aqiList);
+        // console.log(weatherData);
+        // console.log(aqiList);
         const weatherDataNow = weatherData.now
         const aqiNow = aqiList.now
         
@@ -123,7 +123,7 @@ export default {
           qlty: aqiNow.category, //空气质量等级
           qltyColor: this.getApi(aqiNow.level).color //空气质量等级
         };
-        console.log(this.Weather);
+        // console.log(this.Weather);
       } catch (err) {
         console.log(err);
       }
