@@ -2,23 +2,22 @@
   <div id="aslide">
     <!-- 个人信息 -->
     <div class="info_my background">
-      <div class="imgBox"><img src="http://cdn.heblogs.cn/avatar.jpg" alt /></div>
-      <div class="my_information">
-        <p>Hhua | 小何</p>
-        <p>职业：web前端</p>
-        <!-- <p>邮箱：ngpeipao9977590@163.com</p>
-        <p>微信(添加备注来源)：17779168734</p> -->
-        <p>保持热爱 奔赴山海</p>
+      <p class="sayHi">👋 {{sayHiStr}}我是</p>
+      <p class="name">何华Hua</p>
+      <p class="desc">这有关于 <b>产品、设计、开发</b> 相关的问题和看法。</p>
+      <p class="desc">希望你可以在这里找到对你有用的<b>知识</b>和<b>教程</b>。</p>
+      <p class="desc">保持热爱</p>
+      <p class="desc">奔赴山海</p>
+      <div class="my-contact fc">
+        <p class="contact wx fcc"><i class="iconfont icon-shejiao-weixin"></i></p>
+        <p class="contact qq fcc" @click="openQQ"><i class="iconfont icon-shejiao-QQ"></i></p>
       </div>
-      <ul class="my_article fbc">
-        <nuxt-link to="/"><p>文章</p><p>{{lengthList.article_length}}</p></nuxt-link>
-        <nuxt-link to="/tags"><p>标签</p><p>{{lengthList.tags_length}}</p></nuxt-link>
-        <nuxt-link to="/mood"><p>日志</p><p>{{lengthList.mood_length}}</p></nuxt-link>
-      </ul>
+      <div class="imgBox">
+        <img src="http://cdn.heblogs.cn/1649044225311_avatar-large-1.webp" alt="">
+      </div>
     </div>
-    <!-- 和风天气插件 -->
-    <!-- <div id="he-plugin-standard"></div> -->
 
+    <!-- 和风天气插件 -->
     <!-- 天气 -->
     <div class="info_weather background" v-if="Weather">
       <div class="info_weather-background"></div>
@@ -42,29 +41,6 @@
         </li>
       </ul>
     </div>
-    <!-- 热度榜 -->
-    <!-- <div class="info_rankingList background">
-      <p class="info_title">热度榜</p>
-      <nuxt-link class="rankingList_item"  :to="`/articleDetails/${item._id}`" v-for="item in articleList" :key="item._id">
-        {{item.title}}
-      </nuxt-link>
-
-    </div> -->
-    <!-- 友情链接 -->
-    <!-- <div class="info_friendChain background">
-      <p class="info_title">
-        友情链接
-        <a href>申请友链</a>
-      </p>
-      <div class="friendChain_website">
-        <p>本站信息如下：</p>
-        <p>网站名称：花未央</p>
-        <p>网站链接:https://http://localhost:8080/</p>
-        <p>
-          <span style="color:red">注：</span> 申请友链之前，请务必先将本站添置友链，花未央收到后会立马处理，处理结果会以邮件形式通知您~
-        </p>
-      </div>
-    </div> -->
   </div>
 </template>
 
@@ -72,6 +48,7 @@
 import { getTags } from '~/api/tags'
 import {getArticle} from '~/api/article'
 import { getApiAddress,getWeather,getLength,getAQI } from '~/api/public'
+import {sayHi} from '../components/methods'
 // import { apiAddress, weather } from "../../axios/api.js"; //引入api
 export default {
   data() {
@@ -80,10 +57,11 @@ export default {
       userinfo: [],
       Weather: [],
       lengthList:{},
-      articleList:[],
+      sayHiStr:''
     };
   },
   created() {
+    this.sayHiStr = sayHi()
     this.getdata();
     this.getTag()
     this.getLength()
@@ -93,10 +71,6 @@ export default {
     async getTag(){
       const {data} = await getTags()
       this.tagList = data
-    },
-    async getArticle(){
-      const {data} = await getArticle({pageNo:1,pageSize:5,sort:'viewNum'})
-      this.articleList = data.data
     },
     //在getdata内调用所有方法
     async getdata() {
@@ -157,6 +131,9 @@ export default {
       } else {
         return { category: '优', color: '#00BD26' }
       }
+    },
+    openQQ(){
+      window.location.href = 'http://wpa.qq.com/msgrd?v=3&uin=1194150512&site=在线客服&menu=yes'
     }
   }
 };
@@ -194,45 +171,76 @@ export default {
 }
 .info_my {
   position: relative;
-  // padding: 0 !important;
-  background-color: #fff;
-  .imgBox{
-    width: 120px;
-    height: 120px;
-    border-radius: 50%;
-    overflow: hidden;
-    margin: 0 auto;
+  background-color: #000;
+  color: #fff;
+  padding: 25px;
+  letter-spacing: 1.5px;
+  overflow: hidden;
+  .name{
+    font-size: 30px;
+    line-height: 50px;
   }
-  img {
-    width: 104%;
-    height: 104%;
-    margin: -2%;
-  }
-  .my_information {
-    padding: 15px 10px;
-    p {
-      text-align: center;
-      letter-spacing: 2px;
-      &:nth-child(1) {
-        color: #3f3f3f;
-        letter-spacing: 1px;
-        font-size: 16px;
-        margin-bottom: 10px;
-      }
-      &:nth-child(2) {
-        color: #1abc9c;
-        padding: 5px 0;
-      }
+  .desc{
+    font-size: 15px;
+    line-height: 26px;
+    padding-top: 10px;
+    color: rgba(255,255,255,.8);
+    b{
+      color: #fff;
     }
   }
-  .my_article{
-    padding: 10px 20px;
-    text-align: center;
-    a{
-      height: 40px;
-      p{
-          color: #999;
+  .descing{
+    max-width: 100px;
+  }
+  .sayHi{
+    font-size: 15px;
+    line-height: 32px;
+  }
+  .my-contact{
+    padding-top: 10px;
+    height: 40px;
+    p{
+      margin-right: 5px;
+      width: 35px;
+      height: 35px;
+      border-radius: 50%;
+      background-color: #fff;
+      cursor: pointer;
+      transition: .1s ease-in all ;
+      i{
+        font-size: 20px;
+        color: #000;
+        transition: .1s ease-in all ;
       }
+      &:hover{
+        width: 40px;
+        height: 40px;
+        i{
+          font-size: 22px;
+          color: #fff;
+        }
+      }
+    }
+    .wx:hover{
+      background-color: #07c160;
+    }
+    .qq:hover{
+      background-color: #12b7f5;
+    }
+  }
+  .imgBox{
+    position: absolute;
+    bottom: 0px;
+    right: -20px;
+    transform: translateY(80px);
+    cursor: pointer;
+    transition: cubic-bezier(.48,-.21,0,1.5) .3s;
+    &:hover{
+      transform: translateY(50px);
+    }
+    img{
+      width: 150px;
+      height: 200px;
     }
   }
 }

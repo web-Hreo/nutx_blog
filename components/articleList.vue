@@ -1,23 +1,21 @@
 <template>
   <div id="articleList">
     <!-- 文章盒子 -->
-    <nuxt-link class="blog_item"
+    <!-- <nuxt-link class="blog_item"
       :style="{'background-image': `url(${item.viewImg})`}"
       v-for="(item, index) in articleList.data" :key="index"
        :to="`/articleDetails/${item._id}`"
       >
       <p class="item_name text-eli-1 ">{{item.title}}</p>
       <p class="item_time">{{item.time}}・<span class="abc9">{{item.tag}}</span>・{{item.viewNum}}次浏览</p>
-    </nuxt-link>
-    <!-- <div class="fc mt-20" style="flex-wrap:warp">
-    <div class="article_item" v-for="it in 2">
-      <img src="http://cdn.heblogs.cn/_30.jpg" alt="">
+    </nuxt-link> -->
+    <div class="article_item fc" v-for="(item, index) in articleList.data" :key="index">
+      <img :src="item.viewImg" alt="">
       <div class="item-desc">
-        <div class="fc"><p class="cir"></p><p class="desc-tag">元素</p></div>
-        <h3 class="desc-title text-eli-1">故乡的樱花又开了</h3>
+        <p class="title row_2">{{item.title}}</p>
+        <p class="item_time">{{item.time}}・<span class="abc9">{{item.tag}}</span>・{{item.viewNum}}次浏览</p>
       </div>
     </div>
-    </div> -->
 
      <!-- 分页器  -->
     <div class="pagination fbc">
@@ -57,27 +55,30 @@ export default {
 </script>
 
 <style lang='less' scoped>
-.article_item{
-  width: 45%;
+#articleList{
+  width: 100%;
+  box-sizing: border-box;
+  padding: 20px;
+  background-color: #ffffff;
+  margin: 10px 0;
   border-radius: 10px;
-  margin-right: 5%;
-  overflow: hidden;
+}
+.article_item{
+  width: 100%;
+  margin-bottom: 20px;
   img{
-    width: 100%;
+    width: 160px;
+    height: 90px;
+    border-radius: 10px;
   }
   .item-desc{
-    padding: 3%;
-    background-color: #ffffff;
-    .cir{
-      border: 1px solid #1abc9c;
-      width: 10px;
-      height: 10px;
-      border-radius: 50%;
+    padding: 10px;
+    .title{
+      font-size: 20px;
+      font-weight: 700;
     }
-    .desc-tag{
-      color: #9fa0a7;
-      font-size: 12px;
-      padding-left: 10px;
+    .item_time{
+      padding-top: 15px;
     }
   }
 }

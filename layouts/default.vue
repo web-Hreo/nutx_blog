@@ -20,7 +20,7 @@
           </transition>
         </el-col>
         <!-- 右侧配置 -->
-        <el-col v-if="isAslideShow" :span="7" class="home_cont_info hidden-sm-and-down">
+        <el-col v-if="isAslideShow" :span="8" class="home_cont_info hidden-sm-and-down">
           <Aslide />
         </el-col>
       </el-row>

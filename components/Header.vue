@@ -277,13 +277,6 @@ export default {
     }
   }
 }
-// .nuxt-link-active{
-//   color: yellowgreen!important;
-// }
-// .nuxt-link-exact-active{
-//   color: yellowgreen!important;
-// }
-
 //m端
 .m_head_cont_btn{
   position: fixed;
