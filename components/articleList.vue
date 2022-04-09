@@ -1,21 +1,21 @@
 <template>
   <div id="articleList">
     <!-- 文章盒子 -->
-    <!-- <nuxt-link class="blog_item"
+    <nuxt-link class="blog_item"
       :style="{'background-image': `url(${item.viewImg})`}"
       v-for="(item, index) in articleList.data" :key="index"
        :to="`/articleDetails/${item._id}`"
       >
       <p class="item_name text-eli-1 ">{{item.title}}</p>
       <p class="item_time">{{item.time}}・<span class="abc9">{{item.tag}}</span>・{{item.viewNum}}次浏览</p>
-    </nuxt-link> -->
-    <div class="article_item fc" v-for="(item, index) in articleList.data" :key="index">
+    </nuxt-link>
+    <!-- <div class="article_item fc" v-for="(item, index) in articleList.data" :key="index">
       <img :src="item.viewImg" alt="">
       <div class="item-desc">
         <p class="title row_2">{{item.title}}</p>
-        <p class="item_time">{{item.time}}・<span class="abc9">{{item.tag}}</span>・{{item.viewNum}}次浏览</p>
+        <p class="item_time">#{{item.time}} #{{item.tag}} #{{item.viewNum}}浏览</p>
       </div>
-    </div>
+    </div> -->
 
      <!-- 分页器  -->
     <div class="pagination fbc">
@@ -58,8 +58,8 @@ export default {
 #articleList{
   width: 100%;
   box-sizing: border-box;
-  padding: 20px;
-  background-color: #ffffff;
+  // padding: 20px;
+  // background-color: #ffffff;
   margin: 10px 0;
   border-radius: 10px;
 }
@@ -67,18 +67,20 @@ export default {
   width: 100%;
   margin-bottom: 20px;
   img{
-    width: 160px;
-    height: 90px;
-    border-radius: 10px;
+    width: 150px;
+    height: 80px;
+    border-radius: 5px;
   }
   .item-desc{
     padding: 10px;
     .title{
-      font-size: 20px;
-      font-weight: 700;
+      font-size: 18px;
+      font-weight: 600;
     }
     .item_time{
       padding-top: 15px;
+      font-size: 13px;
+      color: rgba(60, 60, 60, 0.6);
     }
   }
 }

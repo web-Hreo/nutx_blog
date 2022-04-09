@@ -1,14 +1,17 @@
 *{ margin:0; padding:0;}
 html,body{
-  cursor: url('../mouse.png'),auto;
+  /* cursor: url('../mouse.png'),auto; */
   font-family: 'Mirages Custom', 'Merriweather', 'Open Sans', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft Yahei', 'WenQuanYi Micro Hei',  'Segoe UI Emoji', 'Segoe UI Symbol', Helvetica, Arial, sans-serif;
   /* font-family: Product Sans,Hiragino Sans GB,Hiragino Sans GB W3,Microsoft YaHei,WenQuanYi Micro Hei,sans-serif !important; */
 }
-body {
+body{
+  background-color: #f7f9fe;
+}
+/* body {
   background: linear-gradient(
     90deg
     ,rgba(247,149,51,.1),rgba(243,112,85,.1) 15%,rgba(239,78,123,.1) 30%,rgba(161,102,171,.1) 44%,rgba(80,115,184,.1) 58%,rgba(16,152,173,.1) 72%,rgba(7,179,155,.1) 86%,rgba(109,186,130,.1));
-}
+} */
 address,cite,dfn,em,var, i {font-style:normal;}
 #app {
   /* font: 16px "微软雅黑", Arial, Helvetica, sans-serif; color: #555; */
@@ -22,7 +25,7 @@ fieldset{border:0;display: block;}
 /*@img*/
 img { -webkit-touch-callout: none;border:0;display: block;}
 /*@a*/
-a{color:#333;text-decoration: none!important;-webkit-touch-callout: none;-webkit-user-select: none; cursor: url('../mouse.png'),auto;}
+a{color:#333;text-decoration: none!important;}
 a,a:active,a:focus,a:hover,a:visited {text-decoration: none}
 /*@input*/
 input[type=password],

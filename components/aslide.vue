@@ -1,23 +1,52 @@
 <template>
   <div id="aslide">
-    <!-- 个人信息 -->
     <div class="info_my background">
-      <p class="sayHi">👋 {{sayHiStr}}我是</p>
-      <p class="name">何华Hua</p>
-      <p class="desc">这有关于 <b>产品、设计、开发</b> 相关的问题和看法。</p>
-      <p class="desc">希望你可以在这里找到对你有用的<b>知识</b>和<b>教程</b>。</p>
-      <p class="desc">保持热爱</p>
-      <p class="desc">奔赴山海</p>
-      <div class="my-contact fc">
-        <p class="contact wx fcc"><i class="iconfont icon-shejiao-weixin"></i></p>
-        <p class="contact qq fcc" @click="openQQ"><i class="iconfont icon-shejiao-QQ"></i></p>
-      </div>
-      <div class="imgBox">
-        <img src="http://cdn.heblogs.cn/1649044225311_avatar-large-1.webp" alt="">
-      </div>
-    </div>
+      <FlipCard trigger="click" direction="row" ref="FlipCard">
+        <template v-slot:cz>
+          <!-- 个人信息 -->
+          <div class="cz">
+            <p class="sayHi">👋 {{sayHiStr}}我是</p>
+            <p class="name">何华Hua</p>
+            <p class="desc">这有关于 <b>产品、设计、开发</b> 相关的问题和看法。</p>
+            <p class="desc">希望你可以在这里找到对你有用的<b>知识</b>和<b>教程</b>。</p>
+            <p class="desc">保持热爱</p>
+            <p class="desc">奔赴山海</p>
+            <div class="my-contact fc">
+              <p class="contact wx fcc" @click="flip"><i class="iconfont icon-shejiao-weixin"></i></p>
+              <p class="contact qq fcc" @click="openQQ"><i class="iconfont icon-shejiao-QQ"></i></p>
+            </div>
+            <div class="imgBox">
+              <img src="http://cdn.heblogs.cn/1649044225311_avatar-large-1.webp" alt="">
+            </div>
+          </div>
+        </template>
+        <template v-slot:cf>
+          <div @click="flip" class="cf fcc">
+            <img class="wxCode" src="http://cdn.heblogs.cn/1649046372528_微信图片_20220404122603.jpg" alt="">
+          </div>
+        </template>          
+      </FlipCard>
+    </div>                       
 
-    <!-- 和风天气插件 -->
+    <!-- 站点数量 -->
+    <div class="info_num fbc background">
+      <nuxt-link to="/" class="num-item">
+        <p class="item-title">文章</p>
+        <p class="item-number">{{lengthList.article_length}}<span>篇</span></p>
+      </nuxt-link>
+      <nuxt-link to="/tags" class="num-item">
+        <p class="item-title">标签</p>
+        <p class="item-number">{{lengthList.tags_length}}<span>个</span></p>
+      </nuxt-link>
+      <nuxt-link to="/mood" class="num-item">
+        <p class="item-title">日志</p>
+        <p class="item-number">{{lengthList.mood_length}}<span>篇</span></p>
+      </nuxt-link>
+      <nuxt-link to="/comment" class="num-item">
+        <p class="item-title">留言</p>
+        <p class="item-number">192<span>个</span></p>
+      </nuxt-link>
+    </div>
     <!-- 天气 -->
     <div class="info_weather background" v-if="Weather">
       <div class="info_weather-background"></div>
@@ -49,8 +78,10 @@ import { getTags } from '~/api/tags'
 import {getArticle} from '~/api/article'
 import { getApiAddress,getWeather,getLength,getAQI } from '~/api/public'
 import {sayHi} from '../components/methods'
+import FlipCard from '../components/Flip.vue'
 // import { apiAddress, weather } from "../../axios/api.js"; //引入api
 export default {
+  components:{FlipCard},
   data() {
     return {
       tagList:[],
@@ -65,7 +96,6 @@ export default {
     this.getdata();
     this.getTag()
     this.getLength()
-    this.getArticle()
   },
   methods: {
     async getTag(){
@@ -132,8 +162,13 @@ export default {
         return { category: '优', color: '#00BD26' }
       }
     },
+    //打开qq对话框
     openQQ(){
       window.location.href = 'http://wpa.qq.com/msgrd?v=3&uin=1194150512&site=在线客服&menu=yes'
+    },
+    //翻转卡片
+    flip(){
+      this.$refs.FlipCard.eve_cardres_click()
     }
   }
 };
@@ -146,6 +181,7 @@ export default {
   background-color: #fff;
   border-radius: 15px;
   transition: all .3s ;
+  border: 1px solid #e3e8f7;
   // &:hover{
   //   box-shadow: 0 0 10px 5px rgb(223, 223, 223);
   // }
@@ -170,12 +206,19 @@ export default {
   }
 }
 .info_my {
-  position: relative;
   background-color: #000;
   color: #fff;
   padding: 25px;
   letter-spacing: 1.5px;
   overflow: hidden;
+  height: 320px;
+  .cz{
+    position: relative;
+  }
+  .cf{
+    width: 100%;
+    height: 100%;
+  }
   .name{
     font-size: 30px;
     line-height: 50px;
@@ -188,9 +231,6 @@ export default {
     b{
       color: #fff;
     }
-  }
-  .descing{
-    max-width: 100px;
   }
   .sayHi{
     font-size: 15px;
@@ -231,16 +271,57 @@ export default {
   .imgBox{
     position: absolute;
     bottom: 0px;
-    right: -20px;
-    transform: translateY(80px);
+    right: -40px;
+    transform: translateY(100px);
     cursor: pointer;
     transition: cubic-bezier(.48,-.21,0,1.5) .3s;
     &:hover{
-      transform: translateY(50px);
+      transform: translateY(70px);
     }
     img{
       width: 150px;
       height: 200px;
+    }
+  }
+  .wxCode{
+    width: 100%;
+    border-radius: 15px;
+  }
+}
+.info_num{
+  flex-wrap: wrap;
+  .num-item{
+    width: 40%;
+    margin: 0 5% 10px;
+    // border: 1px solid #e3e8f7;
+    border-radius: 10px;
+    padding: 5px;
+    box-sizing: border-box;
+    transition: all .3s ease-in-out;
+    cursor: pointer;
+    &:nth-child(3),
+    &:nth-child(4){
+      margin-bottom: 0;
+    }
+    &:hover{
+      background-color: #425aef;
+      color: #fff;
+      .item-title{
+        color: #fff;
+      }
+    }
+    .item-title{
+      font-size: 12px;
+      color: rgba(#000,.6);
+      transition: all .3s ease-in-out;
+    }
+    .item-number{
+      font-size: 24px;
+      font-weight: 600;
+      span{
+        font-size: 14px;
+        padding-left: 5px;
+      }
     }
   }
 }
@@ -248,10 +329,10 @@ export default {
   transition: all 0.3s ease;
   // background-image: linear-gradient(#7d90a0, #9198e5);
   color: #fff;
+  background-color: #000;
   text-align: center;
   letter-spacing: 2px;
   position: relative;
-  background-color: transparent;
   overflow: hidden;
   .info_weather-background{
     background-image: url('http://cdn.heblogs.cn/_35.jpg');

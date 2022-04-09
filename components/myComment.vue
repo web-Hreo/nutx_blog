@@ -362,7 +362,7 @@ export default {
   .cont-item{
     // display: flex;
     padding: 20px;
-    background-color: #f2f6fc;
+    background-color: #f7f9fe;
     margin-bottom: 20px;
     border-radius: 10px;
   }
@@ -425,7 +425,7 @@ export default {
       line-height: 23px;
       padding-top: 10px;
       p{
-        background: #f2f6fc;
+        background: #f7f9fe;
         // padding: 10px;
         border-radius: 5px;
         word-break: break-all;

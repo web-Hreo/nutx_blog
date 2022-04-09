@@ -16,7 +16,10 @@
   <div id='links' class="def-card">
     <!-- 亲友 -->
     <div class="relatives" v-if="relativesList.length>0">
-      <div class="note warning no-icon" style="">亲友 —— 洛范九畴初</div>
+      <div class="links-title" style="">
+        <h2>🌱 龙王</h2>
+        <p>优质博客 时间倒序</p>
+      </div>
       <el-row class="linkeBox" :gutter="10">
         <el-col :xs="24" :sm="12" :md="8"  v-for="item in relativesList" :key="item._id">
           <div class="link-item" :class="{'link-item-hover':item.url !=='#'}" >
@@ -30,13 +33,21 @@
     </div>
     <!-- 常客 -->
     <div class="regulars" v-if="regularsList.length>0">
-      <div class="note warning no-icon" style="">常客 —— 临池鸟迹舒</div>
+      <div class="links-title" style="">
+        <h2>🔥 炙焰</h2>
+        <p>博客0+ 时间倒序</p>
+        </div>
       <el-row class="linkeBox" :gutter="10">
         <el-col :xs="24" :sm="12" :md="8"  v-for="item in regularsList" :key="item._id">
           <div class="link-item" :class="{'link-item-hover':item.url !=='#'}" >
-            <a :href="item.url==='#'?'javascript:void(0);':item.url" :title="item.title" :target="item.url==='#'?'_self':'_blank'" data-pjax-state="external">
-              <img :src="item.avatar"><span class="sitename">{{item.title}}</span>
-              <p class="linkdes">{{item.desc}}</p>
+            <a class="fbc" :href="item.url==='#'?'javascript:void(0);':item.url" :title="item.title" :target="item.url==='#'?'_self':'_blank'">
+              <img class="link-img" :src="item.avatar">
+              <div class="link-info fc">
+                <div>
+                  <p class="link-title row_1">{{item.title}}</p>
+                  <p class="link-desc row_2">{{item.desc}}</p>
+                </div>
+              </div>
             </a>
           </div>
         </el-col>
@@ -44,16 +55,22 @@
     </div>
     <!-- 失联 -->
     <div class="lose" v-if="loseList.length>0">
-      <div class="note warning no-icon" style="">失联 —— 挥手长相谢</div>
+      <div class="links-title" style="">
+        <h2>🛰️ 失联</h2>
+        <p>近期无法访问 综合倒序</p>
+      </div>
       <el-row class="linkeBox" :gutter="10">
         <el-col :xs="24" :sm="12" :md="8"  v-for="item in loseList" :key="item._id">
           <div class="link-item" :class="{'link-item-hover':item.url !=='#'}" >
-              <a>
+              <a class="fbc">
                 <p class="lose-img"></p>
-                <span class="sitename">{{item.title}}</span>
-                <p class="linkdes">{{item.desc}}</p>
+                <div class="link-info fc">
+                  <div>
+                    <p class="link-title row_1">{{item.title}}</p>
+                    <p class="link-desc row_2">{{item.desc}}</p>
+                  </div>
+                </div>
               </a>
-             
           </div>
         </el-col>
       </el-row>
@@ -64,11 +81,12 @@
       持续未更新/链接无法访问/违规 自动取消友链<br/>
       友链展示需要 你的信息格式要包含 站点名称、描述、链接、头像
     </div> -->
-    <div class="note defalut no-icon" style="">本站信息<br/>
-      站点名称：小何_前端个人博客<br/>
-      描述：保持热爱 奔赴山海<br/>
-      链接：http://www.heblogs.cn<br/>
-      头像：http://cdn.heblogs.cn/avatar.jpg
+    <div class="myInfo" style="">
+      <p class="myInfo-title">本站信息</p>
+      <p>站点名称：<span>小何_前端个人博客</span> </p>
+      <p>描述：<span>保持热爱 奔赴山海</span></p>
+      <p>链接：<span>http://www.heblogs.cn</span></p>
+      <p>头像：<span>http://cdn.heblogs.cn/avatar.jpg</span></p>
     </div>
     <MyComment from="links"  />
     </div>
@@ -122,116 +140,111 @@ export default {
 
 </script>
 <style lang='less' scoped>
+#links{
+  border: 1px solid #e3e8f7;
+}
 .linkeBox{
   margin: 0;
   list-style: none;
   padding: 0;
   width: 100%;
   display: inline-block;
+  
   .link-item{
     border: 1px solid #ececec;
-    padding: 10px 30px;
+    box-sizing: border-box;
     margin: 4px 0;
     position: relative;
     overflow: hidden;
-    -webkit-transition: all .6s;
     transition: all .6s;
     border-radius: 10px;
-    background-color: #fff;
+    background-color: #f7f9fe;
     transition: all .2s ease-in;
-    a{
-      color: var(--base-color);
-      text-decoration: none;
-      transition: .3s;
-      background-color: transparent;
-      -webkit-text-decoration-skip: objects;
-      color: #42b983;
+    cursor: pointer;
+    padding: 0 15px;
+    height: 95px;
+    &:hover{
+      background-color: #425aef;
+      .link-info{
+        color: #ffffff;
+      }
+      .link-img,.lose-img{
+        width: 0;
+        height: 0;
+      }
     }
     .lose-img{
-      float: right;
-      // box-shadow: inset 0 0 10px #000;
-      padding: 5px;
-      opacity: 1;
-      transform: rotate(0);
-      -webkit-transform: rotate(0);
-      -moz-transform: rotate(0);
-      -o-transform: rotate(0);
-      -ms-transform: rotate(0);
-      transition: all ease 1s;
-      -webkit-transition: all ease 1s;
-      -moz-transition: all ease 1s;
-      -o-transition: all ease 1s;
-      margin-top: 5px;
       width: 65px;
       height: 65px;
-      padding: 2px;
-      border-radius: 100%;
+      border-radius: 50%;
       background-color: #ccc;
+      margin: 15px;
+      margin-left: 0;
+      transition: all .3s ease-in-out;
       //m端
       @media only screen and (max-width: 766.99px) {
         width: 40px;
         height: 40px;
       }
     }
-    img{
-      float: right;
-      // box-shadow: inset 0 0 10px #000;
-      padding: 5px;
-      opacity: 1;
-      transform: rotate(0);
-      -webkit-transform: rotate(0);
-      -moz-transform: rotate(0);
-      -o-transform: rotate(0);
-      -ms-transform: rotate(0);
-      transition: all ease 1s;
-      -webkit-transition: all ease 1s;
-      -moz-transition: all ease 1s;
-      -o-transition: all ease 1s;
-      margin-top: 5px;
+    .link-img{
       width: 65px;
       height: 65px;
-      padding: 2px;
-      border-radius: 100%;
-      //m端
-      @media only screen and (max-width: 766.99px) {
-        width: 40px;
-        height: 40px;
-      }
+      border-radius: 50%;
+      margin: 15px;
+      margin-left: 0;
+      transition: all .3s ease-in-out;
     }
-    .sitename{
-      font-size: 18px;
-      padding-bottom: 10px;
-      display: block;
-      -webkit-transition: all .3s;
-      transition: all .3s;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      -o-text-overflow: ellipsis;
-      white-space: nowrap;
-      //m端
-      @media only screen and (max-width: 766.99px) {
-        font-size: 14px;
-        padding-bottom: 5px;
+    .link-info{
+      flex: 1;
+      color: #363636;
+      height: 95px;
+      transition: all .3s ease-in-out;
+      .link-title{
+        font-size: 18px;
+        font-weight: 600;
       }
-    }
-    .linkdes {
-      color: #949494;
-      font-size: 15px;
-      padding: 10px 0;
-      border-top: 1px dashed #ddd;
-      text-overflow: ellipsis;
-      overflow: hidden;
-      white-space: nowrap;
-      line-height: 25px;
-      -webkit-transition: all .5s;
-      transition: all .5s;
-      //m端
-      @media only screen and (max-width: 766.99px) {
-        font-size: 12px;
-        padding: 2px 0;
+      .link-desc{
+        font-size: 15px;
+        opacity: .7;
+        padding-top: 5px;
+        line-height: 20px;
       }
     }
   }
 }
-
+.links-title{
+  h2{
+    font-size: 24px;
+    line-height: 48px;
+    color: #000;
+  }
+  p{
+    font-size: 14px;
+    color: #4c4948;
+    line-height: 24px;
+  }
+}
+.myInfo{
+  background-color:#f7f9fe;
+  padding: 10px;
+  border-radius: 10px;
+  letter-spacing: 2px;
+  .myInfo-title{
+    color: #000;
+    font-size: 20px;
+    padding: 5px 0;
+    font-weight: 600;
+  }
+  p{
+    margin-bottom: 5px;
+    span{
+      display: inline-block;
+      background-color: rgba(#425aef, .3);
+      border-radius: 10px;
+      padding: 2px 8px;
+      color: #425aef;
+    }
+  }
+}
 </style>
