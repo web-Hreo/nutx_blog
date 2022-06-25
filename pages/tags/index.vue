@@ -75,7 +75,7 @@ export default {
     flex-wrap: wrap;
   }
   li{
-    font-family: "Linux Biolinum", "Noto Serif SC", Helvetica, Arial, Menlo, Monaco, monospace, sans-serif;
+    // font-family: "Linux Biolinum", "Noto Serif SC", Helvetica, Arial, Menlo, Monaco, monospace, sans-serif;
     font-size: 16px;
     color: #fff;
     border-radius: 6px;

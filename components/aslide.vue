@@ -376,7 +376,7 @@ export default {
     flex-wrap: wrap;
     li {
       letter-spacing: 1px;
-      font-family: "Linux Biolinum", "Noto Serif SC", Helvetica, Arial, Menlo, Monaco, monospace, sans-serif;
+      // font-family: "Linux Biolinum", "Noto Serif SC", Helvetica, Arial, Menlo, Monaco, monospace, sans-serif;
       margin: 7px;
       border-radius: 5px;
       font-size: 14px;

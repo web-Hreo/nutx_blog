@@ -150,7 +150,7 @@ export default {
       // padding: 10px 0;
       display: block;
       background-color: #F5F5F5;
-      font-family: Consolas,Menlo,Monaco,"lucida console","Liberation Mono","Courier New","andale mono",monospaceX,monospace,sans-serif;
+      // font-family: Consolas,Menlo,Monaco,"lucida console","Liberation Mono","Courier New","andale mono",monospaceX,monospace,sans-serif;
       //m端
       @media only screen and (max-width: 766.99px) {
         font-size: 14px;
