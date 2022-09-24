@@ -7,12 +7,12 @@
 -->
 <template>
   <div id="comment" class="def-card">
-    <div class="note defalut no-icon" style="">
-      如果对本博客有任何建议 欢迎在页面下方留言<br/>
-      例如:<br/>
-      对某个开源项目感兴趣 想让我踩踩坑<br/>
-      某页面有BUG 或有更好的想法<br/>
-      已有文章的某些地方存在问题 
+    <div class="noteInfo" style="">
+      如果对本博客有任何建议 欢迎在页面下方留言<br />
+      例如:<br />
+      对某个开源项目感兴趣 想让我踩踩坑<br />
+      某页面有BUG 或有更好的想法<br />
+      已有文章的某些地方存在问题
     </div>
     <MyComment from="comment" />
   </div>
@@ -20,43 +20,58 @@
 
 <script>
 import MyComment from '~/components/myComment.vue'
-export default {
-  name: 'comment',
+export default {
+  name: 'comment',
 
-  components: { MyComment },
+  components: { MyComment },
 
-  data () {
-    return {}
-  },
+  data() {
+    return {}
+  },
 
-  mounted () {},
+  mounted() { },
 
-  destroyed () {},
+  destroyed() { },
 
-  methods: {},
-    
-  head(){
-    return{
-      title:'Hhua_前端个人博客_留言',
+  methods: {},
+
+  head() {
+    return {
+      title: 'Hhua_前端个人博客_留言',
     }
   }
 }
 
 </script>
 <style lang='less' scoped>
-  #comment{
-    padding: 20px 5%;
-    color: rgb(51,51,51);
+#comment {
+  padding: 20px 5%;
+  color: rgb(51, 51, 51);
+
+  //m端
+  @media only screen and (max-width: 766.99px) {
+    padding-top: 20px;
+  }
+
+  .noteInfo {
+    background-color: #f7f9fe;
+    padding: 10px;
+    border-radius: 10px;
+    letter-spacing: 2px;
+    font-size: 14px;
+
     //m端
     @media only screen and (max-width: 766.99px) {
-      padding-top: 20px;
-    }
-    .comment_desc{
-      p{
-        padding: 5px 0;
-        font-size: 15px;
-        line-height: 26px;
-      }
+      font-size: 12px;
     }
   }
+
+  .comment_desc {
+    p {
+      padding: 5px 0;
+      font-size: 15px;
+      line-height: 26px;
+    }
+  }
+}
 </style>

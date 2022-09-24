@@ -21,9 +21,10 @@
         <p>优质博客 时间倒序</p>
       </div>
       <el-row class="linkeBox" :gutter="10">
-        <el-col :xs="24" :sm="12" :md="8"  v-for="item in relativesList" :key="item._id">
-          <div class="link-item" :class="{'link-item-hover':item.url !=='#'}" >
-            <a :href="item.url==='#'?'javascript:void(0);':item.url" :title="item.title" :target="item.url==='#'?'_self':'_blank'" data-pjax-state="external">
+        <el-col :xs="24" :sm="12" :md="8" v-for="item in relativesList" :key="item._id">
+          <div class="link-item" :class="{'link-item-hover':item.url !=='#'}">
+            <a :href="item.url==='#'?'javascript:void(0);':item.url" :title="item.title"
+              :target="item.url==='#'?'_self':'_blank'" data-pjax-state="external">
               <img :src="item.avatar"><span class="sitename abc9">{{item.title}}</span>
               <p class="linkdes">{{item.title}}</p>
             </a>
@@ -36,11 +37,12 @@
       <div class="links-title" style="">
         <h2>🔥 炙焰</h2>
         <p>博客0+ 时间倒序</p>
-        </div>
+      </div>
       <el-row class="linkeBox" :gutter="10">
-        <el-col :xs="24" :sm="12" :md="8"  v-for="item in regularsList" :key="item._id">
-          <div class="link-item" :class="{'link-item-hover':item.url !=='#'}" >
-            <a class="fbc" :href="item.url==='#'?'javascript:void(0);':item.url" :title="item.title" :target="item.url==='#'?'_self':'_blank'">
+        <el-col :xs="24" :sm="12" :md="8" v-for="item in regularsList" :key="item._id">
+          <div class="link-item" :class="{'link-item-hover':item.url !=='#'}">
+            <a class="fbc" :href="item.url==='#'?'javascript:void(0);':item.url" :title="item.title"
+              :target="item.url==='#'?'_self':'_blank'">
               <img class="link-img" :src="item.avatar">
               <div class="link-info fc">
                 <div>
@@ -60,17 +62,17 @@
         <p>近期无法访问 综合倒序</p>
       </div>
       <el-row class="linkeBox" :gutter="10">
-        <el-col :xs="24" :sm="12" :md="8"  v-for="item in loseList" :key="item._id">
-          <div class="link-item" :class="{'link-item-hover':item.url !=='#'}" >
-              <a class="fbc">
-                <p class="lose-img"></p>
-                <div class="link-info fc">
-                  <div>
-                    <p class="link-title row_1">{{item.title}}</p>
-                    <p class="link-desc row_2">{{item.desc}}</p>
-                  </div>
+        <el-col :xs="24" :sm="12" :md="8" v-for="item in loseList" :key="item._id">
+          <div class="link-item" :class="{'link-item-hover':item.url !=='#'}">
+            <a class="fbc">
+              <p class="lose-img"></p>
+              <div class="link-info fc">
+                <div>
+                  <p class="link-title row_1">{{item.title}}</p>
+                  <p class="link-desc row_2">{{item.desc}}</p>
                 </div>
-              </a>
+              </div>
+            </a>
           </div>
         </el-col>
       </el-row>
@@ -83,74 +85,85 @@
     </div> -->
     <div class="myInfo" style="">
       <p class="myInfo-title">本站信息</p>
-      <p>站点名称：<span>小何_前端个人博客</span> </p>
-      <p>描述：<span>保持热爱 奔赴山海</span></p>
-      <p>链接：<span>http://www.heblogs.cn</span></p>
-      <p>头像：<span>http://cdn.heblogs.cn/avatar.jpg</span></p>
+      <p>站点名称：<span @click="copy('站点名称','小何_前端个人博客')">小何_前端个人博客</span> </p>
+      <p>描述：<span @click="copy('描述','保持热爱，奔赴山海')">保持热爱，奔赴山海</span></p>
+      <p>链接：<span @click="copy('链接','http://www.heblogs.cn')">http://www.heblogs.cn</span></p>
+      <p>头像：<span @click="copy('头像','http://cdn.heblogs.cn/avatar.jpg')">http://cdn.heblogs.cn/avatar.jpg</span></p>
     </div>
-    <MyComment from="links"  />
-    </div>
+    <MyComment from="links" />
+  </div>
 </template>
 
 <script>
 import MyComment from '~/components/myComment.vue'
-import {getLinks} from '~/api/public'
+import { getLinks } from '~/api/public'
+import { copyText } from '~/components/methods.js'
 export default {
-  async asyncData(context){
-    const {data} = await getLinks({pageNo:1,pageSize:100})
+  async asyncData(context) {
+    const { data } = await getLinks({ pageNo: 1, pageSize: 100 })
     data.data.reverse()
     const relativesList = []//亲友列表
     const regularsList = []//常客列表
     const loseList = []//亲友列表
-    data.data.forEach(it =>{
-      if(it.type==='亲友'){
+    data.data.forEach(it => {
+      if (it.type === '亲友') {
         relativesList.push(it)
-      }else if(it.type==='常客'){
+      } else if (it.type === '常客') {
         regularsList.push(it)
-      }else{
+      } else {
         loseList.push(it)
       }
     })
-    return { relativesList,regularsList,loseList }
+    return { relativesList, regularsList, loseList }
   },
 
   components: { MyComment },
 
-  data () {
+  data() {
     return {
-      linkList:[]
+      linkList: []
     }
   },
 
- async  mounted () {
+  async mounted() {
   },
 
-  destroyed () {},
+  destroyed() { },
 
   methods: {
-    
+    copy(title, text) {
+      copyText(text)
+      this.$notify({
+        duration: 1000,
+        title: `复制${title}成功`,
+        message: '提示',
+        type: 'success'
+      });
+    },
+
   },
-    
-  head(){
-    return{
-      title:'Hhua_前端个人博客_友链',
+
+  head() {
+    return {
+      title: 'Hhua_前端个人博客_友链',
     }
   }
 }
 
 </script>
 <style lang='less' scoped>
-#links{
+#links {
   border: 1px solid #e3e8f7;
 }
-.linkeBox{
+
+.linkeBox {
   margin: 0;
   list-style: none;
   padding: 0;
   width: 100%;
   display: inline-block;
-  
-  .link-item{
+
+  .link-item {
     border: 1px solid #ececec;
     box-sizing: border-box;
     margin: 4px 0;
@@ -163,17 +176,22 @@ export default {
     cursor: pointer;
     padding: 0 15px;
     height: 95px;
-    &:hover{
+
+    &:hover {
       background-color: #425aef;
-      .link-info{
+
+      .link-info {
         color: #ffffff;
       }
-      .link-img,.lose-img{
+
+      .link-img,
+      .lose-img {
         width: 0;
         height: 0;
       }
     }
-    .lose-img{
+
+    .lose-img {
       width: 65px;
       height: 65px;
       border-radius: 50%;
@@ -181,13 +199,15 @@ export default {
       margin: 15px;
       margin-left: 0;
       transition: all .3s ease-in-out;
+
       //m端
       @media only screen and (max-width: 766.99px) {
         width: 40px;
         height: 40px;
       }
     }
-    .link-img{
+
+    .link-img {
       width: 65px;
       height: 65px;
       border-radius: 50%;
@@ -195,16 +215,19 @@ export default {
       margin-left: 0;
       transition: all .3s ease-in-out;
     }
-    .link-info{
+
+    .link-info {
       flex: 1;
       color: #363636;
       height: 95px;
       transition: all .3s ease-in-out;
-      .link-title{
+
+      .link-title {
         font-size: 18px;
         font-weight: 600;
       }
-      .link-desc{
+
+      .link-desc {
         font-size: 15px;
         opacity: .7;
         padding-top: 5px;
@@ -213,37 +236,44 @@ export default {
     }
   }
 }
-.links-title{
-  h2{
+
+.links-title {
+  h2 {
     font-size: 24px;
     line-height: 48px;
     color: #000;
   }
-  p{
+
+  p {
     font-size: 14px;
     color: #4c4948;
     line-height: 24px;
   }
 }
-.myInfo{
-  background-color:#f7f9fe;
+
+.myInfo {
+  background-color: #f7f9fe;
   padding: 10px;
   border-radius: 10px;
   letter-spacing: 2px;
-  .myInfo-title{
+
+  .myInfo-title {
     color: #000;
     font-size: 20px;
     padding: 5px 0;
     font-weight: 600;
   }
-  p{
+
+  p {
     margin-bottom: 5px;
-    span{
+
+    span {
       display: inline-block;
-      background-color: rgba(#425aef, .3);
+      // background-color: rgba(#425aef, .3);
       border-radius: 10px;
       padding: 2px 8px;
       color: #425aef;
+      cursor: pointer;
     }
   }
 }
