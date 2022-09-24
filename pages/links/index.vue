@@ -253,7 +253,7 @@ export default {
 
 .myInfo {
   background-color: #f7f9fe;
-  padding: 10px;
+  padding: 20px;
   border-radius: 10px;
   letter-spacing: 2px;
 
