@@ -8,7 +8,7 @@ import axios from 'axios' // 引用axios
 // const baseURL = process.env.NODE_ENV == "development"?
 // "http://localhost:3000" :
 // "http://www.heblogs.cn/api";
-const baseURL ="http://www.heblogs.cn/api";
+const baseURL ="://www.heblogs.cn/api";
 const service = axios.create({
   baseURL, // 正式环境
   timeout: 1800000, // request timeout
